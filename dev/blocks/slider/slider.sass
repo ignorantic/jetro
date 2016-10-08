@@ -1,0 +1,65 @@
+.slider
+  height: 400px
+  position: relative
+  background: #e8603a
+
+.slider__btn
+  opacity: 0.3
+  position: absolute
+  z-index: 10
+  top: 160px
+  height: 20px
+  font-size: 50px
+  transition: opacity 200ms
+  color: #ffffff
+  &:hover
+    opacity: 1
+
+.slider__btn_left
+  left: 0
+
+.slider__btn_right
+  right: 0
+
+.slider__slide
+  overflow: hidden
+  transition: width 600ms
+  position: absolute
+  width: 0
+  top: 0
+
+.slider__slide_active
+  transition: width 600ms
+  width: 100%
+  z-index: 10
+
+.slider__slide
+  &.slider__slide_forward
+    right: 0
+
+.slider__slide_active
+  &.slider__slide_forward
+    left: 0
+
+.slider__slide_active
+  &.slider__slide_back
+    right: 0
+
+.slider_fade
+  background: transparent
+
+  &>.slider__slide
+    opacity: 0
+    transition: opacity 600ms
+    position: absolute
+    left: 0
+    width: 100%
+
+  &>.slider__slide_active
+    opacity: 1
+
+.slider_flex
+  &>.slider__slide
+    &>img
+      width: 100%
+      min-height: 400px
