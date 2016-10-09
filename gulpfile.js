@@ -1,7 +1,6 @@
 'use strict';
 
-var gulp, sass, uglify, concat, debug, imagemin, pngquant, sourcemap, del,
-    path, sync, reload, config;
+var gulp, sass, uglify, concat, debug, imagemin, pngquant, sourcemap, del, path, sync;
 
 gulp = require('gulp');
 sass = require('gulp-sass');
@@ -12,18 +11,7 @@ imagemin = require('gulp-imagemin');
 pngquant = require('imagemin-pngquant');
 sourcemap = require('gulp-sourcemaps');
 del = require('del');
-sync = require("browser-sync");
-reload = sync.reload;
-
-config = {
-    server: {
-        baseDir: "./build"
-    },
-    tunnel: true,
-    host: 'localhost',
-    port: 9000,
-    logPrefix: "Frontend_Devil"
-};
+sync = require("browser-sync").create();
 
 path = {
     build: {
@@ -55,12 +43,6 @@ gulp.task('build:html', function() {
         .pipe(gulp.dest(path.build.html));
 });
 
-gulp.task('build:fonts', function() {
-    return gulp.src([path.src.fonts], {since: gulp.lastRun('build:fonts')})
-        .pipe(debug({title: 'src:'}))
-        .pipe(gulp.dest(path.build.fonts));
-});
-
 gulp.task('build:sass', function() {
     return gulp.src([path.blocks.sass, path.src.font_sass])
         .pipe(debug({title: 'src sass:'}))
@@ -89,6 +71,12 @@ gulp.task('build:js', function () {
         .pipe(gulp.dest(path.build.js));
 });
 
+gulp.task('build:fonts', function() {
+    return gulp.src([path.src.fonts], {since: gulp.lastRun('build:fonts')})
+        .pipe(debug({title: 'src:'}))
+        .pipe(gulp.dest(path.build.fonts));
+});
+
 gulp.task('build:img', function () {
     return gulp.src(path.src.img)
         .pipe(imagemin({
@@ -107,8 +95,12 @@ gulp.task('clean', function () {
 
 gulp.task('build', gulp.series('clean', 'build:html', 'build:fonts', 'build:sass', 'build:js', 'build:img'));
 
-gulp.task('server', function () {
-    sync(config);
+gulp.task('serve', function () {
+    sync.init({
+        server: 'build'
+    });
+
+    sync.watch('build/**/*.*').on('change', sync.reload);
 });
 
 gulp.task('watch', function() {
@@ -118,4 +110,4 @@ gulp.task('watch', function() {
     gulp.watch(path.blocks.js, gulp.series('build:js'));
 });
 
-gulp.task('default', gulp.parallel('build', 'server', 'watch'));
+gulp.task('default', gulp.series('build', gulp.parallel('watch', 'serve')));
