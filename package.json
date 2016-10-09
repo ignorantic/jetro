@@ -12,6 +12,7 @@
     "browser-sync": "^2.17.0",
     "del": "^2.2.2",
     "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-bower": "0.0.13",
     "gulp-concat": "^2.6.0",
     "gulp-debug": "^2.1.2",
     "gulp-imagemin": "^3.0.3",

@@ -1,6 +1,7 @@
 'use strict';
 
-var gulp, sass, uglify, concat, debug, imagemin, pngquant, sourcemap, del, path, sync, reload;
+var gulp, sass, uglify, concat, debug, imagemin, pngquant, sourcemap, del,
+    path, sync, reload, config;
 
 gulp = require('gulp');
 sass = require('gulp-sass');
@@ -13,6 +14,16 @@ sourcemap = require('gulp-sourcemaps');
 del = require('del');
 sync = require("browser-sync");
 reload = sync.reload;
+
+config = {
+    server: {
+        baseDir: "./build"
+    },
+    tunnel: true,
+    host: 'localhost',
+    port: 9000,
+    logPrefix: "Frontend_Devil"
+};
 
 path = {
     build: {
@@ -96,6 +107,10 @@ gulp.task('clean', function () {
 
 gulp.task('build', gulp.series('clean', 'build:html', 'build:fonts', 'build:sass', 'build:js', 'build:img'));
 
+gulp.task('server', function () {
+    sync(config);
+});
+
 gulp.task('watch', function() {
     gulp.watch(path.src.html, gulp.series('build:html'));
     gulp.watch(path.src.img, gulp.series('build:img'));
@@ -103,4 +118,4 @@ gulp.task('watch', function() {
     gulp.watch(path.blocks.js, gulp.series('build:js'));
 });
 
-gulp.task('default', gulp.series('build', 'watch'));
+gulp.task('default', gulp.parallel('build', 'server', 'watch'));
