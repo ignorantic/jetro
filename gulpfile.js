@@ -19,16 +19,13 @@ path = {
         js: 'build/js',
         css: 'build/css',
         img: 'build/img/',
-        fonts: 'build/fonts/'
+        fonts: 'build/font/'
     },
     src: {
         img: 'dev/img/*.png',
         html: 'dev/html/*.html',
         fonts: 'dev/fonts/**/*.*',
-        font_sass: 'dev/fonts-sass/**/*.sass'
-    },
-    libs: {
-        jquery: 'bower_components/jquery/dist/jquery.min.js'
+        font_css: 'dev/fonts-styles/**/*.*'
     },
     blocks: {
         js: 'dev/blocks/**/*.js',
@@ -44,7 +41,7 @@ gulp.task('build:html', function() {
 });
 
 gulp.task('build:sass', function() {
-    return gulp.src([path.blocks.sass, path.src.font_sass])
+    return gulp.src([path.blocks.sass, path.src.font_css])
         .pipe(debug({title: 'src sass:'}))
         .pipe(sourcemap.init())
         .pipe(debug({title: 'sourcemap init:'}))
@@ -58,7 +55,7 @@ gulp.task('build:sass', function() {
 });
 
 gulp.task('build:js', function () {
-    return gulp.src([path.libs.jquery, path.blocks.js])
+    return gulp.src(path.blocks.js)
         .pipe(debug({title: 'src js:'}))
         .pipe(sourcemap.init())
         .pipe(debug({title: 'sourcemap init:'}))
@@ -106,7 +103,7 @@ gulp.task('serve', function () {
 gulp.task('watch', function() {
     gulp.watch(path.src.html, gulp.series('build:html'));
     gulp.watch(path.src.img, gulp.series('build:img'));
-    gulp.watch([path.blocks.sass, path.src.font_sass], gulp.series('build:sass'));
+    gulp.watch([path.blocks.sass, path.src.font_css], gulp.series('build:sass'));
     gulp.watch(path.blocks.js, gulp.series('build:js'));
 });
 
