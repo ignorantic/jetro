@@ -1,8 +1,8 @@
 .slider__info
   position: absolute
-  top: 240px
-  left: 35px
-  width: 350px
+  bottom: 6%
+  left: 3%
+  width: 32%
   background: rgba(232, 96, 58, 0.8)
   padding: 20px
 
@@ -19,3 +19,59 @@
   font-weight: 600
   color: #ffffff
   margin-bottom: 0
+
+@media screen and (max-width: 975px)
+  .slider__info
+    padding: 10px
+
+  .slider__header
+    font-size: 14px
+
+  .slider__text
+    font-size: 10px
+
+@media screen and (max-width: 680px)
+  .slider__info
+    width: 35%
+
+  .slider__header
+    font-size: 12px
+
+  .slider__text
+    font-size: 9px
+    margin-top: 0
+
+@media screen and (max-width: 640px)
+  .slider__info
+    width: 45%
+    padding: 5px
+
+  .slider__header
+    font-size: 12px
+
+  .slider__text
+    font-size: 10px
+
+@media screen and (max-width: 560px)
+  .slider__info
+    padding-top: 0
+    width: 55%
+
+  .slider__header
+    font-size: 10px
+
+@media screen and (max-width: 480px)
+  .slider__info
+    left: 6%
+    width: 65%
+    padding: 4px
+
+@media screen and (max-width: 420px)
+  .slider__info
+    width: 75%
+
+@media screen and (max-width: 380px)
+  .slider__text
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis

@@ -1,34 +1,18 @@
 .slider__slide
-  overflow: hidden
-  transition: width 600ms
-  position: absolute
-  width: 0
-  top: 0
-
-.slider__slide_active
-  transition: width 600ms
   width: 100%
-  z-index: 10
-
-.slider__slide.slider__slide_forward
-  right: 0
-
-.slider__slide_active.slider__slide_forward
-  left: 0
-
-.slider__slide_active.slider__slide_back
-  right: 0
-
-.slider_fade>.slider__slide
+  bottom: 0
+  position: absolute
+  top: 0
   opacity: 0
   transition: opacity 600ms
-  position: absolute
   left: 0
-  width: 100%
 
-.slider_fade>.slider__slide_active
+.slider__slide_active
   opacity: 1
+  position: static
 
-.slider_flex>.slider__slide>.slider__img
+.slider__img
   width: 100%
-  min-height: 400px
+  height: 100%
+  object-fit: fill
+  object-position: center
