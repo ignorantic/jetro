@@ -14,4 +14,4 @@ for (let i = 0; i < thumbs.length; i++) {
         }
 
     }
-}
+};
