@@ -1,6 +1,6 @@
 'use strict';
 
-var gulp, sass, uglify, concat, debug, imagemin, pngquant, sourcemap, del, path, sync;
+var gulp, sass, uglify, concat, debug, imagemin, rigger, pngquant, sourcemap, del, path, sync;
 
 gulp = require('gulp');
 sass = require('gulp-sass');
@@ -8,10 +8,11 @@ uglify = require('gulp-uglify');
 concat = require('gulp-concat');
 debug = require('gulp-debug');
 imagemin = require('gulp-imagemin');
+rigger = require('gulp-rigger');
 pngquant = require('imagemin-pngquant');
 sourcemap = require('gulp-sourcemaps');
 del = require('del');
-sync = require("browser-sync").create();
+sync = require('browser-sync').create();
 
 path = {
     build: {
@@ -22,16 +23,22 @@ path = {
         fonts: 'build/font/'
     },
     src: {
-        img: 'dev/img/*.png',
+        img: 'dev/img/**/*.png',
         html: 'dev/html/*.html',
         fonts: 'dev/fonts/**/*.*',
         font_css: 'dev/fonts-styles/**/*.*'
     },
     blocks: {
-        js: 'dev/blocks/**/*.js',
+        js: 'dev/blocks/*.js',
         sass: 'dev/blocks/**/*.sass'
     },
-    clean: './build'
+    clean: './build',
+    watch: {
+        html: 'dev/html/**/*.html',
+        js: 'dev/blocks/**/*.js',
+        sass: 'dev/blocks/**/*.sass',
+        img: 'dev/img/**/.png'
+    }
 };
 
 gulp.task('build:html', function() {
@@ -55,17 +62,17 @@ gulp.task('build:sass', function() {
 });
 
 gulp.task('build:js', function () {
-    return gulp.src(path.blocks.js)
-        .pipe(debug({title: 'src js:'}))
-        .pipe(sourcemap.init())
-        .pipe(debug({title: 'sourcemap init:'}))
-        .pipe(concat('index.js'))
-        .pipe(debug({title: 'concat js:'}))
-        .pipe(uglify())
-        .pipe(debug({title: 'uglify js:'}))
-        .pipe(sourcemap.write())
-        .pipe(debug({title: 'sourcemap write:'}))
-        .pipe(gulp.dest(path.build.js));
+return gulp.src(path.blocks.js)
+    .pipe(debug({title: 'src js:'}))
+    .pipe(rigger())
+    .pipe(debug({title: 'rigger js:'}))
+    .pipe(sourcemap.init())
+    .pipe(debug({title: 'sourcemap init:'}))
+    // .pipe(uglify())
+    // .pipe(debug({title: 'uglify js:'}))
+    .pipe(sourcemap.write())
+    .pipe(debug({title: 'sourcemap write:'}))
+    .pipe(gulp.dest(path.build.js));
 });
 
 gulp.task('build:fonts', function() {
@@ -101,10 +108,10 @@ gulp.task('serve', function () {
 });
 
 gulp.task('watch', function() {
-    gulp.watch(path.src.html, gulp.series('build:html'));
-    gulp.watch(path.src.img, gulp.series('build:img'));
-    gulp.watch([path.blocks.sass, path.src.font_css], gulp.series('build:sass'));
-    gulp.watch(path.blocks.js, gulp.series('build:js'));
+    gulp.watch(path.watch.html, gulp.series('build:html'));
+    gulp.watch(path.watch.img, gulp.series('build:img'));
+    gulp.watch([path.watch.sass, path.src.font_css], gulp.series('build:sass'));
+    gulp.watch(path.watch.js, gulp.series('build:js'));
 });
 
 gulp.task('default', gulp.series('build', gulp.parallel('watch', 'serve')));
