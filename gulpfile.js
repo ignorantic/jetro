@@ -37,7 +37,8 @@ path = {
         html: 'dev/html/**/*.html',
         js: 'dev/blocks/**/*.js',
         sass: 'dev/blocks/**/*.sass',
-        img: 'dev/img/**/.png'
+        img: 'dev/img/**/.png',
+        lib: 'dev/lib/**/*.js'
     }
 };
 
@@ -112,6 +113,7 @@ gulp.task('watch', function() {
     gulp.watch(path.watch.img, gulp.series('build:img'));
     gulp.watch([path.watch.sass, path.src.font_css], gulp.series('build:sass'));
     gulp.watch(path.watch.js, gulp.series('build:js'));
+    gulp.watch(path.watch.lib, gulp.series('build:js'));
 });
 
 gulp.task('default', gulp.series('build', gulp.parallel('watch', 'serve')));
