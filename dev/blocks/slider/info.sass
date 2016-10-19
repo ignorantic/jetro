@@ -1,26 +1,22 @@
+@import "../mixins"
+
 .slider__info
   position: absolute
   bottom: 6%
   left: 3%
   width: 32%
-  background: rgba(232, 96, 58, 0.8)
+  background: $trans-bg-color
   padding: 20px
 
 .slider__header
-  font-family: "Bebas", sans-serif
-  text-transform: uppercase
-  font-size: 18px
+  @include header
   color: #ffffff
   word-spacing: 2px
 
 .slider__text
-  font-family: "Open Sans", sans-serif
-  font-size: 12px
-  font-weight: 600
-  color: #ffffff
-  margin-bottom: 0
+  @include text
 
-@media screen and (max-width: 975px)
+@media screen and (max-width: 950px)
   .slider__info
     padding: 10px
 
@@ -75,3 +71,8 @@
     white-space: nowrap
     overflow: hidden
     text-overflow: ellipsis
+
+
+@media screen and (max-width: 300px)
+  .slider__text
+    display: none

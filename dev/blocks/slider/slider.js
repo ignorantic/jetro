@@ -1,3 +1,5 @@
+if (getActiveIndex() < 0) toggleClassByIndex('slider__slide', 'slider__slide_active', 0);
+
 function getNumberOfSlides() {
     return document.querySelectorAll('.slider__slide').length;
 }
@@ -9,8 +11,6 @@ function getActiveIndex() {
     }
     return -1;
 }
-
-(function() {if (getActiveIndex() < 0) setActiveClass(0)})();
 
 document.querySelector('.slider__btn_left').onclick = function () {
     let index = getActiveIndex();

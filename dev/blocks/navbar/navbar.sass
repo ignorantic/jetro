@@ -1,3 +1,5 @@
+@import "../mixins"
+
 .navbar
   width: 100%
 
@@ -11,10 +13,8 @@
   align-items: center
 
 .navbar__item
-  font-family: Bebas, sans-serif
-  text-transform: uppercase
+  @include header
   padding-left: 25px
-  word-spacing: 2px
 
 .navbar__link
   font-size: 16px
@@ -25,7 +25,7 @@
     color: #f2af9e
 
 .navbar__link_active
-  color: #e8663c
+  color: $base-color
   cursor: default
 
 @media screen and (max-width: 680px)
@@ -58,6 +58,7 @@
     position: absolute
     right: 0
     top: 10px
+    margin-right: 0.2em
     font-size: 28px
     line-height: 40px
     z-index: 100
@@ -68,9 +69,9 @@
     color: #f2af9e
 
   .navbar__btn_blink
-    color: #e8603a
+    color: $base-color
     &:hover
-      color: #e8603a
+      color: $base-color
 
   .navbar__list
     display: flex
