@@ -1,18 +1,18 @@
 'use strict';
 
-var gulp, sass, uglify, concat, debug, imagemin, rigger, pngquant, sourcemap, del, path, sync;
+var gulp, sass, concat, debug, imagemin, rigger, pngquant, sourcemap, del, path, sync, plumber;
 
-gulp = require('gulp');
-sass = require('gulp-sass');
-uglify = require('gulp-uglify');
-concat = require('gulp-concat');
-debug = require('gulp-debug');
-imagemin = require('gulp-imagemin');
-rigger = require('gulp-rigger');
-pngquant = require('imagemin-pngquant');
-sourcemap = require('gulp-sourcemaps');
-del = require('del');
-sync = require('browser-sync').create();
+gulp        = require('gulp');
+sass        = require('gulp-sass');
+concat      = require('gulp-concat');
+debug       = require('gulp-debug');
+imagemin    = require('gulp-imagemin');
+rigger      = require('gulp-rigger');
+pngquant    = require('imagemin-pngquant');
+sourcemap   = require('gulp-sourcemaps');
+del         = require('del');
+sync        = require('browser-sync').create();
+plumber     = require('gulp-plumber');
 
 path = {
     build: {
@@ -46,7 +46,8 @@ path = {
 };
 
 gulp.task('build:html', function() {
-    return gulp.src([path.src.html, path.blocks.tmpl])
+    return gulp.src(path.src.html)
+        .pipe(plumber())
         .pipe(debug({title: 'src html:'}))
         .pipe(rigger())
         .pipe(debug({title: 'rigger html:'}))
@@ -55,25 +56,25 @@ gulp.task('build:html', function() {
 
 gulp.task('build:sass', function() {
     return gulp.src([path.blocks.sass, path.blocks.css])
+        .pipe(plumber())
         .pipe(debug({title: 'src sass:'}))
         .pipe(sourcemap.init())
-        .pipe(debug({title: 'sourcemap init:'}))
+        .pipe(debug({title: 'sourcemap css init:'}))
         .pipe(sass().on('error', sass.logError))
         .pipe(debug({title: 'sass:'}))
         .pipe(concat('index.css'))
         .pipe(debug({title: 'concat sass:'}))
         .pipe(sourcemap.write())
-        .pipe(debug({title: 'sourcemap write:'}))
+        .pipe(debug({title: 'sourcemap css write:'}))
         .pipe(gulp.dest(path.build.css));
 });
 
 gulp.task('build:js', function () {
     return gulp.src(path.blocks.js)
+        .pipe(plumber())
         .pipe(debug({title: 'src js:'}))
         .pipe(rigger())
         .pipe(debug({title: 'rigger js:'}))
-        // .pipe(uglify())
-        // .pipe(debug({title: 'uglify js:'}))
         .pipe(gulp.dest(path.build.js));
 });
 
