@@ -1,6 +1,7 @@
 'use strict';
 
-var gulp, sass, concat, debug, imagemin, rigger, pngquant, sourcemap, del, path, sync, plumber;
+var gulp, sass, concat, debug, imagemin, rigger, pngquant,
+    sourcemap, del, path, sync, plumber;
 
 gulp        = require('gulp');
 sass        = require('gulp-sass');
