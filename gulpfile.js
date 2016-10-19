@@ -36,6 +36,7 @@ path = {
     clean: './build',
     watch: {
         html: 'dev/html/**/*.html',
+        tmpl: 'dev/blocks/**/*.tmpl',
         js: 'dev/blocks/**/*.js',
         sass: 'dev/blocks/**/*.*',
         img: 'dev/img/**/.png',
@@ -45,7 +46,9 @@ path = {
 
 gulp.task('build:html', function() {
     return gulp.src([path.src.html], {since: gulp.lastRun('build:html')})
-        .pipe(debug({title: 'src:'}))
+        .pipe(debug({title: 'src html:'}))
+        .pipe(rigger())
+        .pipe(debug({title: 'rigger html:'}))
         .pipe(gulp.dest(path.build.html));
 });
 
@@ -108,6 +111,7 @@ gulp.task('serve', function () {
 
 gulp.task('watch', function() {
     gulp.watch(path.watch.html, gulp.series('build:html'));
+    gulp.watch(path.watch.tmpl, gulp.series('build:html'));
     gulp.watch(path.watch.img, gulp.series('build:img'));
     gulp.watch(path.watch.sass, gulp.series('build:sass'));
     gulp.watch(path.watch.js, gulp.series('build:js'));
