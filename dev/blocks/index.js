@@ -1,6 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
+//= ../lib/jsnaut.js
 
-    'use strict';
+document.addEventListener('DOMContentLoaded', function() {
 
     //= navbar/navbar.js
 

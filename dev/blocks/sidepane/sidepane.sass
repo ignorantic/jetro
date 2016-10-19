@@ -1,0 +1,32 @@
+@import "../mixins"
+
+.sidepane-wrapper
+  width: 100%
+  position: relative
+
+.sidepane
+  position: absolute
+  width: 100%
+  background: $pale-color
+  z-index: -10
+
+.sidepane_top
+  height: 60px
+
+.sidepane_bottom
+  height: 100%
+
+.sidepane-border
+  box-sizing: content-box
+  border-left: 10px solid transparent
+  border-right: 10px solid transparent
+  background: url("../img/bg.png") repeat
+  z-index: -5
+
+@media screen and (max-width: 1000px)
+  .sidepane_top,
+  .sidepane_bottom
+    display: none
+
+  .sidepane-border
+    border: 0
