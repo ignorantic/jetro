@@ -29,6 +29,7 @@ path = {
         mixin: 'dev/blocks/mixins.sass'
     },
     blocks: {
+        tmpl: 'dev/blocks/**/*.html',
         js: 'dev/blocks/*.js',
         sass: 'dev/blocks/**/*.sass',
         css: 'dev/blocks/**/*.css'
@@ -36,7 +37,7 @@ path = {
     clean: './build',
     watch: {
         html: 'dev/html/**/*.html',
-        tmpl: 'dev/blocks/**/*.tmpl',
+        tmpl: 'dev/blocks/**/*.html',
         js: 'dev/blocks/**/*.js',
         sass: 'dev/blocks/**/*.*',
         img: 'dev/img/**/.png',
@@ -45,7 +46,7 @@ path = {
 };
 
 gulp.task('build:html', function() {
-    return gulp.src([path.src.html], {since: gulp.lastRun('build:html')})
+    return gulp.src([path.src.html, path.blocks.tmpl])
         .pipe(debug({title: 'src html:'}))
         .pipe(rigger())
         .pipe(debug({title: 'rigger html:'}))
