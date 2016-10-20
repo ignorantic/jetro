@@ -28,25 +28,23 @@ path = {
     src: {
         img: 'dev/img/**/*.png',
         pug: ['dev/pug/*.pug', '!dev/pug/tmpl/**/*.*'],
-        html: 'dev/pug/*.html',
         fonts: 'dev/fonts/**/*.*',
         mixin: 'dev/blocks/mixins.sass'
     },
     blocks: {
         pug: 'dev/blocks/**/*.pug',
-        tmpl: 'dev/blocks/**/*.html',
         js: 'dev/blocks/*.js',
         sass: 'dev/blocks/**/*.sass',
         css: 'dev/blocks/**/*.css'
     },
     clean: './build',
     watch: {
-        html: 'dev/pug/**/*.html',
-        tmpl: 'dev/blocks/**/*.html',
+        pug: 'dev/blocks/**/*.pug',
         js: 'dev/blocks/**/*.js',
         sass: 'dev/blocks/**/*.*',
         img: 'dev/img/**/.png',
-        lib: 'dev/lib/**/*.js'
+        lib: 'dev/lib/**/*.js',
+        serve: 'build/**/*.*'
     }
 };
 
@@ -60,22 +58,13 @@ gulp.task('build:pug', function() {
         .pipe(gulp.dest(path.build.pug));
 });
 
-gulp.task('build:html', function() {
-    return gulp.src(path.src.html)
-        .pipe(plumber())
-        .pipe(debug({title: 'src html:'}))
-        .pipe(rigger())
-        .pipe(debug({title: 'rigger html:'}))
-        .pipe(gulp.dest(path.build.html));
-});
-
 gulp.task('build:sass', function() {
     return gulp.src([path.blocks.sass, path.blocks.css])
         .pipe(plumber())
         .pipe(debug({title: 'src sass:'}))
         .pipe(sourcemap.init())
         .pipe(debug({title: 'sourcemap css init:'}))
-        .pipe(sass().on('error', sass.logError))
+        .pipe(sass())
         .pipe(debug({title: 'sass:'}))
         .pipe(concat('index.css'))
         .pipe(debug({title: 'concat sass:'}))
@@ -115,19 +104,18 @@ gulp.task('clean', function () {
     return del(path.clean);
 });
 
-gulp.task('build', gulp.series('clean', 'build:html', 'build:fonts', 'build:sass', 'build:js', 'build:img'));
-gulp.task('build:fast', gulp.series('build:html', 'build:fonts', 'build:sass', 'build:js'));
+gulp.task('build', gulp.series('clean', 'build:pug', 'build:fonts', 'build:sass', 'build:js', 'build:img'));
+gulp.task('build:fast', gulp.series('build:pug', 'build:fonts', 'build:sass', 'build:js'));
 
 gulp.task('serve', function () {
     sync.init({
         server: 'build'
     });
 
-    sync.watch('build/**/*.*').on('change', sync.reload);
+    sync.watch(path.watch.serve).on('change', sync.reload);
 });
 
 gulp.task('watch', function() {
-    gulp.watch(path.watch.html, gulp.series('build:html'));
     gulp.watch(path.watch.pug, gulp.series('build:pug'));
     gulp.watch(path.watch.img, gulp.series('build:img'));
     gulp.watch(path.watch.sass, gulp.series('build:sass'));
