@@ -1,0 +1,15 @@
+- var page_title = 'home'
+doctype html
+html(lang="en")
+include tmpl/head
+body
+    .page-wrapper
+        .content
+            include ../blocks/navbar/navbar
+            include ../blocks/slider/slider
+            include ../blocks/thumbs/thumbs
+            include ../blocks/article-preview/article-preview
+            - var section_title = 'recent works'
+            include ../blocks/h-line/h-line
+            include ../blocks/recent/recent
+        include ../blocks/footer/footer

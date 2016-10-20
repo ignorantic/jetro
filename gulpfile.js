@@ -27,8 +27,8 @@ path = {
     },
     src: {
         img: 'dev/img/**/*.png',
-        pug: ['dev/html/*.pug', '!dev/html/head.pug'],
-        html: 'dev/html/*.html',
+        pug: ['dev/pug/*.pug', '!dev/pug/tmpl/**/*.*'],
+        html: 'dev/pug/*.html',
         fonts: 'dev/fonts/**/*.*',
         mixin: 'dev/blocks/mixins.sass'
     },
@@ -41,7 +41,7 @@ path = {
     },
     clean: './build',
     watch: {
-        html: 'dev/html/**/*.html',
+        html: 'dev/pug/**/*.html',
         tmpl: 'dev/blocks/**/*.html',
         js: 'dev/blocks/**/*.js',
         sass: 'dev/blocks/**/*.*',
@@ -128,7 +128,7 @@ gulp.task('serve', function () {
 
 gulp.task('watch', function() {
     gulp.watch(path.watch.html, gulp.series('build:html'));
-    gulp.watch(path.watch.tmpl, gulp.series('build:html'));
+    gulp.watch(path.watch.pug, gulp.series('build:pug'));
     gulp.watch(path.watch.img, gulp.series('build:img'));
     gulp.watch(path.watch.sass, gulp.series('build:sass'));
     gulp.watch(path.watch.js, gulp.series('build:js'));
