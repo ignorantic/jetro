@@ -1,10 +1,11 @@
 'use strict';
 
-var gulp, sass, concat, debug, imagemin, rigger, pngquant,
+var gulp, sass, pug, concat, debug, imagemin, rigger, pngquant,
     sourcemap, del, path, sync, plumber;
 
 gulp        = require('gulp');
 sass        = require('gulp-sass');
+pug         = require('gulp-pug');
 concat      = require('gulp-concat');
 debug       = require('gulp-debug');
 imagemin    = require('gulp-imagemin');
@@ -18,6 +19,7 @@ plumber     = require('gulp-plumber');
 path = {
     build: {
         html: 'build/',
+        pug: 'build/',
         js: 'build/js',
         css: 'build/css',
         img: 'build/img/',
@@ -25,11 +27,13 @@ path = {
     },
     src: {
         img: 'dev/img/**/*.png',
+        pug: ['dev/html/*.pug', '!dev/html/head.pug'],
         html: 'dev/html/*.html',
         fonts: 'dev/fonts/**/*.*',
         mixin: 'dev/blocks/mixins.sass'
     },
     blocks: {
+        pug: 'dev/blocks/**/*.pug',
         tmpl: 'dev/blocks/**/*.html',
         js: 'dev/blocks/*.js',
         sass: 'dev/blocks/**/*.sass',
@@ -45,6 +49,16 @@ path = {
         lib: 'dev/lib/**/*.js'
     }
 };
+
+gulp.task('build:pug', function() {
+    return gulp.src(path.src.pug)
+        .pipe(plumber())
+        .pipe(debug({title: 'src pug:'}))
+        .pipe(pug({
+            pretty: true
+        })).on('error', console.log)
+        .pipe(gulp.dest(path.build.pug));
+});
 
 gulp.task('build:html', function() {
     return gulp.src(path.src.html)

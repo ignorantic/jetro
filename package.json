@@ -12,15 +12,18 @@
     "browser-sync": "^2.17.0",
     "del": "^2.2.2",
     "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-browserify": "^0.5.1",
     "gulp-concat": "^2.6.0",
     "gulp-debug": "^2.1.2",
     "gulp-imagemin": "^3.0.3",
     "gulp-plumber": "^1.1.0",
+    "gulp-pug": "^3.1.0",
     "gulp-rigger": "^0.5.8",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
     "imagemin-pngquant": "^5.0.0",
-    "jquery": "^3.1.1"
+    "jquery": "^3.1.1",
+    "pug": "^2.0.0-beta6"
   },
   "devDependencies": {},
   "repository": {
