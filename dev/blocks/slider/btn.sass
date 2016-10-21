@@ -1,37 +1,22 @@
-.slider__btn
-  opacity: 0.3
+.slider__btnbox
   position: absolute
-  z-index: 10
-  top: 175px
-  font-size: 50px
+  top: 40%
+  height: 18%
+  width: 5%
+
+.slider__btnbox_left
+  left: 2.5%
+
+.slider__btnbox_right
+  right: 2.5%
+
+.slider__btn
+  height: 100%
+  width: 100%
+  opacity: 0.6
   transition: opacity 200ms
-  color: #ffffff
+  z-index: 10
+  stroke: #ffffff
+  fill: #ffffff
   &:hover
     opacity: 1
-
-.slider__btn_left
-  left: 0
-
-.slider__btn_right
-  right: 0
-
-@media screen and (max-width: 975px)
-  .slider__btn
-    border: 0
-    top: 43%
-    font-size: 40px
-
-@media screen and (max-width: 640px)
-  .slider__btn
-    top: 44%
-    font-size: 30px
-
-@media screen and (max-width: 560px)
-  .slider__btn
-    top: 45%
-    font-size: 25px
-
-@media screen and (max-width: 480px)
-  .slider__btn
-    top: 46%
-    font-size: 20px

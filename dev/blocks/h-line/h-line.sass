@@ -2,13 +2,19 @@
 
 .h-line
   margin-bottom: 30px
+  display: table
 
 .h-line__text
   @include header
-  width: 140px
+  white-space: nowrap
+  width: 200px
   padding-right: 20px
   padding-left: 5px
+  padding-top: 5px
+  display: table-cell
 
 .h-line__img
   width: 100%
-  background: url("../img/h_line.png") repeat-x center
+  display: table-cell
+  left: 0
+  background: url("../img/h_line.png") repeat-x left

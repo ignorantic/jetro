@@ -1,0 +1,14 @@
+@import "../mixins"
+
+.about__content
+  @include content
+
+.about__text
+  @include text
+
+@media screen and (max-width: 640px)
+  .about
+    flex-direction: column
+
+  .about__content
+    margin-right: 0

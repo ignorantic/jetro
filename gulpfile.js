@@ -18,7 +18,6 @@ plumber     = require('gulp-plumber');
 
 path = {
     build: {
-        html: 'build/',
         pug: 'build/',
         js: 'build/js',
         css: 'build/css',
@@ -26,7 +25,7 @@ path = {
         fonts: 'build/font/'
     },
     src: {
-        img: 'dev/img/**/*.png',
+        img: ['dev/img/**/*.png', 'dev/img/**/*.svg'],
         pug: ['dev/pug/*.pug', '!dev/pug/tmpl/**/*.*'],
         fonts: 'dev/fonts/**/*.*',
         mixin: 'dev/blocks/mixins.sass'
@@ -39,11 +38,10 @@ path = {
     },
     clean: './build',
     watch: {
-        pug: 'dev/blocks/**/*.pug',
-        js: 'dev/blocks/**/*.js',
+        pug: ['dev/blocks/**/*.pug', 'dev/pug/**/*.pug'],
+        js: ['dev/blocks/**/*.js', 'dev/lib/**/*.js'],
         sass: 'dev/blocks/**/*.*',
         img: 'dev/img/**/.png',
-        lib: 'dev/lib/**/*.js',
         serve: 'build/**/*.*'
     }
 };
@@ -55,6 +53,7 @@ gulp.task('build:pug', function() {
         .pipe(pug({
             pretty: true
         })).on('error', console.log)
+        .pipe(debug({title: 'render pug:'}))
         .pipe(gulp.dest(path.build.pug));
 });
 
@@ -120,7 +119,6 @@ gulp.task('watch', function() {
     gulp.watch(path.watch.img, gulp.series('build:img'));
     gulp.watch(path.watch.sass, gulp.series('build:sass'));
     gulp.watch(path.watch.js, gulp.series('build:js'));
-    gulp.watch(path.watch.lib, gulp.series('build:js'));
 });
 
 gulp.task('default', gulp.series('build'));

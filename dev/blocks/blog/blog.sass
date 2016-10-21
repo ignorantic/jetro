@@ -1,0 +1,39 @@
+@import "../mixins"
+
+.blog__postlist
+  @include content
+
+.blog__post
+  position: relative
+
+.blog__iconbox
+  position: absolute
+  left: -85px
+  width: 75px
+  height: 75px
+  text-align: center
+  line-height: 75px
+  background: $base-color
+
+.blog__icon
+  position: absolute
+  top: 25%
+  left: 25%
+  width: 50%
+  height: 50%
+  stroke: #ffffff
+  fill: #ffffff
+
+.blog__text
+  @include text
+
+@media screen and (max-width: 640px)
+  .blog
+    flex-direction: column
+
+  .blog__postlist
+    margin-right: 0
+
+@media screen and (max-width: 1130px)
+  .blog__iconbox
+    display: none
