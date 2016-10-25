@@ -16,16 +16,73 @@
   background: $base-color
 
 .blog__icon
-  position: absolute
-  top: 25%
-  left: 25%
-  width: 50%
-  height: 50%
-  stroke: #ffffff
-  fill: #ffffff
+  font-size: 32px
+  color: #ffffff
+
+.blog__img
+  height: 100%
+  width: 100%
+
+.blog__video
+  max-height: 100%
+  width: 100%
 
 .blog__text
+  display: flex
+  margin-top: 25px
+  margin-bottom: 30px
+
+.blog__info
   @include text
+  flex: 3
+
+.blog__info-title
+  @include header
+  font-size: 12px
+  margin-bottom: 5px
+
+.blog__info-text
+  @include text
+  color: #b9b9b9
+  text-transform: capitalize
+  margin-bottom: 15px
+
+.blog__article
+  flex: 11
+
+.blog__header
+  @include header
+  margin-bottom: 15px
+
+.blog__paragraph
+  @include text
+  margin-bottom: 20px
+
+.blog__line
+  position: relative
+  left: 0
+  height: 14px
+  width: 99%
+  background: url("../img/s_line.png") repeat-x left
+  margin-bottom: 45px
+
+.paginator
+  display: flex
+  margin-left: 4px
+
+.paginator__item
+  @include header
+  color: #ffffff
+  font-size: 14px
+  background: $pale-color
+  height: 26px
+  width: 26px
+  text-align: center
+  line-height: 30px
+  margin-right: 4px
+
+.paginator__item_active
+  background: $base-color
 
 @media screen and (max-width: 640px)
   .blog
