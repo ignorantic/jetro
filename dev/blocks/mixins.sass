@@ -1,13 +1,14 @@
 $base-color: #e8603a
 $pale-color: #f2af9e
 $head-color: #e7663c
-$noact-head-color: #b9b9b9
+$noactive-color: #b9b9b9
 $menu-bd-color: #dddddd
 $trans-bg-color: rgba(232, 96, 58, 0.8)
 
 
 @mixin header
   font-family: "Bebas", sans-serif
+  font-weight: 500
   word-spacing: 2px
   color: $head-color
   text-transform: uppercase
@@ -18,5 +19,5 @@ $trans-bg-color: rgba(232, 96, 58, 0.8)
   font-size: 12px
 
 @mixin content
-  margin: 25px 50px 45px 0
+  margin: 0 50px 45px 0
   flex: 3

@@ -1,0 +1,30 @@
+@import "../mixins"
+
+.pagination
+  margin-left: 4px
+
+.screen-reader-text
+  display: none
+
+.nav-links
+  display: flex
+
+.page-numbers
+  display: block
+  @include header
+  color: #ffffff
+  font-size: 14px
+  background: $pale-color
+  text-decoration: none
+  height: 26px
+  width: 26px
+  text-align: center
+  line-height: 30px
+  margin-right: 4px
+  transition: background 200ms
+
+a.page-numbers:hover
+  background: $base-color
+
+.page-numbers.current
+  background: $base-color

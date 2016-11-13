@@ -19,13 +19,10 @@
   font-size: 32px
   color: #ffffff
 
-.blog__img
-  height: 100%
-  width: 100%
-
-.blog__video
-  max-height: 100%
-  width: 100%
+.blog__pic
+  img
+    height: 100%
+    width: 100%
 
 .blog__text
   display: flex
@@ -35,6 +32,7 @@
 .blog__info
   @include text
   flex: 3
+  margin: 1px 5px 0 2px
 
 .blog__info-title
   @include header
@@ -43,20 +41,52 @@
 
 .blog__info-text
   @include text
-  color: #b9b9b9
+  color: $noactive-color
   text-transform: capitalize
   margin-bottom: 15px
+  a
+    text-decoration: none
+    color: $noactive-color
 
 .blog__article
   flex: 11
+  margin-left: 2px
 
 .blog__header
   @include header
+  font-weight: 500
+  margin-top: 3px
   margin-bottom: 15px
 
-.blog__paragraph
+.blog__article p
   @include text
   margin-bottom: 20px
+
+.blog__quote
+  background: url("../img/bg-quote.png") repeat
+  min-height: 75px
+  display: flex
+
+.blog__quote p
+  @include text
+  font-style: italic
+  font-size: 13px
+  margin: 20px 20px 0 10px
+  color: #555555
+
+.blog__quote i
+  font-size: 28px
+  margin: 15px 0 0 30px
+  color: $base-color
+
+.blog__link a
+  display: block
+  @include text
+  color: $noactive-color
+  text-decoration: none
+  margin-top: -12px
+  margin-bottom: 20px
+
 
 .blog__line
   position: relative
@@ -65,24 +95,6 @@
   width: 99%
   background: url("../img/s_line.png") repeat-x left
   margin-bottom: 45px
-
-.paginator
-  display: flex
-  margin-left: 4px
-
-.paginator__item
-  @include header
-  color: #ffffff
-  font-size: 14px
-  background: $pale-color
-  height: 26px
-  width: 26px
-  text-align: center
-  line-height: 30px
-  margin-right: 4px
-
-.paginator__item_active
-  background: $base-color
 
 @media screen and (max-width: 640px)
   .blog

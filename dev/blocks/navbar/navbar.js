@@ -1,23 +1,25 @@
 if (document.querySelector('.navbar') != null) {
 
     (function addActiveLink() {
-        let address, index, lastIndex, page, links, set, link;
+        let address, index, lastIndex, page, links, set, link, lastLink;
         address = location.href;
-        index = address.match(/\/[a-z][a-z0-9]*[\/\.]/ig);
-        if (index == null) page = '/index';
+        index = address.match(/(index\.php\/|\/)[a-z][a-z0-9]*(\/|\.html|\.php)/ig);
+        console.log('index: ' + index);
+        if (index == null) page = '/index.html';
         else {
-            lastIndex = index[index.length - 1].slice(0, -1);
-            page = lastIndex;
+            lastIndex = index[index.length - 1];
+            page = lastIndex.replace('index.php', '');
         }
         console.log('page: ' + page);
         links = document.querySelectorAll('.navbar__link');
         for (let i = 0; i < links.length; i++) {
             set = links[i].toString();
-            link = set.match(/[\/][a-z][a-z0-9]*[\/\.]/i);
-            link[0] = link[0].slice(0, -1);
-            if (link[0] != null) {
-                if (link[0] == page) {
-                    console.log('link: ' + link);
+            link = set.match(/\/[a-z][a-z0-9]*(\/|\.html|\.php)$/ig);
+            lastLink = link[link.length - 1];
+            console.log('lastLink: ' + lastLink);
+            if (lastLink != null) {
+                if (lastLink == page) {
+                    console.log('lastLink: ' + lastLink);
                     toggleClassByIndex('navbar__link', 'navbar__link_active', i);
                 }
             }
