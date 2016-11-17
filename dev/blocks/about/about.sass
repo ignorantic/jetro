@@ -1,0 +1,32 @@
+@import "../mixins"
+
+.about__content
+  @include content
+
+.about__text
+  @include text
+  margin-bottom: 20px
+  line-height: 1.5
+
+.about__text.about__quote
+  margin-left: 50px
+  padding-left: 20px
+  font-style: italic
+  color: $quote-color
+  border-left: 8px solid $base-color
+
+.about__img
+  float: left
+  padding: 2px
+  border: 1px solid $noactive-color
+  margin-right: 25px
+
+.about__img img
+  vertical-align: middle
+
+@media screen and (max-width: 640px)
+  .about
+    flex-direction: column
+
+  .about__content
+    margin-right: 0

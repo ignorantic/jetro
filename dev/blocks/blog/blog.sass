@@ -1,0 +1,108 @@
+@import "../mixins"
+
+.blog__postlist
+  @include content
+
+.blog__post
+  position: relative
+
+.blog__iconbox
+  position: absolute
+  left: -85px
+  width: 75px
+  height: 75px
+  text-align: center
+  line-height: 75px
+  background: $base-color
+
+.blog__icon
+  font-size: 32px
+  color: #ffffff
+
+.blog__pic
+  img
+    height: 100%
+    width: 100%
+
+.blog__text
+  display: flex
+  margin-top: 25px
+  margin-bottom: 30px
+
+.blog__info
+  @include text
+  flex: 3
+  margin: 1px 5px 0 2px
+
+.blog__info-title
+  @include header
+  font-size: 12px
+  margin-bottom: 5px
+
+.blog__info-text
+  @include text
+  color: $noactive-color
+  text-transform: capitalize
+  margin-bottom: 15px
+  a
+    text-decoration: none
+    color: $noactive-color
+
+.blog__article
+  flex: 11
+  margin-left: 2px
+
+.blog__header
+  @include header
+  font-weight: 500
+  margin-top: 3px
+  margin-bottom: 15px
+
+.blog__article p
+  @include text
+  margin-bottom: 20px
+
+.blog__quote
+  background: url("../img/bg-quote.png") repeat
+  min-height: 75px
+  display: flex
+
+.blog__quote p
+  @include text
+  font-style: italic
+  font-size: 13px
+  margin: 20px 20px 0 10px
+  color: #555555
+
+.blog__quote i
+  font-size: 28px
+  margin: 15px 0 0 30px
+  color: $base-color
+
+.blog__link a
+  display: block
+  @include text
+  color: $noactive-color
+  text-decoration: none
+  margin-top: -12px
+  margin-bottom: 20px
+
+
+.blog__line
+  position: relative
+  left: 0
+  height: 14px
+  width: 99%
+  background: url("../img/s_line.png") repeat-x left
+  margin-bottom: 45px
+
+@media screen and (max-width: 640px)
+  .blog
+    flex-direction: column
+
+  .blog__postlist
+    margin-right: 0
+
+@media screen and (max-width: 1130px)
+  .blog__iconbox
+    display: none

@@ -1,7 +1,12 @@
-document.querySelector('.navbar__btn').onclick = function () {
-    var btn = document.querySelector('.navbar__btn'),
-        list = document.querySelector('.navbar__list');
-    btn.classList.add('navbar__btn_blink');
-    list.classList.toggle('navbar__list_active');
-    setTimeout(function() {btn.classList.remove('navbar__btn_blink')}, 300);
-};
+if (document.querySelector('.navbar') != null) {
+
+    document.querySelector('.menu-btn').onclick = function () {
+        var btn = document.querySelector('.menu-btn'),
+            list = document.querySelector('.menu');
+        btn.classList.add('menu-btn-blink');
+        list.classList.toggle('menu-drapdown');
+        setTimeout(function () {
+            btn.classList.remove('menu-btn-blink')
+        }, 300);
+    };
+}

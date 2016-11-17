@@ -1,0 +1,44 @@
+@import "../mixins"
+
+.form
+  flex: 2
+
+.form__textarea, .form__text
+  outline: none
+  border: 1px solid $base-color
+  border-radius: 1px
+  padding: 0 10px
+  @include text
+  font-size: 14px
+
+.form__textarea::-webkit-input-placeholder, .form__text::-webkit-input-placeholder
+  @include header
+  font-size: 12px
+  font-weight: 100
+  line-height: 14px
+  vertical-align: middle
+
+.form__text
+  height: 34px
+  width: 215px
+  margin-bottom: 10px
+
+.form__textarea
+  overflow: auto
+  resize: none
+  width: 100%
+  margin-bottom: 5px
+  padding: 10px
+
+.form__submit
+  @include header
+  color: #ffffff
+  background: $base-color
+  border: 1px solid $base-color
+  font-size: 12px
+  font-weight: 100
+  padding: 7px 10px
+  transition: color 200ms
+  outline: none
+  &:hover
+    color: $pale-color
