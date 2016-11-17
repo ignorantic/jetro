@@ -3,20 +3,16 @@
         span.logo__first jet
         span.logo__last ro
     nav.navbar
-        .navbar__btn
+        .menu-btn
             i.icon-menu
-        ul.navbar__list
-            li.navbar__item
-                a.navbar__link(href='index.html') home
-            li.navbar__item
-                a.navbar__link(href='about.html') about
-                    =' '
-                    span.navbar__link_last us
-            li.navbar__item
-                a.navbar__link(href='blog.html') blog
-            li.navbar__item
-                a.navbar__link(href='portfolio.html') portfolio
-            li.navbar__item
-                a.navbar__link(href='contact.html') contact
-                    =' '
-                    span.navbar__link_last us
+        ul.menu
+            li.menu-item.current-menu-item
+                a.menu-link(href='index.html') home
+            li.menu-item
+                a.menu-link(href='about.html') about <span>us</span>
+            li.menu-item
+                a.menu-link(href='blog.html') blog
+            li.menu-item
+                a.menu-link(href='portfolio.html') portfolio
+            li.menu-item
+                a.menu-link(href='contact.html') contact <span>us</span>

@@ -3,10 +3,10 @@
 .sidebar
   flex: 1
 
-.sidebar__section
+.textwidget
   margin-bottom: 30px
 
-.sidebar__text
+.textwidget p
   @include text
   margin: 0
 
@@ -14,3 +14,35 @@
   @include text
   list-style: none
   padding-left: 0
+
+.widget
+  margin-bottom: 15px
+  overflow: hidden
+
+.widget-title
+  @include header
+  margin-top: 0
+  white-space: nowrap
+  font-size: 14px
+
+.widget-title::after
+  content: ""
+  display: inline-block
+  margin-left: 15px
+  height: 14px
+  width: 100%
+  background: url("../img/s_line.png") repeat-x left
+
+.widget_categories ul
+  list-style: none
+  padding-left: 0
+
+.cat-item
+  @include text
+
+.cat-item a
+  @include text
+  text-decoration: none
+
+.cat-item a:hover
+  color: $base-color
