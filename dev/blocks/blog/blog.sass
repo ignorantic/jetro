@@ -52,6 +52,9 @@
   flex: 11
   margin-left: 2px
 
+.blog__post-link
+  text-decoration: none
+
 .blog__header
   @include header
   font-weight: 500
@@ -62,23 +65,6 @@
   @include text
   margin-bottom: 20px
 
-.blog__quote
-  background: url("../img/bg-quote.png") repeat
-  min-height: 75px
-  display: flex
-
-.blog__quote p
-  @include text
-  font-style: italic
-  font-size: 13px
-  margin: 20px 20px 0 10px
-  color: #555555
-
-.blog__quote i
-  font-size: 28px
-  margin: 15px 0 0 30px
-  color: $base-color
-
 .blog__link a
   display: block
   @include text
@@ -87,13 +73,8 @@
   margin-top: -12px
   margin-bottom: 20px
 
-
 .blog__line
-  position: relative
-  left: 0
-  height: 14px
-  width: 99%
-  background: url("../img/s_line.png") repeat-x left
+  @include bottom-line
   margin-bottom: 45px
 
 @media screen and (max-width: 640px)
