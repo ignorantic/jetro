@@ -1,0 +1,25 @@
+@import "../mixins"
+
+.button
+  @include header
+  text-decoration: none
+  font-size: 12px
+  text-align: center
+  display: block
+  background: $head-color
+  color: #ffffff
+  padding: 8px 10px 6px
+  border: none
+  margin-bottom: 40px
+  transition: color 200ms
+  outline: none
+  &:hover
+    color: $pale-color
+
+.button_more
+  position: absolute
+  bottom: 0
+  width: 35px
+
+.button_submit
+  width: 75px

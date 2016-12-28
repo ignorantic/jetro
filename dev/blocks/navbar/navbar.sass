@@ -1,8 +1,9 @@
 @import "../mixins"
 
 .navbar
-  position: absolute
-  top: 0
+  display: flex
+
+.menubar
   width: 100%
 
 .menu-btn
@@ -63,7 +64,7 @@
 
 @media screen and (max-width: 420px)
   .navbar
-    position: static
+    flex-direction: column
 
   .menu-btn
     display: block
@@ -91,7 +92,6 @@
     height: 0
     overflow: hidden
     width: 100%
-    //position: relative
     top: 55px
     left: 0
     flex-direction: column
