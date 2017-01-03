@@ -33,16 +33,15 @@ path = {
         img:    'dev/img/**/*.{png,jpg,svg}',
         pug:    ['dev/pages/*.pug', '!dev/pages/tmpl/**/*.*'],
         sass:   'dev/blocks/**/*.{sass,css}',
-        fonts:  'dev/fonts/**/*.*',
-        mixin:  'dev/blocks/mixins.sass'
+        fonts:  'dev/fonts/**/*.*'
     },
     clean:      './build',
     watch:  {
         pug:    ['dev/blocks/**/*.pug', 'dev/pages/**/*.pug'],
         js:     ['dev/blocks/**/*.js', 'dev/lib/**/*.js'],
-        sass:   'dev/blocks/**/*.*',
+        sass:   'dev/blocks/**/*.{sass,css}',
         img:    'dev/img/**/*.png',
-        fonts:  'dev/fonts/**/*.*',
+        fonts:  'dev/fonts/**/*.{ttf,eot,svg,woff,woff2}',
         serve:  'build/**/*.*'
     }
 };
