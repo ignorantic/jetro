@@ -77,6 +77,10 @@
   @include bottom-line
   margin-bottom: 45px
 
+@media screen and (max-width: 1130px)
+  .blog__iconbox
+    display: none
+
 @media screen and (max-width: 640px)
   .blog
     flex-direction: column
@@ -84,6 +88,6 @@
   .blog__postlist
     margin-right: 0
 
-@media screen and (max-width: 1130px)
-  .blog__iconbox
-    display: none
+@media screen and (max-width: 520px)
+  .blog__text
+    flex-direction: column
