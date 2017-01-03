@@ -31,7 +31,7 @@ path = {
     src:    {
         img:    'dev/img/**/*.{png,jpg,svg}',
         pug:    ['dev/pages/*.pug', '!dev/pages/tmpl/**/*.*'],
-        sass:   'dev/blocks/**/*.sass',
+        sass:   'dev/blocks/**/*.{sass,css}',
         fonts:  'dev/fonts/**/*.*',
         mixin:  'dev/blocks/mixins.sass'
     },
@@ -56,7 +56,7 @@ gulp.task('build:pages', function() {
             pretty: true
         }))
         .on('error', function(err){
-            gutil.log(gutil.colors.red('💀'), gutil.colors.red.bold('⇵ pages error'));
+            gutil.log(gutil.colors.red('💀'), gutil.colors.red.bold('⇵ pug error'));
             gutil.log(gutil.colors.yellow(err.message));
             this.emit('end');
         })
@@ -188,7 +188,7 @@ gulp.task('watch', function() {
 
 gulp.task('build:js', gulp.series('bundle:js', 'uglify:js'));
 gulp.task('build', gulp.series('clean', 'build:pages', 'build:fonts', 'build:sass', 'build:js', 'build:img'));
-gulp.task('build:fast', gulp.series('build:pages', 'build:fonts', 'build:sass', 'build:js'));
+gulp.task('build:fast', gulp.series('build:pages', 'build:fonts', 'build:sass', 'bundle:js'));
 
 gulp.task('default', gulp.series('build'));
 gulp.task('run', gulp.series('build:fast', gulp.parallel('watch', 'server')));

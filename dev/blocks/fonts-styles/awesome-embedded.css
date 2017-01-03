@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'awesome';
-  src: url('../font/awesome.eot?96563995');
-  src: url('../font/awesome.eot?96563995#iefix') format('embedded-opentype'),
-       url('../font/awesome.svg?96563995#awesome') format('svg');
+  src: url('../fonts/awesome.eot?96563995');
+  src: url('../fonts/awesome.eot?96563995#iefix') format('embedded-opentype'),
+       url('../fonts/awesome.svg?96563995#awesome') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -17,7 +17,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'awesome';
-    src: url('../font/awesome.svg?96563995#awesome') format('svg');
+    src: url('../fonts/awesome.svg?96563995#awesome') format('svg');
   }
 }
 */

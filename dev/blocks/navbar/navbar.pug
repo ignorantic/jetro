@@ -1,3 +1,11 @@
+-
+    navBar = [
+        {'name': 'home', 'url': 'index.html'},
+        {'name': 'about us','url': 'about.html'},
+        {'name': 'blog', 'url': 'blog.html'},
+        {'name': 'portfolio', 'url': 'portfolio.html'},
+        {'name': 'contact us', 'url': 'contact.html'}]
+
 .container.navbar
     .logo
         span.logo__first jet
@@ -6,13 +14,10 @@
         .menu-btn
             i.icon-menu
         ul.menu
-            li.menu-item.current-menu-item
-                a.menu-link(href='index.html') home
-            li.menu-item
-                a.menu-link(href='about.html') about <span>us</span>
-            li.menu-item
-                a.menu-link(href='blog.html') blog
-            li.menu-item
-                a.menu-link(href='portfolio.html') portfolio
-            li.menu-item
-                a.menu-link(href='contact.html') contact <span>us</span>
+            each item, index in navBar
+                if activeIndex == index
+                    - className = 'menu-item current-menu-item'
+                else
+                    - className = 'menu-item'
+                li(class=className)
+                        a.menu-link(href=item.url)=item.name
