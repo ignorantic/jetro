@@ -12,13 +12,18 @@
   padding: 0 10px
   @include text
   font-size: 14px
+  background: #ffffff
 
-.form__textarea::-webkit-input-placeholder, .form__text::-webkit-input-placeholder
+.form__textarea::placeholder, .form__text::placeholder
   @include header
   font-size: 12px
   font-weight: 100
-  line-height: 16px
+  line-height: 36px
   vertical-align: middle
+  background: inherit
+
+.form__textarea::placeholder
+  line-height: 22px
 
 .form__text
   height: 34px

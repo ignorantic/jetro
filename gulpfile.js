@@ -1,8 +1,9 @@
-var gulp, sass, pug, concat, imagemin, pngquant, sourcemap, rename, uglify,
+var gulp, sass, prefixer, pug, concat, imagemin, pngquant, sourcemap, rename, uglify,
     del, path, connect, babel, browserify, babelify, gutil, source, cssmin, pump;
 
 gulp        = require('gulp');
 sass        = require('gulp-sass');
+prefixer    = require('gulp-autoprefixer');
 pug         = require('gulp-pug');
 concat      = require('gulp-concat');
 imagemin    = require('gulp-imagemin');
@@ -77,6 +78,7 @@ gulp.task('build:sass', function() {
             gutil.log(gutil.colors.yellow(err.message));
             this.emit('end');
         })
+        .pipe(prefixer())
         .pipe(concat('index.css'))
         .pipe(sourcemap.write())
         // .pipe(cssmin())
