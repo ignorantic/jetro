@@ -32,7 +32,11 @@
 .blog__info
   @include text
   flex: 3
-  margin: 1px 5px 0 2px
+  margin: 1px 5px 20px 2px
+
+.blog__info-meta
+  display: flex
+  flex-direction: column
 
 .blog__info-title
   @include header
@@ -91,3 +95,24 @@
 @media screen and (max-width: 520px)
   .blog__text
     flex-direction: column
+
+  .blog__info-meta
+    flex-direction: row
+    display: inline-block
+    margin-bottom: 10px
+
+  .blog__info-title
+    display: inline-block
+    @include header
+    margin-right: 10px
+    font-size: 12px
+
+  .blog__info-text
+    display: inline-block
+    @include text
+    color: $noactive-color
+    text-transform: capitalize
+    margin-right: 30px
+    a
+      text-decoration: none
+      color: $noactive-color
