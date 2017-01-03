@@ -8,24 +8,31 @@
   },
   "author": "snaut",
   "license": "ISC",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "browser-sync": "^2.17.0",
     "del": "^2.2.2",
     "gulp": "github:gulpjs/gulp#4.0",
-    "gulp-browserify": "^0.5.1",
+    "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.0",
     "gulp-debug": "^2.1.2",
     "gulp-imagemin": "^3.0.3",
     "gulp-plumber": "^1.1.0",
     "gulp-pug": "^3.1.0",
-    "gulp-rigger": "^0.5.8",
     "gulp-sass": "^2.3.2",
     "gulp-sourcemaps": "^1.6.0",
     "imagemin-pngquant": "^5.0.0",
-    "jquery": "^3.1.1",
-    "pug": "^2.0.0-beta6"
+    "pug": "^2.0.0-beta6",
+    "babel-core": "^6.3.26",
+    "babel-plugin-transform-class-properties": "^6.3.13",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.3.13",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.1",
+    "gulp-util": "^3.0.7",
+    "history": "^1.17.0",
+    "vinyl-source-stream": "^1.1.0"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ignorantic/jetro.git"

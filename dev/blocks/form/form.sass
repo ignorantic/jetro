@@ -2,6 +2,8 @@
 
 .form
   flex: 2
+  display: flex
+  flex-direction: column
 
 .form__textarea, .form__text
   outline: none
@@ -15,7 +17,7 @@
   @include header
   font-size: 12px
   font-weight: 100
-  line-height: 14px
+  line-height: 16px
   vertical-align: middle
 
 .form__text
@@ -26,19 +28,5 @@
 .form__textarea
   overflow: auto
   resize: none
-  width: 100%
   margin-bottom: 5px
   padding: 10px
-
-.form__submit
-  @include header
-  color: #ffffff
-  background: $base-color
-  border: 1px solid $base-color
-  font-size: 12px
-  font-weight: 100
-  padding: 7px 10px
-  transition: color 200ms
-  outline: none
-  &:hover
-    color: $pale-color

@@ -1,7 +1,7 @@
 'use strict';
 
-var gulp, sass, pug, concat, debug, imagemin, rigger, pngquant,
-    sourcemap, del, path, sync, plumber;
+var gulp, sass, pug, concat, debug, imagemin, pngquant,
+    sourcemap, del, path, sync, plumber, babel, browserify, babelify, gutil, source;
 
 gulp        = require('gulp');
 sass        = require('gulp-sass');
@@ -9,40 +9,43 @@ pug         = require('gulp-pug');
 concat      = require('gulp-concat');
 debug       = require('gulp-debug');
 imagemin    = require('gulp-imagemin');
-rigger      = require('gulp-rigger');
 pngquant    = require('imagemin-pngquant');
 sourcemap   = require('gulp-sourcemaps');
 del         = require('del');
 sync        = require('browser-sync').create();
 plumber     = require('gulp-plumber');
+babel       = require('gulp-babel');
+browserify  = require('browserify');
+babelify    = require('babelify');
+gutil       = require('gulp-util');
+source      = require('vinyl-source-stream');
 
 path = {
     build: {
-        pug: 'build/',
-        js: 'build/js',
-        css: 'build/css',
-        img: 'build/img/',
-        fonts: 'build/font/'
+        pug:    'build/',
+        js:     'build/js',
+        css:    'build/css',
+        img:    'build/img/',
+        fonts:  'build/font/'
     },
-    src: {
-        img: ['dev/img/**/*.png', 'dev/img/**/*.svg'],
-        pug: ['dev/pug/*.pug', '!dev/pug/tmpl/**/*.*'],
-        fonts: 'dev/fonts/**/*.*',
-        mixin: 'dev/blocks/mixins.sass'
+    src:    {
+        img:    ['dev/img/**/*.png', 'dev/img/**/*.svg'],
+        pug:    ['dev/pug/*.pug', '!dev/pug/tmpl/**/*.*'],
+        fonts:  'dev/fonts/**/*.*',
+        mixin:  'dev/blocks/mixins.sass'
     },
     blocks: {
-        pug: 'dev/blocks/**/*.pug',
-        js: 'dev/blocks/*.js',
-        sass: 'dev/blocks/**/*.sass',
-        css: 'dev/blocks/**/*.css'
+        pug:    'dev/blocks/**/*.pug',
+        sass:   'dev/blocks/**/*.sass',
+        css:    'dev/blocks/**/*.css'
     },
-    clean: './build',
-    watch: {
-        pug: ['dev/blocks/**/*.pug', 'dev/pug/**/*.pug'],
-        js: ['dev/blocks/**/*.js', 'dev/lib/**/*.js'],
-        sass: 'dev/blocks/**/*.*',
-        img: 'dev/img/**/.png',
-        serve: 'build/**/*.*'
+    clean:      './build',
+    watch:  {
+        pug:    ['dev/blocks/**/*.pug', 'dev/pug/**/*.pug'],
+        js:     ['dev/blocks/**/*.js', 'dev/lib/**/*.js'],
+        sass:   'dev/blocks/**/*.*',
+        img:    'dev/img/**/.png',
+        serve:  'build/**/*.*'
     }
 };
 
@@ -73,11 +76,22 @@ gulp.task('build:sass', function() {
 });
 
 gulp.task('build:js', function () {
-    return gulp.src(path.blocks.js)
-        .pipe(plumber())
-        .pipe(debug({title: 'src js:'}))
-        .pipe(rigger())
-        .pipe(debug({title: 'rigger js:'}))
+    return browserify({
+            entries: 'dev/blocks/index.js',
+            extensions: ['.js'],
+            debug: true
+        })
+        .transform('babelify', {
+            presets: ['es2015', 'react'],
+            plugins: ['transform-class-properties']
+        })
+        .bundle()
+        .on('error', function(err){
+            gutil.log(gutil.colors.red.bold('[browserify error]'));
+            gutil.log(err.message);
+            this.emit('end');
+        })
+        .pipe(source('index.js'))
         .pipe(gulp.dest(path.build.js));
 });
 

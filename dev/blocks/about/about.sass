@@ -17,16 +17,23 @@
 
 .about__img
   float: left
-  padding: 2px
-  border: 1px solid $noactive-color
   margin-right: 25px
+  margin-bottom: 20px
+  text-align: center
 
 .about__img img
   vertical-align: middle
+  border: 1px solid $noactive-color
+  padding: 2px
 
 @media screen and (max-width: 640px)
   .about
     flex-direction: column
 
   .about__content
+    margin-right: 0
+
+@media screen and (max-width: 420px)
+  .about__img
+    float: none
     margin-right: 0

@@ -1,4 +1,4 @@
-.container.blog
+.container.container_flex.blog
     .blog__postlist
         .blog__post
             .blog__iconbox
@@ -60,7 +60,8 @@
                     .blog__info-title comments
                     .blog__info-text 4
                 .blog__article
-                    h2.blog__header top wordpress themes of 2012
+                    a.blog__post-link(href="post.html")
+                        h2.blog__header top wordpress themes of 2012
                     p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores aut digniss
                         | libero maiores molestiae reiciendis! Alias, amet autem commodi consequuntur cupiditate
                         | eligendi excepturi expedita fuga fugiat fugit illo itaque magnam nemo qui quisquam rem se
@@ -103,10 +104,7 @@
                 i.blog__icon.icon-quote-left
             .blog__text
                 .blog__article
-                    .blog__quote
-                        i.icon-quote-left
-                        p Write anything you want here in this quotable area. Something unique you want people to
-                            | learn about your website or some cool random fact. Its totally up to you.
+                    include ../quote/quote
             .blog__line
         .blog__post
             .blog__iconbox

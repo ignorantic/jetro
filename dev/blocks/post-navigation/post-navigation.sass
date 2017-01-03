@@ -1,0 +1,27 @@
+@import "../mixins"
+
+.screen-reader-text
+  display: none
+
+.post-navigation .nav-links
+  display: flex
+  justify-content: space-between
+  flex-wrap: wrap
+
+.nav-previous
+  margin-right: 2em
+  margin-bottom: 1em
+
+.nav-previous, .nav-next
+  margin-bottom: 20px
+
+.nav-previous a, .nav-next a
+  @include header
+  font-size: 14px
+  color: $pale-color
+  margin-bottom: 10px
+  text-decoration: none
+
+.nav-previous span, .nav-next span
+  color: $base-color
+  margin-left: 1em
