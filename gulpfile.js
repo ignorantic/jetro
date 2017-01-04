@@ -80,7 +80,7 @@ gulp.task('build:sass', function() {
         .pipe(prefixer())
         .pipe(concat('index.css'))
         .pipe(sourcemap.write())
-        // .pipe(cssmin())
+        .pipe(cssmin())
         .pipe(gulp.dest(path.build.css))
         .pipe(connect.reload());
 });
@@ -189,7 +189,7 @@ gulp.task('watch', function() {
 
 gulp.task('build:js', gulp.series('bundle:js', 'uglify:js'));
 gulp.task('build', gulp.series('clean', 'build:pages', 'build:fonts', 'build:sass', 'build:js', 'build:img'));
-gulp.task('build:fast', gulp.series('build:pages', 'build:fonts', 'build:sass', 'bundle:js'));
+gulp.task('build:fast', gulp.series('build:pages', 'build:fonts', 'build:sass', 'build:js'));
 
 gulp.task('default', gulp.series('build'));
 gulp.task('run', gulp.series('build:fast', gulp.parallel('watch', 'server')));
