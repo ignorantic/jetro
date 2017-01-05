@@ -151,17 +151,13 @@ gulp.task('build:img', function (done) {
  */
 
 gulp.task('build:sprite', function (done) {
-    var spriteData = gulp.src('dev/img/sprite/*.png').pipe(spritesmith({
-        imgName: '../img/sprite.png',
-        cssName: 'sprite.sass'
+    const spriteData = gulp.src('dev/img/sprite/*.png').pipe(spritesmith({
+        imgName:    '../img/sprite.png',
+        cssName:    'sprite.sass',
+        algorithm:  'left-right'
     }));
-    var imgStream = spriteData.img
-        // .pipe(buffer())
-        // .pipe(imagemin())
-        .pipe(gulp.dest('dev/img/'));
-    var cssStream = spriteData.css
-        // .pipe(csso())
-        .pipe(gulp.dest('dev/blocks/'));
+    spriteData.img.pipe(gulp.dest('dev/img/'));
+    spriteData.css.pipe(gulp.dest('dev/blocks/'));
     done();
 });
 
