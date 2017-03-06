@@ -2,20 +2,12 @@
 
 .pagination
   margin-left: 4px
-
-.screen-reader-text
-  display: none
-
-.pagination .nav-links
   display: flex
 
-.page-numbers
+.pagination li
   display: block
   @include header
-  color: #ffffff
-  font-size: 14px
   background: $pale-color
-  text-decoration: none
   height: 26px
   width: 26px
   text-align: center
@@ -23,8 +15,13 @@
   margin-right: 4px
   transition: background 200ms
 
-a.page-numbers:hover
+.pagination li:hover
   background: $base-color
 
-.page-numbers.current
+.pagination .active
   background: $base-color
+
+.pagination a
+  font-size: 14px
+  color: #ffffff
+  text-decoration: none
