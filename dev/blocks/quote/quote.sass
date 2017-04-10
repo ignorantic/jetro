@@ -1,11 +1,7 @@
 @import "../mixins"
 
 blockquote
-  margin-left: 50px
-  padding-left: 20px
-  font-style: italic
-  color: $quote-color
-  border-left: 8px solid $base-color
+  @include quote
 
 .blockquote
   background: url("../img/bg-quote.png") repeat
