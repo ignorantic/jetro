@@ -22,6 +22,68 @@ $trans-bg-color: rgba(232, 96, 58, 0.8)
   margin: 0
   line-height: 1.5
 
+@mixin quote
+  margin-left: 50px
+  padding-left: 20px
+  font-style: italic
+  color: $quote-color
+  border-left: 8px solid $base-color
+
+@mixin post
+  p
+    @include text
+    margin-bottom: 20px
+  h1
+    @include header
+    margin-top: 40px
+    margin-bottom: 20px
+  h2
+    @include header
+    font-size: 14px
+    margin-top: 30px
+    margin-bottom: 20px
+  h3
+    @include header
+    font-size: 14px
+    font-style: italic
+    margin-top: 30px
+    margin-bottom: 20px
+  h4
+    @include header
+    font-size: 12px
+    margin-top: 20px
+    margin-bottom: 15px
+  h5
+    @include header
+    font-size: 12px
+    font-style: italic
+    margin-top: 20px
+    margin-bottom: 15px
+  strong
+    font-weight: 700
+  hr
+    @include bottom-line
+    margin-top: 20px
+    margin-bottom: 20px
+    border: 0
+  em
+    font-style: italic
+  blockquote
+    @include text
+    @include quote
+    margin-bottom: 20px
+  ul
+    margin-left: 20px
+    margin-bottom: 20px
+    li
+      @include text
+      list-style-type: disc
+  ol
+    margin-left: 20px
+    margin-bottom: 20px
+    li
+      @include text
+      list-style-type: decimal
 
 @mixin content
   margin: 0 50px 45px 0

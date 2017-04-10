@@ -55,19 +55,17 @@
 .blog__article
   flex: 11
   margin-left: 2px
+  h2.blog__header
+    @include header
+    font-weight: 500
+    margin-top: 3px
+    margin-bottom: 15px
 
 .blog__post-link
   text-decoration: none
 
-.blog__header
-  @include header
-  font-weight: 500
-  margin-top: 3px
-  margin-bottom: 15px
-
-.blog__article p
-  @include text
-  margin-bottom: 20px
+.blog__article, .blog__link
+  @include post
 
 .blog__link a
   display: block
