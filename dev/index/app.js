@@ -1,8 +1,8 @@
 
 /**
- *     Jetro ~ app.js
- *     October 2017 by Andrii Sorokin
- *     April 2017 by Andrii Sorokin
+ *     jsnautic.spec.js for Jetro project
+ *     October 2016, April 2017 by Andrii Sorokin
+ *     https://github.com/ignorantic/jetro.git
  */
 
 import jsNautic from '../lib/jsnautic';

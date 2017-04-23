@@ -1,5 +1,5 @@
 
-/*
+/**
  *     karma.conf.js for Jetro project
  *     April 2017 by Andrii Sorokin
  *     https://github.com/ignorantic/jetro.git

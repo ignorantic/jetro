@@ -1,3 +1,10 @@
+
+/**
+ *     gulpfile.js for Jetro project
+ *     October 2016, April 2017 by Andrii Sorokin
+ *     https://github.com/ignorantic/jetro.git
+ */
+
 const gulp          = require('gulp');
 const sourcemap     = require('gulp-sourcemaps');
 const gutil         = require('gulp-util');
