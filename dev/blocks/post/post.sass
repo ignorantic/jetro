@@ -1,7 +1,6 @@
 @import "../mixins"
 
 .post
-  position: relative
   margin-bottom: 20px
   display: flex
 
@@ -48,6 +47,14 @@
 .post__text
   margin-bottom: 40px
   @include post
+
+.post__link a
+  display: block
+  @include text
+  color: $noactive-color
+  text-decoration: none
+  margin-top: -12px
+  margin-bottom: 20px
 
 .post__line
   @include bottom-line

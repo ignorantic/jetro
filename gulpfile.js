@@ -13,9 +13,12 @@ const imagemin      = require('gulp-imagemin');
 const babel         = require('gulp-babel');
 const streamify     = require('gulp-streamify');
 const uglify        = require('gulp-uglify');
+const eslint        = require('gulp-eslint');
 const cached        = require('gulp-cached');
 const gulpif        = require('gulp-if');
 const spritesmith   = require('gulp.spritesmith');
+const mocha         = require('gulp-mocha');
+const Karma         = require('karma').Server;
 const babelify      = require('babelify');
 const browserify    = require('browserify');
 const del           = require('del');
@@ -24,7 +27,7 @@ const source        = require('vinyl-source-stream');
 
 const isDev = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
 
-path = {
+const paths = {
     build: {
         pug:    'build/',
         js:     'build/js/',
@@ -54,7 +57,7 @@ path = {
  */
 
 gulp.task('build:pages', function(done) {
-    gulp.src(path.src.pug)
+    gulp.src(paths.src.pug)
         .pipe(pug({
             pretty: true
         }))
@@ -63,7 +66,7 @@ gulp.task('build:pages', function(done) {
             gutil.log(gutil.colors.yellow(err.message));
             this.emit('end');
         })
-        .pipe(gulp.dest(path.build.pug))
+        .pipe(gulp.dest(paths.build.pug))
         .pipe(connect.reload());
     done();
 });
@@ -73,7 +76,7 @@ gulp.task('build:pages', function(done) {
  */
 
 gulp.task('build:sass', function(done) {
-    gulp.src(path.src.sass)
+    gulp.src(paths.src.sass)
         .pipe(gulpif(isDev,  sourcemap.init()))
         .pipe(sass())
         .on('error', function(err){
@@ -84,7 +87,7 @@ gulp.task('build:sass', function(done) {
         .pipe(prefixer())
         .pipe(concat('index.css'))
         .pipe(gulpif(isDev, sourcemap.write(), cssmin()))
-        .pipe(gulp.dest(path.build.css))
+        .pipe(gulp.dest(paths.build.css))
         .pipe(connect.reload());
     done();
 });
@@ -111,9 +114,47 @@ gulp.task('build:js', function (done) {
         })
         .pipe(source('index.js'))
         .pipe(gulpif(!isDev, streamify(uglify())))
-        .pipe(gulp.dest(path.build.js))
+        .pipe(gulp.dest(paths.build.js))
         .pipe(connect.reload());
     done();
+});
+
+/*
+ *      LINT
+ */
+
+gulp.task('lint:js', function() {
+    return gulp.src(paths.watch.js)
+        .pipe(eslint())
+        .pipe(eslint.format());
+});
+
+/*
+ *      TEST
+ */
+
+gulp.task('test', function (done) {
+    new Karma({
+        configFile: __dirname + '/karma.conf.js',
+        autoWatch: false,
+        singleRun: true
+    }, function() {
+        done();
+    }).start();
+});
+
+/*
+ *      TDD
+ */
+
+gulp.task('tdd', function (done) {
+    new Karma({
+        configFile: __dirname + '/karma.conf.js',
+        autoWatch: true,
+        singleRun: false
+    }, function() {
+        done();
+    }).start();
 });
 
 /*
@@ -121,8 +162,8 @@ gulp.task('build:js', function (done) {
  */
 
 gulp.task('build:fonts', function(done) {
-    gulp.src(path.src.fonts)
-        .pipe(gulp.dest(path.build.fonts))
+    gulp.src(paths.src.fonts)
+        .pipe(gulp.dest(paths.build.fonts))
         .pipe(connect.reload());
     done();
 });
@@ -132,7 +173,7 @@ gulp.task('build:fonts', function(done) {
  */
 
 gulp.task('build:img', function (done) {
-    gulp.src(path.src.img)
+    gulp.src(paths.src.img)
         .pipe(cached('build:img'))
         .pipe(imagemin({
             progressive: true,
@@ -141,7 +182,7 @@ gulp.task('build:img', function (done) {
             interlaced: true
         }))
         .pipe(debug({title: 'imagemin'}))
-        .pipe(gulp.dest(path.build.img))
+        .pipe(gulp.dest(paths.build.img))
         .pipe(connect.reload());
     done();
 });
@@ -166,7 +207,7 @@ gulp.task('build:sprite', function (done) {
  */
 
 gulp.task('clean', function (done) {
-    del(path.clean);
+    del(paths.clean);
     done();
 });
 
@@ -189,11 +230,11 @@ gulp.task('server', function(done) {
  */
 
 gulp.task('watch', function(done) {
-    gulp.watch(path.watch.pug, gulp.series('build:pages'));
-    gulp.watch(path.watch.img, gulp.series('build:img'));
-    gulp.watch(path.watch.sass, gulp.series('build:sass'));
-    gulp.watch(path.watch.fonts, gulp.series('build:fonts'));
-    gulp.watch(path.watch.js, gulp.series('build:js'));
+    gulp.watch(paths.watch.pug, gulp.series('build:pages'));
+    gulp.watch(paths.watch.img, gulp.series('build:img'));
+    gulp.watch(paths.watch.sass, gulp.series('build:sass'));
+    gulp.watch(paths.watch.fonts, gulp.series('build:fonts'));
+    gulp.watch(paths.watch.js, gulp.series('lint:js', 'build:js'));
     done();
 });
 
@@ -203,4 +244,4 @@ gulp.task('watch', function(done) {
 
 gulp.task('build', gulp.series('clean', 'build:pages', 'build:sprite', 'build:sass', 'build:js', 'build:img', 'build:fonts'));
 gulp.task('default', gulp.series('build'));
-gulp.task('run', gulp.series(gulp.parallel('build:pages', 'build:sass', 'build:js'), gulp.parallel('watch', 'server')));
+gulp.task('run', gulp.series(gulp.parallel('build:pages', 'build:sass', 'lint:js', 'build:js'), gulp.parallel('watch', 'server')));
