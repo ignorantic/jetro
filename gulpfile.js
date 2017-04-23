@@ -51,7 +51,7 @@ const paths = {
     clean:      './build',
     watch:  {
         pug:    ['dev/blocks/**/*.pug', 'dev/pages/**/*.pug'],
-        js:     ['dev/blocks/**/*.js', 'dev/lib/**/*.js'],
+        js:     ['dev/blocks/**/*.js', 'dev/lib/**/*.js', 'dev/index/**/*.js'],
         sass:   'dev/blocks/**/*.{sass,css}',
         img:    'dev/img/**/*.png',
         fonts:  'dev/fonts/**/*.{ttf,eot,svg,woff,woff2}',

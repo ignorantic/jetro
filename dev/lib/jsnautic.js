@@ -29,4 +29,58 @@ export default class jsNautic {
         }
     }
 
+    static yiiAjaxRequest(body, e) {
+
+        function status(response) {
+            if (status >= 200 && status < 300) {
+                return Promise.resolve(response);
+            }
+            return Promise.reject(new Error(response.statusText));
+        }
+
+        function json() {
+            return json();
+        }
+
+        function error(err) {
+            console.log('Request failed', err);
+        }
+
+        let csrfParamMeta = document.getElementsByName('csrf-param')[0];
+        let csrfTokenMeta = document.getElementsByName('csrf-token')[0];
+        let csrfParam = csrfParamMeta
+            ? document.getElementsByName('csrf-param')[0].getAttribute('content')
+            : null;
+        let csrfToken = csrfTokenMeta
+            ? document.getElementsByName('csrf-token')[0].getAttribute('content')
+            : null;
+        let token = csrfParam + '=' + csrfToken;
+
+        let request = {};
+        request.method = 'post';
+        request.headers = {
+            'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        };
+        request.credentials = 'include';
+        request.body = body + '&' + token;
+        fetch('/ajax/cat', request)
+            .then(status)
+            .then(json)
+            .then((data) => {
+                let catBox = document.querySelector('#cat-box');
+                if (catBox) {
+                    catBox.style.top = e.pageY + 'px';
+                    catBox.style.left = e.pageX + 5 + 'px';
+                    let linkList = document.querySelector('#cat-links');
+                    let catString = '<span>' + data.name + '</span>';
+                    data.links.forEach((link) => {
+                        catString += '<li>' + link + '</li>';
+                    });
+                    linkList.innerHTML = catString;
+                }
+            })
+            .catch(error);
+
+    }
+
 }
