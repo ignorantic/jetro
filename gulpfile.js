@@ -85,7 +85,7 @@ gulp.task('build:sass', function(done) {
             this.emit('end');
         })
         .pipe(prefixer())
-        .pipe(concat('index.css'))
+        .pipe(concat('site.css'))
         .pipe(gulpif(isDev, sourcemap.write(), cssmin()))
         .pipe(gulp.dest(paths.build.css))
         .pipe(connect.reload());
@@ -98,7 +98,7 @@ gulp.task('build:sass', function(done) {
 
 gulp.task('build:js', function (done) {
     browserify({
-            entries: 'dev/blocks/index.js',
+            entries: 'dev/index/app.js',
             extensions: ['.js'],
             debug: true
         })
@@ -112,7 +112,7 @@ gulp.task('build:js', function (done) {
             gutil.log(gutil.colors.yellow(err.message));
             this.emit('end');
         })
-        .pipe(source('index.js'))
+        .pipe(source('app.js'))
         .pipe(gulpif(!isDev, streamify(uglify())))
         .pipe(gulp.dest(paths.build.js))
         .pipe(connect.reload());

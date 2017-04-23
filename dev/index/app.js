@@ -1,6 +1,6 @@
 
 /**
- *     Jetro ~ index.js
+ *     Jetro ~ app.js
  *     October 2017 by Andrii Sorokin
  *     April 2017 by Andrii Sorokin
  */
