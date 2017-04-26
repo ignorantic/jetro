@@ -29,22 +29,7 @@ export default class jsNautic {
         }
     }
 
-    static yiiAjaxRequest(body, e) {
-
-        function status(response) {
-            if (status >= 200 && status < 300) {
-                return Promise.resolve(response);
-            }
-            return Promise.reject(new Error(response.statusText));
-        }
-
-        function json() {
-            return json();
-        }
-
-        function error(err) {
-            console.log('Request failed', err);
-        }
+    static yiiAjaxRequest(url, body) {
 
         let csrfParamMeta = document.getElementsByName('csrf-param')[0];
         let csrfTokenMeta = document.getElementsByName('csrf-token')[0];
@@ -63,24 +48,26 @@ export default class jsNautic {
         };
         request.credentials = 'include';
         request.body = body + '&' + token;
-        fetch('/ajax/cat', request)
-            .then(status)
-            .then(json)
-            .then((data) => {
-                let catBox = document.querySelector('#cat-box');
-                if (catBox) {
-                    catBox.style.top = e.pageY + 'px';
-                    catBox.style.left = e.pageX + 5 + 'px';
-                    let linkList = document.querySelector('#cat-links');
-                    let catString = '<span>' + data.name + '</span>';
-                    data.links.forEach((link) => {
-                        catString += '<li>' + link + '</li>';
-                    });
-                    linkList.innerHTML = catString;
-                }
-            })
-            .catch(error);
+        return fetch(url, request)
+            .then(jsNautic.status)
+            .then(jsNautic.json)
+            .catch(jsNautic.error);
 
+    }
+
+    static status(response) {
+        if (response.status >= 200 && response.status < 300) {
+            return Promise.resolve(response);
+        }
+        return Promise.reject(new Error(response.statusText));
+    }
+
+    static json(response) {
+        return response.json();
+    }
+
+    static error(errorText) {
+        console.log('Request failed', errorText);
     }
 
 }

@@ -11,11 +11,7 @@ import {expect} from 'chai';
 
 describe('jsNautic', () => {
 
-    /*
-     *   MOVE
-     */
-
-    describe('jsNautic', () => {
+    describe('toggleClassByIndex', () => {
 
         let slide0,
             slide1,
@@ -77,6 +73,47 @@ describe('jsNautic', () => {
             expect(slide4.getAttribute('class') === 'slide active').to.be.false;
             expect(slide5.getAttribute('class') === 'slide active').to.be.true;
 
+            slide5.setAttribute('class', 'slide');
+
+        });
+
+    });
+
+    describe('getActiveIndex', () => {
+
+        let slide0,
+            slide1,
+            slide2,
+            slide3,
+            slide4,
+            slide5;
+
+        before(() => {
+
+            let i;
+            for (i = 0; i < 6; i++) {
+                let slide = document.createElement('div');
+                slide.classList.add('slide');
+                slide.setAttribute('id', 'slide-' + i);
+                document.body.appendChild(slide);
+            }
+
+        });
+
+        beforeEach(() => {
+
+            slide0 = document.getElementById('slide-0');
+            slide1 = document.getElementById('slide-1');
+            slide2 = document.getElementById('slide-2');
+            slide3 = document.getElementById('slide-3');
+            slide4 = document.getElementById('slide-4');
+            slide5 = document.getElementById('slide-5');
+
+            slide0.setAttribute('class', 'slide');
+            slide1.setAttribute('class', 'slide');
+            slide2.setAttribute('class', 'slide');
+            slide3.setAttribute('class', 'slide');
+            slide4.setAttribute('class', 'slide');
             slide5.setAttribute('class', 'slide');
 
         });

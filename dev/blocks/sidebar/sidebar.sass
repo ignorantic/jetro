@@ -35,30 +35,72 @@
   width: 100%
   background: url("../img/s_line.png") repeat-x left
 
-.widget__list
+.link-list
   list-style: none
   padding-left: 0
 
-.cat-item a
+.link-list__item a
   @include text
   text-decoration: none
 
-.cat-item a:hover
+.link-list__item a:hover
   color: $base-color
 
-.tag-cloud
+.tag-cloud__item a:hover
+  color: $base-color
+
+.link-list_tag
   display: flex
   flex-wrap: wrap
   align-content: flex-start
   align-items: center
 
-.tag-cloud__item
+.link-list__item_tag
   margin-right: 10px
   margin-bottom: 4px
 
-.tag-cloud__item a
+.popup-box
+  position: absolute
+  top: 200px
+  left: 200px
+  border: 1px solid #aaa
+  background: #fff
+  z-index: 20
+
+.popup-box__links
+  margin: 0 10px 10px
+  position: relative
+  left: 0
+  top: 0
+  z-index: 10
+
+.popup-box__links span
+  @include header
+  color: #e7663c
+  font-size: 12px
+
+.popup-box__links a
   @include text
   text-decoration: none
 
-.tag-cloud__item a:hover
-  color: $base-color
+.popup-box__links a:hover
+  color: #e8603a
+
+.popup-box__links p
+  font-family: "Open Sans", sans-serif
+  font-size: 12px
+  color: #aaa
+  margin: 0
+  line-height: 1.5
+
+.popup-box__triangle
+  transform: rotate(45deg)
+  position: relative
+  top: -6px
+  left: 10px
+  height: 10px
+  width: 10px
+  border-top: 1px solid #aaa
+  border-left: 1px solid #aaa
+  background: #fff
+  z-index: 50;

@@ -1,3 +1,7 @@
+-
+    catNames = ['Video (3)', 'Sport (5)', 'Media (2)', 'Entartaiment (7)', 'Life (4)', 'Super Coll Stuff (8)']
+    tagNames = ['CSS', 'Sport', 'Media', 'HTML', 'Life', 'Java Script', 'Video', 'Photo', 'Audio', 'Facebook', 'Science', 'Git', 'Web']
+
 aside.sidebar
     .widget
         h3.widget__title
@@ -7,45 +11,13 @@ aside.sidebar
                 |libero maiores molestiae reiciendis! Adipisci aliquid consequatur doloribus.
     .widget
         h3.widget__title categories
-        ul.widget__list
-            li.cat-item
-                a(href='blog.html') Video (3)
-            li.cat-item
-                a(href='blog.html') Sport (5)
-            li.cat-item
-                a(href='blog.html') Media (2)
-            li.cat-item
-                a(href='blog.html') Entartaiment (7)
-            li.cat-item
-                a(href='blog.html') Life (4)
-            li.cat-item
-                a(href='blog.html') Super Coll Stuff (8)
+        ul.link-list#cat-list
+            each item in catNames
+                li.link-list__item
+                    a(href='blog.html')=item
     .widget
         h3.widget__title tags
-        .tag-cloud
-            span.tag-cloud__item
-                a(href='blog.html') CSS (3)
-            span.tag-cloud__item
-                a(href='blog.html') Sport (5)
-            span.tag-cloud__item
-                a(href='blog.html') Media (2)
-            span.tag-cloud__item
-                a(href='blog.html') HTML (7)
-            span.tag-cloud__item
-                a(href='blog.html') Life (4)
-            span.tag-cloud__item
-                a(href='blog.html') Java Script (8)
-            span.tag-cloud__item
-                a(href='blog.html') Video (3)
-            span.tag-cloud__item
-                a(href='blog.html') Photo (5)
-            span.tag-cloud__item
-                a(href='blog.html') Audio (2)
-            span.tag-cloud__item
-                a(href='blog.html') Facebook (7)
-            span.tag-cloud__item
-                a(href='blog.html') Science (4)
-            span.tag-cloud__item
-                a(href='blog.html') Git (8)
-            span.tag-cloud__item
-                a(href='blog.html') Web (3)
+        .link-list.link-list_tag#tag-cloud
+            each item in tagNames
+                span.link-list__item.link-list__item_tag
+                    a(href='blog.html')=item

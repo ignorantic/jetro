@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (document.querySelector('.navbar')) {
 
         Navbar.init();
+
     }
 
     if (document.querySelector('.slider')) {
@@ -23,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     }
 
-    if (document.querySelector('.cat-item')) {
+    if (document.querySelector('.sidebar')) {
 
         let sidebar = new Sidebar();
         sidebar.init();
