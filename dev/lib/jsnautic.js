@@ -50,8 +50,7 @@ export default class jsNautic {
         request.body = body + '&' + token;
         return fetch(url, request)
             .then(jsNautic.status)
-            .then(jsNautic.json)
-            .catch(jsNautic.error);
+            .then(jsNautic.json);
 
     }
 
@@ -64,10 +63,6 @@ export default class jsNautic {
 
     static json(response) {
         return response.json();
-    }
-
-    static error(errorText) {
-        console.log('Request failed', errorText);
     }
 
 }

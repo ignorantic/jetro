@@ -15,7 +15,15 @@ export default class Sidebar {
             .call(document.querySelectorAll('#cat-list .link-list__item'));
 
         cats.forEach((item) => {
-            item && item.addEventListener('mouseover',
+            if ('ontouchstart' in window) {
+                item.addEventListener('click',
+                    e => {
+                        e.preventDefault();
+                    },
+                    false
+                );
+            }
+            item.addEventListener('mouseover',
                 e => {
                     jsNautic.yiiAjaxRequest('/ajax/cat', 'id=' + item.dataset.id)
                     .then(data => {
@@ -30,7 +38,15 @@ export default class Sidebar {
             .call(document.querySelectorAll('#tag-cloud .link-list__item'));
 
         tags.forEach((item) => {
-            item && item.addEventListener('mouseover',
+            if ('ontouchstart' in window) {
+                item.addEventListener('click',
+                    e => {
+                        e.preventDefault();
+                    },
+                    false
+                );
+            }
+            item.addEventListener('mouseover',
                 e => {
                     jsNautic.yiiAjaxRequest('/ajax/tag', 'id=' + item.dataset.id)
                     .then(data => {
