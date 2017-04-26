@@ -27,7 +27,9 @@ export default class Sidebar {
                 e => {
                     jsNautic.yiiAjaxRequest('/ajax/cat', 'id=' + item.dataset.id)
                     .then(data => {
-                        Sidebar.setPopupData(data, e.pageX, e.pageY);
+                        let left = e.pageX + 5;
+                        let top = item.offsetTop + 15;
+                        Sidebar.setPopupData(data, left, top);
                     });
                 },
                 false
@@ -47,10 +49,12 @@ export default class Sidebar {
                 );
             }
             item.addEventListener('mouseover',
-                e => {
+                () => {
                     jsNautic.yiiAjaxRequest('/ajax/tag', 'id=' + item.dataset.id)
                     .then(data => {
-                        Sidebar.setPopupData(data, e.pageX, e.pageY);
+                        let left = item.offsetLeft + 20;
+                        let top = item.offsetTop + item.offsetHeight;
+                        Sidebar.setPopupData(data, left, top);
                     });
                 },
                 false
@@ -66,10 +70,10 @@ export default class Sidebar {
     }
 
     static setPopupData(data, left, top) {
-        let tagBox = document.querySelector('#popup-box');
-        if (tagBox) {
-            tagBox.style.top = top + 'px';
-            tagBox.style.left = left + 5 + 'px';
+        let popupBox = document.querySelector('#popup-box');
+        if (popupBox) {
+            popupBox.style.top = top + 'px';
+            popupBox.style.left = left + 'px';
             let linkList = document.querySelector('#popup-links');
             let tagString = '<span>' + data.name + '</span>';
             data.links.forEach((link) => {
@@ -116,6 +120,7 @@ export default class Sidebar {
             e => {
                 if (e.relatedTarget !== popupBox) {
                     popupBox.style.display = 'none';
+                    popupBox.style.top = '-1000px';
                 }
             });
 
@@ -123,16 +128,18 @@ export default class Sidebar {
             e => {
                 if (e.relatedTarget !== popupBox) {
                     popupBox.style.display = 'none';
+                    popupBox.style.top = '-1000px';
                 }
             });
 
         popupBox.addEventListener('mouseout',
             e => {
-                if ((e.relatedTarget !== catList) &&
-                    (e.relatedTarget !== tagCloud) &&
+                if ((!catList.contains(e.relatedTarget)) &&
+                    (!tagCloud.contains(e.relatedTarget)) &&
                     (!popupBox.contains(e.relatedTarget))) {
                     popupBox = document.querySelector('#popup-box');
                     popupBox.style.display = 'none';
+                    popupBox.style.top = '-1000px';
                 }
             });
     }

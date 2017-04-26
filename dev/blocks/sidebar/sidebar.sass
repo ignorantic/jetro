@@ -74,24 +74,18 @@
   top: 0
   z-index: 10
 
-.popup-box__links span
+.popup-box__links span a
   @include header
   color: #e7663c
   font-size: 12px
+  text-decoration: none
 
-.popup-box__links a
+.popup-box__links li a
   @include text
   text-decoration: none
 
-.popup-box__links a:hover
+.popup-box__links li a:hover
   color: #e8603a
-
-.popup-box__links p
-  font-family: "Open Sans", sans-serif
-  font-size: 12px
-  color: #aaa
-  margin: 0
-  line-height: 1.5
 
 .popup-box__triangle
   transform: rotate(45deg)
