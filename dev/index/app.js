@@ -26,8 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (document.querySelector('.sidebar')) {
 
-        let sidebar = new Sidebar();
-        sidebar.init();
+        Sidebar.init();
 
     }
 

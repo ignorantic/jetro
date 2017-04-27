@@ -9,27 +9,23 @@ import jsNautic from '../../lib/jsnautic';
 
 export default class Sidebar {
 
-    init() {
+    static init() {
 
         let cats = Array.prototype.slice
             .call(document.querySelectorAll('#cat-list .link-list__item'));
 
         cats.forEach((item) => {
-            if ('ontouchstart' in window) {
-                item.addEventListener('click',
-                    e => {
-                        e.preventDefault();
-                    },
-                    false
-                );
-            }
             item.addEventListener('mouseover',
                 e => {
+                    if ('ontouchstart' in window) {
+                        return;
+                    }
                     jsNautic.yiiAjaxRequest('/ajax/cat', 'id=' + item.dataset.id)
                     .then(data => {
                         let left = e.pageX + 5;
                         let top = item.offsetTop + 15;
-                        Sidebar.setPopupData(data, left, top);
+                        Sidebar.setPopupData(data);
+                        Sidebar.setPopupPosition(left, top);
                     });
                 },
                 false
@@ -40,21 +36,17 @@ export default class Sidebar {
             .call(document.querySelectorAll('#tag-cloud .link-list__item'));
 
         tags.forEach((item) => {
-            if ('ontouchstart' in window) {
-                item.addEventListener('click',
-                    e => {
-                        e.preventDefault();
-                    },
-                    false
-                );
-            }
             item.addEventListener('mouseover',
                 () => {
+                    if ('ontouchstart' in window) {
+                        return;
+                    }
                     jsNautic.yiiAjaxRequest('/ajax/tag', 'id=' + item.dataset.id)
                     .then(data => {
                         let left = item.offsetLeft + 20;
                         let top = item.offsetTop + item.offsetHeight;
-                        Sidebar.setPopupData(data, left, top);
+                        Sidebar.setPopupData(data);
+                        Sidebar.setPopupPosition(left, top);
                     });
                 },
                 false
@@ -69,11 +61,13 @@ export default class Sidebar {
 
     }
 
-    static setPopupData(data, left, top) {
-        let popupBox = document.querySelector('#popup-box');
+    static getPopup() {
+        return document.querySelector('#popup-box');
+    }
+
+    static setPopupData(data) {
+        let popupBox = Sidebar.getPopup();
         if (popupBox) {
-            popupBox.style.top = top + 'px';
-            popupBox.style.left = left + 'px';
             let linkList = document.querySelector('#popup-links');
             let tagString = '<span>' + data.name + '</span>';
             data.links.forEach((link) => {
@@ -83,12 +77,19 @@ export default class Sidebar {
         }
     }
 
+    static setPopupPosition(left, top) {
+        let popupBox = Sidebar.getPopup();
+        if (popupBox) {
+            popupBox.style.top = top + 'px';
+            popupBox.style.left = left + 'px';
+        }
+    }
+
     static handleListMouseOver() {
-        let popupBox = document.querySelector('#popup-box');
+        let popupBox = Sidebar.getPopup();
         if (!popupBox) {
             Sidebar.createBoxDiv();
-            Sidebar.addEventListenerToBoxDiv();
-            popupBox = document.querySelector('#popup-box');
+            popupBox = Sidebar.getPopup();
         }
         popupBox.style.display = 'block';
     }
@@ -108,13 +109,14 @@ export default class Sidebar {
         div.appendChild(links);
         let catList = document.querySelector('.sidebar');
         catList.appendChild(div);
+        Sidebar.addEventListenerToBoxDiv();
     }
 
     static addEventListenerToBoxDiv() {
 
         let catList = document.querySelector('#cat-list');
         let tagCloud = document.querySelector('#tag-cloud');
-        let popupBox = document.querySelector('#popup-box');
+        let popupBox = Sidebar.getPopup();
 
         catList.addEventListener('mouseout',
             e => {
@@ -137,7 +139,6 @@ export default class Sidebar {
                 if ((!catList.contains(e.relatedTarget)) &&
                     (!tagCloud.contains(e.relatedTarget)) &&
                     (!popupBox.contains(e.relatedTarget))) {
-                    popupBox = document.querySelector('#popup-box');
                     popupBox.style.display = 'none';
                     popupBox.style.top = '-1000px';
                 }
