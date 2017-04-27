@@ -10,59 +10,34 @@ import jsNautic from '../../lib/jsnautic';
 export default class Sidebar {
 
     static init() {
-
-        let cats = Array.prototype.slice
-            .call(document.querySelectorAll('#cat-list .link-list__item'));
-
-        cats.forEach((item) => {
-            item.addEventListener('mouseover',
-                e => {
-                    if ('ontouchstart' in window) {
-                        return;
-                    }
-                    jsNautic.yiiAjaxRequest('/ajax/cat', 'id=' + item.dataset.id)
-                    .then(data => {
-                        let left = e.pageX + 5;
-                        let top = item.offsetTop + 15;
-                        Sidebar.setPopupData(data);
-                        Sidebar.setPopupPosition(left, top);
-                    });
-                },
-                false
-            );
-        });
-
-        let tags = Array.prototype.slice
-            .call(document.querySelectorAll('#tag-cloud .link-list__item'));
-
-        tags.forEach((item) => {
-            item.addEventListener('mouseover',
-                () => {
-                    if ('ontouchstart' in window) {
-                        return;
-                    }
-                    jsNautic.yiiAjaxRequest('/ajax/tag', 'id=' + item.dataset.id)
-                    .then(data => {
-                        let left = item.offsetLeft + 20;
-                        let top = item.offsetTop + item.offsetHeight;
-                        Sidebar.setPopupData(data);
-                        Sidebar.setPopupPosition(left, top);
-                    });
-                },
-                false
-            );
-        });
-
-        let catList = document.querySelector('#cat-list');
-        let tagList = document.querySelector('#tag-cloud');
-
-        catList.addEventListener('mouseover', Sidebar.handleListMouseOver);
-        tagList.addEventListener('mouseover', Sidebar.handleListMouseOver);
-
+        Sidebar.createBoxDiv();
+        Sidebar.addEventListenerToBoxDiv();
+        Sidebar.addEventListenerToLinks();
+        Sidebar.addEventListenerToLinkList();
     }
 
     static getPopup() {
         return document.querySelector('#popup-box');
+    }
+
+    static createBoxDiv() {
+        let links = document.createElement('ul');
+        let triangle = document.createElement('div');
+        let div = document.createElement('div');
+
+        links.setAttribute('id', 'popup-links');
+        links.classList.add('popup-box__links');
+        triangle.classList.add('popup-box__triangle');
+        div.setAttribute('id', 'popup-box');
+        div.classList.add('popup-box');
+        div.style.display = 'none';
+        div.style.top = '-1000px';
+
+        div.appendChild(triangle);
+        div.appendChild(links);
+
+        let catList = document.querySelector('.sidebar');
+        catList.appendChild(div);
     }
 
     static setPopupData(data) {
@@ -88,28 +63,9 @@ export default class Sidebar {
     static handleListMouseOver() {
         let popupBox = Sidebar.getPopup();
         if (!popupBox) {
-            Sidebar.createBoxDiv();
             popupBox = Sidebar.getPopup();
         }
         popupBox.style.display = 'block';
-    }
-
-    static createBoxDiv() {
-        let links = document.createElement('ul');
-        let triangle = document.createElement('div');
-        let div = document.createElement('div');
-        links.setAttribute('id', 'popup-links');
-        links.classList.add('popup-box__links');
-        triangle.classList.add('popup-box__triangle');
-        div.setAttribute('id', 'popup-box');
-        div.classList.add('popup-box');
-        div.style.display = 'none';
-        div.style.top = '-1000px';
-        div.appendChild(triangle);
-        div.appendChild(links);
-        let catList = document.querySelector('.sidebar');
-        catList.appendChild(div);
-        Sidebar.addEventListenerToBoxDiv();
     }
 
     static addEventListenerToBoxDiv() {
@@ -143,6 +99,58 @@ export default class Sidebar {
                     popupBox.style.top = '-1000px';
                 }
             });
+    }
+
+    static addEventListenerToLinks() {
+
+        let cats = Array.prototype.slice
+            .call(document.querySelectorAll('#cat-list .link-list__item'));
+        let tags = Array.prototype.slice
+            .call(document.querySelectorAll('#tag-cloud .link-list__item'));
+
+        cats.forEach((item) => {
+            item.addEventListener('mouseover',
+                e => {
+                    if ('ontouchstart' in window) {
+                        return;
+                    }
+                    jsNautic.yiiAjaxRequest('/ajax/cat', 'id=' + item.dataset.id)
+                    .then(data => {
+                        let left = e.pageX + 5,
+                            top = item.offsetTop + 15;
+                        Sidebar.setPopupData(data);
+                        Sidebar.setPopupPosition(left, top);
+                    });
+                },
+                false
+            );
+        });
+        tags.forEach((item) => {
+            item.addEventListener('mouseover',
+                () => {
+                    if ('ontouchstart' in window) {
+                        return;
+                    }
+                    jsNautic.yiiAjaxRequest('/ajax/tag', 'id=' + item.dataset.id)
+                    .then(data => {
+                        let left = item.offsetLeft + 20,
+                            top = item.offsetTop + item.offsetHeight;
+                        Sidebar.setPopupData(data);
+                        Sidebar.setPopupPosition(left, top);
+                    });
+                },
+                false
+            );
+        });
+    }
+
+    static addEventListenerToLinkList() {
+
+        let catList = document.querySelector('#cat-list');
+        let tagList = document.querySelector('#tag-cloud');
+
+        catList.addEventListener('mouseover', Sidebar.handleListMouseOver);
+        tagList.addEventListener('mouseover', Sidebar.handleListMouseOver);
     }
 
 }
