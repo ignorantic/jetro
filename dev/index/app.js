@@ -1,4 +1,3 @@
-
 /**
  *     jsnautic.spec.js for Jetro project
  *     October 2016, April 2017 by Andrii Sorokin
@@ -9,25 +8,25 @@ import Navbar from '../blocks/navbar/navbar';
 import Slider from '../blocks/slider/slider';
 import Sidebar from '../blocks/sidebar/sidebar';
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
-    if (document.querySelector('.navbar')) {
+  if (document.querySelector('.navbar')) {
 
-        Navbar.init();
+    Navbar.init();
 
-    }
+  }
 
-    if (document.querySelector('.slider')) {
+  if (document.querySelector('.slider')) {
 
-        let slider = new Slider();
-        slider.init();
+    let slider = new Slider();
+    slider.init();
 
-    }
+  }
 
-    if (document.querySelector('.sidebar')) {
+  if (document.querySelector('.sidebar')) {
 
-        Sidebar.init();
+    Sidebar.init();
 
-    }
+  }
 
 });
