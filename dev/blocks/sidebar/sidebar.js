@@ -4,7 +4,7 @@
  *     https://github.com/ignorantic/jetro.git
  */
 
-import jsNautic from '../../lib/jsnautic';
+import yiiAjax from 'yii-ajax';
 import html from 'html-helper';
 
 export default class Sidebar {
@@ -122,7 +122,9 @@ export default class Sidebar {
           if ('ontouchstart' in window) {
             return;
           }
-          jsNautic.yiiAjaxRequest('/ajax/cat', 'id=' + item.dataset.id)
+          yiiAjax.post('/ajax/cat', {
+            id: item.dataset.id
+          })
             .then(data => {
               let left = e.pageX + 5,
                 top = item.offsetTop + 15;
@@ -139,7 +141,9 @@ export default class Sidebar {
           if ('ontouchstart' in window) {
             return;
           }
-          jsNautic.yiiAjaxRequest('/ajax/tag', 'id=' + item.dataset.id)
+          yiiAjax.post('/ajax/tag', {
+            id: item.dataset.id
+          })
             .then(data => {
               let left = item.offsetLeft + item.offsetWidth - 15,
                 top = item.offsetTop + item.offsetHeight - 1;
