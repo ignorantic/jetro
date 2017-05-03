@@ -28,11 +28,8 @@ export default class Sidebar {
     let triangle = html.div(null, {
       class: 'popup-box__triangle'
     });
-    let div = html.div(
-      [
-        triangle,
-        links
-      ], {
+    let div = html.div([triangle, links],
+      {
         id: 'popup-box',
         class: 'popup-box'
       }, {
@@ -82,31 +79,18 @@ export default class Sidebar {
     let tagCloud = document.querySelector('#tag-cloud');
     let popupBox = Sidebar.getPopup();
 
-    catList.addEventListener('mouseout',
-      e => {
-        if (e.relatedTarget !== popupBox) {
-          popupBox.style.display = 'none';
-          popupBox.style.top = '-1000px';
-        }
-      });
+    function hidePopup(e) {
+      if ((!catList.contains(e.relatedTarget)) &&
+        (!tagCloud.contains(e.relatedTarget)) &&
+        (!popupBox.contains(e.relatedTarget))) {
+        popupBox.style.display = 'none';
+        popupBox.style.top = '-1000px';
+      }
+    }
 
-    tagCloud.addEventListener('mouseout',
-      e => {
-        if (e.relatedTarget !== popupBox) {
-          popupBox.style.display = 'none';
-          popupBox.style.top = '-1000px';
-        }
-      });
-
-    popupBox.addEventListener('mouseout',
-      e => {
-        if ((!catList.contains(e.relatedTarget)) &&
-          (!tagCloud.contains(e.relatedTarget)) &&
-          (!popupBox.contains(e.relatedTarget))) {
-          popupBox.style.display = 'none';
-          popupBox.style.top = '-1000px';
-        }
-      });
+    catList.addEventListener('mouseout', hidePopup, false);
+    tagCloud.addEventListener('mouseout', hidePopup, false);
+    popupBox.addEventListener('mouseout', hidePopup, false);
   }
 
   static addEventListenerToLinks() {

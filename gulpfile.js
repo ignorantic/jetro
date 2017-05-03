@@ -83,7 +83,7 @@ gulp.task('build:pages', function (done) {
   done();
 });
 
-/*
+/**
  *      SASS
  */
 
@@ -104,7 +104,7 @@ gulp.task('build:sass', function (done) {
   done();
 });
 
-/*
+/**
  *      BROWSERIFY
  */
 
@@ -131,7 +131,7 @@ gulp.task('build:js', function (done) {
   done();
 });
 
-/*
+/**
  *      LINT
  */
 
@@ -141,7 +141,7 @@ gulp.task('lint:js', function () {
     .pipe(eslint.format());
 });
 
-/*
+/**
  *      TEST
  */
 
@@ -155,7 +155,7 @@ gulp.task('test', function (done) {
   }).start();
 });
 
-/*
+/**
  *      TDD
  */
 
@@ -169,7 +169,7 @@ gulp.task('tdd', function (done) {
   }).start();
 });
 
-/*
+/**
  *      FONTS
  */
 
@@ -180,7 +180,7 @@ gulp.task('build:fonts', function (done) {
   done();
 });
 
-/*
+/**
  *      IMAGES
  */
 
@@ -203,7 +203,7 @@ gulp.task('build:img', function (done) {
   done();
 });
 
-/*
+/**
  *      SPRITE
  */
 
@@ -218,7 +218,7 @@ gulp.task('build:sprite', function (done) {
   done();
 });
 
-/*
+/**
  *      CLEAN
  */
 
@@ -227,7 +227,7 @@ gulp.task('clean', function (done) {
   done();
 });
 
-/*
+/**
  *      SERVER
  */
 
@@ -241,7 +241,7 @@ gulp.task('server', function (done) {
   done();
 });
 
-/*
+/**
  *      WATCH
  */
 
@@ -254,7 +254,7 @@ gulp.task('watch', function (done) {
   done();
 });
 
-/*
+/**
  *      COMPLEX TASKS
  */
 
