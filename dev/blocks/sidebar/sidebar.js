@@ -9,15 +9,18 @@ import html from 'html-helper';
 
 export default class Sidebar {
 
+  static top;
+  static left;
+  static display;
+
   static init() {
+    Sidebar.top = -1000;
+    Sidebar.left = 0;
+    Sidebar.display = 'none';
     Sidebar.createBoxDiv();
     Sidebar.addEventListenerToBoxDiv();
     Sidebar.addEventListenerToLinks();
     Sidebar.addEventListenerToLinkList();
-  }
-
-  static getPopup() {
-    return document.querySelector('#popup-box');
   }
 
   static createBoxDiv() {
@@ -33,8 +36,8 @@ export default class Sidebar {
         id: 'popup-box',
         class: 'popup-box'
       }, {
-        display: 'none',
-        top: '-1000px'
+        display: Sidebar.display,
+        top: Sidebar.top + 'px'
       }
     );
 
@@ -42,51 +45,21 @@ export default class Sidebar {
     catList.appendChild(div);
   }
 
-  static setPopupData(data) {
-    let popupBox = Sidebar.getPopup();
-    if (popupBox) {
-      let linkList = document.querySelector('#popup-links');
-      linkList.innerHTML = null;
-
-      let tag = html.span(data.name);
-      linkList.appendChild(tag);
-
-      data.links.forEach((link) => {
-        linkList.appendChild(html.li(link));
-      });
-    }
-  }
-
-  static setPopupPosition(left, top) {
-    let popupBox = Sidebar.getPopup();
-    if (popupBox) {
-      popupBox.style.top = top + 'px';
-      popupBox.style.left = left + 'px';
-    }
-  }
-
-  static handleListMouseOver() {
-    let popupBox = Sidebar.getPopup();
-    if (!popupBox) {
-      popupBox = Sidebar.getPopup();
-    }
-    popupBox.style.display = 'block';
-  }
-
   static addEventListenerToBoxDiv() {
 
     let catList = document.querySelector('#cat-list');
     let tagCloud = document.querySelector('#tag-cloud');
-    let popupBox = Sidebar.getPopup();
+    let popupBox = document.querySelector('#popup-box');
 
-    function hidePopup(e) {
-      if ((!catList.contains(e.relatedTarget)) &&
-        (!tagCloud.contains(e.relatedTarget)) &&
-        (!popupBox.contains(e.relatedTarget))) {
-        popupBox.style.display = 'none';
-        popupBox.style.top = '-1000px';
+    let hidePopup = e => {
+      if (!catList.contains(e.relatedTarget) &&
+          !tagCloud.contains(e.relatedTarget) &&
+          !popupBox.contains(e.relatedTarget)) {
+        Sidebar.display = 'none';
+        Sidebar.top = -1000;
+        Sidebar.renderPopup();
       }
-    }
+    };
 
     catList.addEventListener('mouseout', hidePopup, false);
     tagCloud.addEventListener('mouseout', hidePopup, false);
@@ -95,12 +68,13 @@ export default class Sidebar {
 
   static addEventListenerToLinks() {
 
-    let cats = Array.prototype.slice
-      .call(document.querySelectorAll('#cat-list .link-list__item'));
-    let tags = Array.prototype.slice
-      .call(document.querySelectorAll('#tag-cloud .link-list__item'));
+    let cats, tags;
+    let toArray = collection => [].slice.call(collection);
 
-    cats.forEach((item) => {
+    cats = toArray(document.querySelectorAll('#cat-list .link-list__item'));
+    tags = toArray(document.querySelectorAll('#tag-cloud .link-list__item'));
+
+    cats.forEach(item => {
       item.addEventListener('mouseover',
         e => {
           if ('ontouchstart' in window) {
@@ -110,16 +84,16 @@ export default class Sidebar {
             id: item.dataset.id
           })
             .then(data => {
-              let left = e.pageX + 5,
-                top = item.offsetTop + 15;
+              Sidebar.left = e.pageX + 5;
+              Sidebar.top = item.offsetTop + 15;
               Sidebar.setPopupData(data);
-              Sidebar.setPopupPosition(left, top);
+              Sidebar.renderPopup();
             });
         },
         false
       );
     });
-    tags.forEach((item) => {
+    tags.forEach(item => {
       item.addEventListener('mouseover',
         () => {
           if ('ontouchstart' in window) {
@@ -129,10 +103,10 @@ export default class Sidebar {
             id: item.dataset.id
           })
             .then(data => {
-              let left = item.offsetLeft + item.offsetWidth - 15,
-                top = item.offsetTop + item.offsetHeight - 1;
+              Sidebar.left = item.offsetLeft + item.offsetWidth - 15;
+              Sidebar.top = item.offsetTop + item.offsetHeight - 1;
               Sidebar.setPopupData(data);
-              Sidebar.setPopupPosition(left, top);
+              Sidebar.renderPopup();
             });
         },
         false
@@ -144,9 +118,30 @@ export default class Sidebar {
 
     let catList = document.querySelector('#cat-list');
     let tagList = document.querySelector('#tag-cloud');
+    let handleListMouseOver = () => {
+      Sidebar.display = 'block';
+    };
 
-    catList.addEventListener('mouseover', Sidebar.handleListMouseOver);
-    tagList.addEventListener('mouseover', Sidebar.handleListMouseOver);
+    catList.addEventListener('mouseover', handleListMouseOver);
+    tagList.addEventListener('mouseover', handleListMouseOver);
+  }
+
+  static setPopupData(data) {
+    let linkList = document.querySelector('#popup-links');
+    linkList.innerHTML = null;
+
+    linkList.appendChild(html.span(data.name));
+
+    data.links.forEach(link => {
+      linkList.appendChild(html.li(link));
+    });
+  }
+
+  static renderPopup() {
+    let popupBox = document.querySelector('#popup-box');
+    popupBox.style.top = Sidebar.top + 'px';
+    popupBox.style.left = Sidebar.left + 'px';
+    popupBox.style.display = Sidebar.display;
   }
 
 }
