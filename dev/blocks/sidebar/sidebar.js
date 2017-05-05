@@ -84,8 +84,8 @@ export default class Sidebar {
             id: item.dataset.id
           })
             .then(data => {
-              Sidebar.left = e.pageX + 5;
-              Sidebar.top = item.offsetTop + 15;
+              Sidebar.left = e.pageX + 15;
+              Sidebar.top = item.offsetTop;
               Sidebar.setPopupData(data);
               Sidebar.renderPopup();
             });
@@ -95,7 +95,7 @@ export default class Sidebar {
     });
     tags.forEach(item => {
       item.addEventListener('mouseover',
-        () => {
+        e => {
           if ('ontouchstart' in window) {
             return;
           }
@@ -103,8 +103,8 @@ export default class Sidebar {
             id: item.dataset.id
           })
             .then(data => {
-              Sidebar.left = item.offsetLeft + item.offsetWidth - 15;
-              Sidebar.top = item.offsetTop + item.offsetHeight - 1;
+              Sidebar.left = e.pageX + 15;
+              Sidebar.top = item.offsetTop;
               Sidebar.setPopupData(data);
               Sidebar.renderPopup();
             });
@@ -128,13 +128,14 @@ export default class Sidebar {
 
   static setPopupData(data) {
     let linkList = document.querySelector('#popup-links');
-    linkList.innerHTML = null;
 
-    linkList.appendChild(html.span(data.name));
-
-    data.links.forEach(link => {
-      linkList.appendChild(html.li(link));
-    });
+    if (linkList) {
+      linkList.innerHTML = null;
+      linkList.appendChild(html.span(data.name));
+      data.links.forEach(link => {
+        linkList.appendChild(html.li(link));
+      });
+    }
   }
 
   static renderPopup() {
