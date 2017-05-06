@@ -46,12 +46,24 @@
                 <p class="feedback__text"><span>f:</span> (888) 452 - 9257</p>
                 <p class="feedback__text"><span>e:</span> info@freebies.com</p>
               </div>
-              <div class="form">
-                <input class="form__text" type="text" placeholder="firstname">
-                <input class="form__text" type="text" placeholder="lastname">
-                <input class="form__text" type="text" placeholder="emailaddress">
-                <textarea class="form__textarea" rows="10" placeholder="message"></textarea>
-                <input class="button button_submit" type="submit" value="submit">
+              <div class="feedback__form"> 
+                <div class="feedback__message"><span>Your message was sent</span></div>
+                <form class="form">
+                  <div>
+                    <input class="form__text" type="text" placeholder="first name" id="first_name">
+                    <label class="form__label" for="first_name">Your first name</label>
+                  </div>
+                  <div>
+                    <input class="form__text" type="text" placeholder="last name" id="last_name">
+                    <label class="form__label" for="last_name">Your last name</label>
+                  </div>
+                  <div>
+                    <input class="form__text" type="email" placeholder="email address" id="email">
+                    <label class="form__label" for="email">Your e-mail</label>
+                  </div>
+                  <textarea class="form__textarea" rows="10" placeholder="message"></textarea>
+                  <button class="button button_submit" type="submit">Submit</button>
+                </form>
               </div>
             </div>
           </div>

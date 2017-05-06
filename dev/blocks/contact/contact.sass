@@ -27,6 +27,21 @@
 .feedback__text span
   font-weight: 600
 
+.feedback__form
+  flex: 2
+  display: flex
+  flex-direction: column
+
+.feedback__message
+  @include text
+  @include input
+  font-weight: 600
+  color: $alt-text-color
+  background: $base-color
+  border: 1px solid $base-color
+  border-radius: 1px
+  padding: 10px
+
 @media screen and (max-width: 640px)
   .contact
     flex-direction: column
