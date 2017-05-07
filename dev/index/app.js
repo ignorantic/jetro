@@ -4,9 +4,9 @@
  *     https://github.com/ignorantic/jetro.git
  */
 
-import Navbar from '../blocks/navbar/navbar';
-import Slider from '../blocks/slider/slider';
-import Sidebar from '../blocks/sidebar/sidebar';
+import Navbar from '../components/navbar/navbar';
+import Slider from '../components/slider/slider';
+import Sidebar from '../components/sidebar/sidebar';
 
 document.addEventListener('DOMContentLoaded', function () {
 

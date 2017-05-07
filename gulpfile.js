@@ -1,6 +1,6 @@
 /**
  *     gulpfile.js for Jetro project
- *     October 2016, April 2017 by Andrii Sorokin
+ *     October 2016, April, May 2017 by Andrii Sorokin
  *     https://github.com/ignorantic/jetro.git
  */
 
@@ -34,34 +34,35 @@ const source = require('vinyl-source-stream');
 const isDev = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
 
 const paths = {
-  build: {
-    pug: 'build/',
-    js: 'build/js/',
-    css: 'build/css/',
-    img: 'build/img/',
-    fonts: 'build/fonts/'
-  },
-  src: {
-    img: ['dev/img/**/*.{png,jpg,svg}', '!dev/img/sprite/**/*.*'],
-    pug: ['dev/pages/*.pug', '!dev/pages/tmpl/**/*.*'],
-    sass: 'dev/blocks/**/*.{sass,css}',
-    fonts: 'dev/fonts/**/*.*'
-  },
-  clean: './build',
-  watch: {
-    pug: ['dev/blocks/**/*.pug', 'dev/pages/**/*.pug'],
-    js: [
-      'dev/blocks/**/*.js',
-      'dev/lib/**/*.js',
-      'dev/index/**/*.js',
-      'dev/node_modules/**/*.js',
-      '!dev/node_modules/*/node_modules/**/*.*'
-    ],
-    sass: 'dev/blocks/**/*.{sass,css}',
-    img: 'dev/img/**/*.png',
-    fonts: 'dev/fonts/**/*.{ttf,eot,svg,woff,woff2}',
-    serve: 'build/**/*.*'
-  }
+    build: {
+        pug:    'build/',
+        js:     'build/js/',
+        css:    'build/css/',
+        img:    'build/img/',
+        fonts:  'build/fonts/'
+    },
+    src:    {
+        img:    [
+                  'dev/img/**/*.{png,jpg,gif,svg}',
+                  '!dev/img/sprite/**/*.*'
+                ],
+        pug:    'dev/pages/*.pug',
+        sass:   'dev/index/site.sass',
+        js:     'dev/index/app.js',
+        fonts:  'dev/fonts/**/*.*'
+    },
+    clean:      './build',
+    lint:       [
+                  'dev/{index,blocks,components,node_modules}/**/*.js',
+                  '!dev/node_modules/*/node_modules/**/*.js'
+                ],
+    watch:  {
+        pug:    'dev/{blocks,components,pages}/**/*.pug',
+        js:     'dev/{index,blocks,components,node_modules}/**/*.js',
+        sass:   'dev/{index,blocks,components,fonts,mixins}/**/*.{sass,css}',
+        img:    'dev/img/**/*.{png,jpg,gif,svg}',
+        fonts:  'dev/fonts/**/*.{ttf,eot,svg,woff,woff2}'
+    }
 };
 
 /**
@@ -87,21 +88,20 @@ gulp.task('build:pages', function (done) {
  *      SASS
  */
 
-gulp.task('build:sass', function (done) {
-  gulp.src(paths.src.sass)
-    .pipe(gulpif(isDev, sourcemap.init()))
-    .pipe(sass())
-    .on('error', function (err) {
-      gutil.log(gutil.colors.red('💀'), gutil.colors.red.bold('⇵ sass error'));
-      gutil.log(gutil.colors.yellow(err.message));
-      this.emit('end');
-    })
-    .pipe(prefixer())
-    .pipe(concat('site.css'))
-    .pipe(gulpif(isDev, sourcemap.write(), cssmin()))
-    .pipe(gulp.dest(paths.build.css))
-    .pipe(connect.reload());
-  done();
+gulp.task('build:sass', function(done) {
+    gulp.src(paths.src.sass)
+        .pipe(gulpif(isDev,  sourcemap.init()))
+        .pipe(sass())
+        .on('error', function(err){
+          gutil.log(gutil.colors.red('💀'), gutil.colors.red.bold('⇵ sass error'));
+          gutil.log(gutil.colors.yellow(err.message));
+          this.emit('end');
+        })
+        .pipe(prefixer())
+        .pipe(gulpif(isDev, sourcemap.write(), cssmin()))
+        .pipe(gulp.dest(paths.build.css))
+        .pipe(connect.reload());
+    done();
 });
 
 /**
@@ -110,7 +110,7 @@ gulp.task('build:sass', function (done) {
 
 gulp.task('build:js', function (done) {
   browserify({
-      entries: 'dev/index/app.js',
+      entries: paths.src.js,
       extensions: ['.js'],
       debug: true
     })
@@ -136,7 +136,7 @@ gulp.task('build:js', function (done) {
  */
 
 gulp.task('lint:js', function () {
-  return gulp.src(paths.watch.js)
+  return gulp.src(paths.lint)
     .pipe(eslint())
     .pipe(eslint.format());
 });
@@ -210,11 +210,11 @@ gulp.task('build:img', function (done) {
 gulp.task('build:sprite', function (done) {
   const spriteData = gulp.src('dev/img/sprite/*.png').pipe(spritesmith({
     imgName: '../img/sprite.png',
-    cssName: 'sprite.sass',
+    cssName: '_sprite.sass',
     algorithm: 'left-right'
   }));
   spriteData.img.pipe(gulp.dest('dev/img/'));
-  spriteData.css.pipe(gulp.dest('dev/blocks/'));
+  spriteData.css.pipe(gulp.dest('dev/mixins/'));
   done();
 });
 
@@ -258,6 +258,27 @@ gulp.task('watch', function (done) {
  *      COMPLEX TASKS
  */
 
-gulp.task('build', gulp.series('clean', 'build:pages', 'build:sprite', 'build:sass', 'build:js', 'build:img', 'build:fonts'));
+gulp.task('build', gulp.series(
+  'clean',
+  'build:pages',
+  'build:sprite',
+  'build:sass',
+  'build:js',
+  'build:img',
+  'build:fonts'
+));
+
 gulp.task('default', gulp.series('build'));
-gulp.task('run', gulp.series(gulp.parallel('build:pages', 'build:sass', 'lint:js', 'build:js'), gulp.parallel('watch', 'server')));
+
+gulp.task('run', gulp.series(
+  gulp.parallel(
+    'build:pages',
+    'build:sass',
+    'lint:js',
+    'build:js'
+  ),
+  gulp.parallel(
+    'watch',
+    'server'
+  ))
+);

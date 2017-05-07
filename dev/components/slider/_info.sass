@@ -1,0 +1,94 @@
+.slider__info
+  position: absolute
+  bottom: 6%
+  left: 3%
+  height: 24%
+  width: 32%
+  background: $trans-bg-color
+  padding: 20px
+  overflow: hidden
+
+.slider__header
+  @include header
+  color: #ffffff
+  word-spacing: 2px
+
+.slider__text
+  @include text
+  color: #ffffff
+  font-weight: 600
+  margin-bottom: 0
+  text-overflow: ellipsis
+
+@media screen and (max-width: 950px)
+  .slider__info
+    padding: 10px
+
+  .slider__header
+    font-size: 14px
+
+  .slider__text
+    font-size: 10px
+
+@media screen and (max-width: 800px)
+  .slider__header
+    font-size: 12px
+
+  .slider__text
+    font-size: 9px
+    margin-top: 0
+
+@media screen and (max-width: 640px)
+  .slider__info
+    width: 42%
+
+@media screen and (max-width: 620px)
+  .slider__info
+    padding-top: 0
+    width: 48%
+
+  .slider__header
+    font-size: 10px
+
+@media screen and (max-width: 540px)
+  .slider__header
+    font-size: 9px
+
+  .slider__text
+    font-size: 8px
+
+@media screen and (max-width: 480px)
+  .slider__info
+    width: 56%
+
+  .slider__header
+    font-size: 8px
+
+@media screen and (max-width: 420px)
+  .slider__info
+    width: 64%
+
+  .slider__text
+    font-size: 7px
+
+@media screen and (max-width: 380px)
+  .slider__info
+    padding-top: 4px
+
+  .slider__text
+    padding-top: 4px
+    font-size: 10px
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+
+  .slider__header
+    font-size: 12px
+
+
+@media screen and (max-width: 300px)
+  .slider__info
+    width: 32%
+
+  .slider__text
+    display: none

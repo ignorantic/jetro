@@ -1,0 +1,113 @@
+.blog__postlist
+  @include content
+
+.blog__post
+  position: relative
+
+.blog__iconbox
+  position: absolute
+  left: -85px
+  width: 75px
+  height: 75px
+  text-align: center
+  line-height: 75px
+  background: $base-color
+
+.blog__icon
+  font-size: 32px
+  color: #ffffff
+
+.blog__pic
+  img
+    height: 100%
+    width: 100%
+
+.blog__text
+  display: flex
+  margin-top: 25px
+  margin-bottom: 30px
+
+.blog__info
+  @include text
+  flex: 3
+  margin: 1px 5px 20px 2px
+
+.blog__info-meta
+  display: flex
+  flex-direction: column
+
+.blog__info-title
+  @include header
+  font-size: 12px
+  margin-bottom: 5px
+
+.blog__info-text
+  @include text
+  color: $noactive-color
+  margin-bottom: 15px
+  a
+    text-decoration: none
+    color: $noactive-color
+
+.blog__article
+  flex: 11
+  margin-left: 2px
+  h2.blog__header
+    @include header
+    font-weight: 500
+    margin-top: 3px
+    margin-bottom: 15px
+
+.blog__post-link
+  text-decoration: none
+
+.blog__article, .blog__link
+  @include post
+
+.blog__link a
+  display: block
+  @include text
+  color: $noactive-color
+  text-decoration: none
+  margin-top: -12px
+  margin-bottom: 20px
+
+.blog__line
+  @include bottom-line
+  margin-bottom: 45px
+
+@media screen and (max-width: 1130px)
+  .blog__iconbox
+    display: none
+
+@media screen and (max-width: 640px)
+  .blog
+    flex-direction: column
+
+  .blog__postlist
+    margin-right: 0
+
+@media screen and (max-width: 520px)
+  .blog__text
+    flex-direction: column
+
+  .blog__info-meta
+    flex-direction: row
+    display: inline-block
+    margin-bottom: 10px
+
+  .blog__info-title
+    display: inline-block
+    @include header
+    margin-right: 10px
+    font-size: 12px
+
+  .blog__info-text
+    display: inline-block
+    @include text
+    color: $noactive-color
+    text-transform: capitalize
+    margin-right: 30px
+    a
+      text-decoration: none
+      color: $noactive-color
