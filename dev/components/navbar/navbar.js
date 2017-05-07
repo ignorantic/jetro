@@ -1,5 +1,5 @@
 /**
- *     jsnautic.spec.js for Jetro project
+ *     navbar.js for Jetro project
  *     Created by Andrii Sorokin on 4/23/17
  *     https://github.com/ignorantic/jetro.git
  */

@@ -1,0 +1,79 @@
+@mixin quote
+  margin-left: 50px
+  padding-left: 20px
+  font-style: italic
+  color: $quoteColor
+  border-left: 8px solid $baseColor
+
+@mixin pageContent
+  margin: 0 50px 45px 0
+  flex: 3
+
+@mixin bottomLine
+  position: relative
+  left: 0
+  height: 14px
+  width: 100%
+  background: url("../img/s_line.png") repeat-x left
+
+@mixin inputBlock
+  width: 215px
+  margin-bottom: 10px
+  @media screen and (max-width: 840px)
+    width: calc(100% - 160px)
+
+@mixin post
+  p
+    @include defaultText
+    margin-bottom: 20px
+  h1
+    @include defaultHeader
+    margin-top: 40px
+    margin-bottom: 20px
+  h2
+    @include defaultHeader
+    font-size: 14px
+    margin-top: 30px
+    margin-bottom: 20px
+  h3
+    @include defaultHeader
+    font-size: 14px
+    font-style: italic
+    margin-top: 30px
+    margin-bottom: 20px
+  h4
+    @include defaultHeader
+    font-size: 12px
+    margin-top: 20px
+    margin-bottom: 15px
+  h5
+    @include defaultHeader
+    font-size: 12px
+    font-style: italic
+    margin-top: 20px
+    margin-bottom: 15px
+  strong
+    font-weight: 700
+  hr
+    @include bottomLine
+    margin-top: 20px
+    margin-bottom: 20px
+    border: 0
+  em
+    font-style: italic
+  blockquote
+    @include defaultText
+    @include quote
+    margin-bottom: 20px
+  ul
+    margin-left: 20px
+    margin-bottom: 20px
+    li
+      @include defaultText
+      list-style-type: disc
+  ol
+    margin-left: 20px
+    margin-bottom: 20px
+    li
+      @include defaultText
+      list-style-type: decimal

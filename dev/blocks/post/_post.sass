@@ -3,7 +3,7 @@
   display: flex
 
 .post__content
-  @include content
+  @include pageContent
 
 .post__pic
   img
@@ -12,14 +12,14 @@
     margin-bottom: 40px
 
 .post__header
-  @include header
+  @include defaultHeader
   font-size: 20px
   font-weight: 500
   margin-top: 0
   margin-bottom: 30px
 
 .post__info
-  @include text
+  @include defaultText
   margin: 0 5px 20px 0
 
 .post__info-meta
@@ -28,18 +28,18 @@
 
 .post__info-title
   display: inline-block
-  @include header
+  @include defaultHeader
   margin-right: 10px
   font-size: 12px
 
 .post__info-text
   display: inline-block
-  @include text
-  color: $noactive-color
+  @include defaultText
+  color: $disabledColor
   margin-right: 30px
   a
     text-decoration: none
-    color: $noactive-color
+    color: $disabledColor
 
 .post__text
   margin-bottom: 40px
@@ -47,14 +47,14 @@
 
 .post__link a
   display: block
-  @include text
-  color: $noactive-color
+  @include defaultText
+  color: $disabledColor
   text-decoration: none
   margin-top: -12px
   margin-bottom: 20px
 
 .post__line
-  @include bottom-line
+  @include bottomLine
   margin-bottom: 20px
 
 @media screen and (max-width: 640px)

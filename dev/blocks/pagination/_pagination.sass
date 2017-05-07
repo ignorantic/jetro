@@ -4,8 +4,8 @@
 
 .pagination li
   display: block
-  @include header
-  background: $pale-color
+  @include defaultHeader
+  background: $altColor
   height: 26px
   width: 26px
   text-align: center
@@ -14,10 +14,10 @@
   transition: background 200ms
 
 .pagination li:hover
-  background: $base-color
+  background: $baseColor
 
 .pagination .active
-  background: $base-color
+  background: $baseColor
 
 .pagination a
   display: block

@@ -1,6 +1,6 @@
 /**
- *     jsnautic.spec.js for Jetro project
- *     October 2016, April 2017 by Andrii Sorokin
+ *     app.js for Jetro project
+ *     Created by Andrii Sorokin on 4/10/16
  *     https://github.com/ignorantic/jetro.git
  */
 

@@ -10,21 +10,21 @@
   flex-wrap: wrap
 
 .portfolio__cat
-  @include header
+  @include defaultHeader
   font-size: 13px
-  color: $noactive-color
+  color: $disabledColor
   text-decoration: none
   padding: 12px 5px 6px
   margin-right: 8px
   text-align: center
   vertical-align: middle
   &:hover
-    color: $pale-color
+    color: $altColor
 
 .portfolio__cat_active
   cursor: default
   color: #ffffff
-  background: $head-color
+  background: $headColor
   padding-left: 10px
   padding-right: 12px
   &:hover
@@ -57,14 +57,14 @@
   padding: 15px 10px 10px
 
 .work-card__title
-  @include header
+  @include defaultHeader
   font-size: 16px
   background: #ffffff
   color: #bababa
   margin-bottom: 5px
 
 .work-card__date
-  @include header
+  @include defaultHeader
   font-size: 10px
 
 @media screen and (max-width: 950px)

@@ -1,9 +1,9 @@
 .contact__content
-  @include content
+  @include pageContent
 
 .map
   margin-bottom: 30px
-  background: $pale-color
+  background: $altColor
 
 .feedback
   display: flex
@@ -12,14 +12,14 @@
   flex: 1
 
 .feedback__text
-  @include text
+  @include defaultText
   margin: 0
   padding-right: 30px
 
 .feedback__title
-  @include text
+  @include defaultText
   font-weight: 600
-  color: $head-color
+  color: $headColor
   margin-bottom: 0
 
 .feedback__text span
@@ -31,12 +31,12 @@
   flex-direction: column
 
 .feedback__message
-  @include text
-  @include input
+  @include defaultText
+  @include inputBlock
   font-weight: 600
-  color: $alt-text-color
-  background: $base-color
-  border: 1px solid $base-color
+  color: $altTextColor
+  background: $baseColor
+  border: 1px solid $baseColor
   border-radius: 1px
   padding: 10px
 

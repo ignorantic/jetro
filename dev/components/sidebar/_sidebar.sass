@@ -2,7 +2,7 @@
   flex: 1
 
 .sidebar__list
-  @include text
+  @include defaultText
   list-style: none
   padding-left: 0
 
@@ -11,13 +11,13 @@
   overflow: hidden
 
 .widget__title
-  @include header
+  @include defaultHeader
   margin-top: 0
   white-space: nowrap
   font-size: 14px
 
 .widget__title a
-  @include header
+  @include defaultHeader
   font-size: 14px
   text-decoration: none
 
@@ -30,7 +30,7 @@
   background: url("../img/s_line.png") repeat-x left
 
 .widget__text p
-  @include text
+  @include defaultText
   margin: 0
 
 .link-list
@@ -38,14 +38,14 @@
   padding-left: 0
 
 .link-list__item a
-  @include text
+  @include defaultText
   text-decoration: none
 
 .link-list__item a:hover
-  color: $base-color
+  color: $baseColor
 
 .tag-cloud__item a:hover
-  color: $base-color
+  color: $baseColor
 
 .link-list_tag
   display: flex
@@ -73,13 +73,13 @@
   z-index: 10
 
 .popup-box__links span a
-  @include header
+  @include defaultHeader
   color: #e7663c
   font-size: 12px
   text-decoration: none
 
 .popup-box__links li a
-  @include text
+  @include defaultText
   text-decoration: none
 
 .popup-box__links li a:hover
