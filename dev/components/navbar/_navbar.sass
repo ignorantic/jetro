@@ -18,25 +18,28 @@
   align-items: center
 
 .menu__item
-  @include defaultHeader
+  @include default-header
   padding-left: 25px
   list-style: none
 
-.menu__item a
-  font-size: 16px
-  color: $disabledColor
-  text-decoration: none
-  transition: color 200ms
-  &:hover
-    color: $altColor
+  & a
+    font-size: 16px
+    color: $disabled-color
+    text-decoration: none
+    transition: color 200ms
 
-.menu__item_active a
-  color: $baseColor
-  &:hover
-    color: $baseColor
+    &:hover
+      color: $alt-color
 
-.menu__item_active a span
-  color: $altColor
+.menu__item_active
+  & a
+    color: $base-color
+
+    & span
+      color: $alt-color
+
+    &:hover
+      color: $base-color
 
 @media screen and (max-width: 680px)
   .menu__item
@@ -49,8 +52,9 @@
   .menu__item
     padding-left: 15px
 
-  .menu__item a
-    font-size: 15px
+  .menu__item
+    & a
+      font-size: 15px
 
 @media screen and (max-width: 500px)
   .menu__list
@@ -59,8 +63,9 @@
   .menu__item
     padding-left: 10px
 
-  .menu__item a
-    font-size: 14px
+  .menu__item
+    & a
+      font-size: 14px
 
 @media screen and (max-width: 440px)
   .navbar
@@ -75,16 +80,17 @@
     font-size: 28px
     line-height: 40px
     z-index: 100
-    color: $disabledColor
+    color: $disabled-color
     transition: color 500ms
 
-  .menu__btn:hover
-    color: $altColor
+    &:hover
+      color: $alt-color
 
   .menu__btn_blink
-    color: $baseColor
+    color: $base-color
+
     &:hover
-      color: $baseColor
+      color: $base-color
 
   .menu__list
     padding: 0
@@ -96,7 +102,7 @@
     left: 0
     flex-direction: column
     justify-content: space-between
-    background: #ffffff
+    background: $back-color
     transition: height 500ms
     z-index: 1
 
@@ -108,9 +114,10 @@
   .menu__item
     width: 100%
     height: 100%
-    border-top: 1px dotted $menuBackColor
+    border-top: 1px dotted $menu-back-color
+
     &:last-child
-      border-bottom: 1px dotted $menuBackColor
+      border-bottom: 1px dotted $menu-back-color
 
   .menu__link
     display: block
@@ -119,4 +126,3 @@
     left: 20px
     font-size: 17px
     line-height: 48px
-

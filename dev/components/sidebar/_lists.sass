@@ -2,15 +2,18 @@
   list-style: none
   padding-left: 0
 
-.link-list__item a
-  @include defaultText
-  text-decoration: none
+.link-list__item
+  & a
+    @include default-text
+    text-decoration: none
 
-.link-list__item a:hover
-  color: $baseColor
+    &:hover
+      color: $base-color
 
-.tag-cloud__item a:hover
-  color: $baseColor
+.tag-cloud__item
+  & a
+    &:hover
+      color: $base-color
 
 .link-list_tag
   display: flex

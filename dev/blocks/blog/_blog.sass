@@ -1,5 +1,5 @@
 .blog__postlist
-  @include pageContent
+  @include page-content
 
 .blog__post
   position: relative
@@ -11,7 +11,7 @@
   height: 75px
   text-align: center
   line-height: 75px
-  background: $baseColor
+  background: $base-color
 
 .blog__icon
   font-size: 32px
@@ -28,7 +28,7 @@
   margin-bottom: 30px
 
 .blog__info
-  @include defaultText
+  @include default-text
   flex: 3
   margin: 1px 5px 20px 2px
 
@@ -37,23 +37,23 @@
   flex-direction: column
 
 .blog__info-title
-  @include defaultHeader
+  @include default-header
   font-size: 12px
   margin-bottom: 5px
 
 .blog__info-text
-  @include defaultText
-  color: $disabledColor
+  @include default-text
+  color: $disabled-color
   margin-bottom: 15px
   a
     text-decoration: none
-    color: $disabledColor
+    color: $disabled-color
 
 .blog__article
   flex: 11
   margin-left: 2px
   h2.blog__header
-    @include defaultHeader
+    @include default-header
     font-weight: 500
     margin-top: 3px
     margin-bottom: 15px
@@ -62,18 +62,18 @@
   text-decoration: none
 
 .blog__article, .blog__link
-  @include postContent
+  @include post-content
 
 .blog__link a
   display: block
-  @include defaultText
-  color: $disabledColor
+  @include default-text
+  color: $disabled-color
   text-decoration: none
   margin-top: -12px
   margin-bottom: 20px
 
 .blog__line
-  @include bottomLine
+  @include bottom-line
   margin-bottom: 45px
 
 @media screen and (max-width: 1130px)
@@ -98,16 +98,16 @@
 
   .blog__info-title
     display: inline-block
-    @include defaultHeader
+    @include default-header
     margin-right: 10px
     font-size: 12px
 
   .blog__info-text
     display: inline-block
-    @include defaultText
-    color: $disabledColor
+    @include default-text
+    color: $disabled-color
     text-transform: capitalize
     margin-right: 30px
     a
       text-decoration: none
-      color: $disabledColor
+      color: $disabled-color

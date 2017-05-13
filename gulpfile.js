@@ -11,6 +11,7 @@ const connect = require('gulp-connect');
 const debug = require('gulp-debug');
 const pug = require('gulp-pug');
 const sass = require('gulp-sass');
+const sassLint = require('gulp-sass-lint');
 const prefixer = require('gulp-autoprefixer');
 const cssmin = require('gulp-cssmin');
 const rename = require('gulp-rename');
@@ -52,10 +53,21 @@ const paths = {
         fonts:  'dev/fonts/**/*.*'
     },
     clean:      './build',
-    lint:       [
+    lint: { 
+        js:     [
                   'dev/{index,blocks,components,node_modules}/**/*.js',
                   '!dev/node_modules/*/node_modules/**/*.js'
                 ],
+        sass:   [
+                  // 'dev/{index,blocks,components,mixins}/**/*.{sass,css}',
+                  'dev/index/**/*.{sass,css}',
+                  // 'dev/blocks/**/*.{sass,css}',
+                  'dev/components/**/*.{sass,css}',
+                  'dev/mixins/**/*.{sass,css}',
+                  '!dev/mixins/_sprite.sass',
+                  '!dev/mixins/_reset.sass',
+                ]
+    },
     watch:  {
         pug:    'dev/{blocks,components,pages}/**/*.pug',
         js:     'dev/{index,blocks,components,node_modules}/**/*.js',
@@ -105,6 +117,21 @@ gulp.task('build:sass', function(done) {
 });
 
 /**
+ *      SASS LINT
+ */
+
+gulp.task('lint:sass', function () {
+  return gulp.src(paths.lint.sass)
+    .pipe(sassLint({
+            options: {
+                configFile: '.sass-lint.yml'
+            }
+        }))
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError())
+});
+
+/**
  *      BROWSERIFY
  */
 
@@ -124,7 +151,7 @@ gulp.task('build:js', function (done) {
       gutil.log(gutil.colors.yellow(err.message));
       this.emit('end');
     })
-    .pipe(source('app.js'))
+    .pipe(source(paths.src.js))
     .pipe(gulpif(!isDev, streamify(uglify())))
     .pipe(gulp.dest(paths.build.js))
     .pipe(connect.reload());
@@ -132,11 +159,11 @@ gulp.task('build:js', function (done) {
 });
 
 /**
- *      LINT
+ *      JS LINT
  */
 
 gulp.task('lint:js', function () {
-  return gulp.src(paths.lint)
+  return gulp.src(paths.lint.js)
     .pipe(eslint())
     .pipe(eslint.format());
 });
@@ -273,6 +300,7 @@ gulp.task('default', gulp.series('build'));
 gulp.task('run', gulp.series(
   gulp.parallel(
     'build:pages',
+    'lint:sass',
     'build:sass',
     'lint:js',
     'build:js'

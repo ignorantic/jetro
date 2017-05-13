@@ -2,72 +2,85 @@
   margin-left: 50px
   padding-left: 20px
   font-style: italic
-  color: $quoteColor
-  border-left: 8px solid $baseColor
+  color: $quote-color
+  border-left: 8px solid $base-color
 
-@mixin pageContent
+@mixin page-content
   margin: 0 50px 45px 0
   flex: 3
 
-@mixin bottomLine
+@mixin bottom-line
   position: relative
   left: 0
   height: 14px
   width: 100%
-  background: url("../img/s_line.png") repeat-x left
+  background: url('../img/s_line.png') repeat-x left
 
-@mixin postContent
+@mixin post-content
   p
-    @include defaultText
+    @include default-text
     margin-bottom: 20px
+
   h1
-    @include defaultHeader
+    @include default-header
     margin-top: 40px
     margin-bottom: 20px
+
   h2
-    @include defaultHeader
+    @include default-header
     font-size: 14px
     margin-top: 30px
     margin-bottom: 20px
+
   h3
-    @include defaultHeader
+    @include default-header
     font-size: 14px
     font-style: italic
     margin-top: 30px
     margin-bottom: 20px
+
   h4
-    @include defaultHeader
+    @include default-header
     font-size: 12px
     margin-top: 20px
     margin-bottom: 15px
+
   h5
-    @include defaultHeader
+    @include default-header
     font-size: 12px
     font-style: italic
     margin-top: 20px
     margin-bottom: 15px
+
   strong
     font-weight: 700
+
   hr
-    @include bottomLine
+    @include bottom-line
     margin-top: 20px
     margin-bottom: 20px
     border: 0
+
   em
     font-style: italic
+
   blockquote
-    @include defaultText
+    @include default-text
     @include quote
     margin-bottom: 20px
+
   ul
     margin-left: 20px
     margin-bottom: 20px
+
     li
-      @include defaultText
+      @include default-text
       list-style-type: disc
+
   ol
     margin-left: 20px
     margin-bottom: 20px
+
     li
-      @include defaultText
+      @include default-text
       list-style-type: decimal

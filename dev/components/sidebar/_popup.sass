@@ -2,9 +2,9 @@
   position: absolute
   top: 200px
   left: 200px
-  border: 1px solid $altColor
+  border: 1px solid $alt-color
   border-radius: 1px
-  background: $backColor
+  background: $back-color
   z-index: 20
 
 .popup-box__links
@@ -14,18 +14,20 @@
   top: 0
   z-index: 10
 
-.popup-box__links span a
-  @include defaultHeader
-  color: $headColor
-  font-size: 12px
-  text-decoration: none
+  & span
+   & a
+    @include default-header
+    color: $head-color
+    font-size: 12px
+    text-decoration: none
 
-.popup-box__links li a
-  @include defaultText
-  text-decoration: none
+  & li
+    & a
+      @include default-text
+      text-decoration: none
 
-.popup-box__links li a:hover
-  color: $baseColor
+      &:hover
+        color: $base-color
 
 .popup-box__triangle
   transform: rotate(45deg)
@@ -34,7 +36,7 @@
   left: -6px
   height: 10px
   width: 10px
-  border-left: 1px solid $altColor
-  border-bottom: 1px solid $altColor
-  background: $backColor
+  border-left: 1px solid $alt-color
+  border-bottom: 1px solid $alt-color
+  background: $back-color
   z-index: 50

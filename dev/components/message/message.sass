@@ -1,19 +1,21 @@
 .message
-  @include defaultText
+  @include default-text
   font-weight: 700
   width: 215px
   margin-bottom: 10px
   padding: 10px
   border-radius: 1px
+
   @media screen and (max-width: 840px)
     width: calc(100% - 160px)
 
+
 .message_type_success
-  color: $successColor
-  background: $altSuccessColor
-  border: 1px solid $successColor
+  color: $success-color
+  background: $alt-success-color
+  border: 1px solid $success-color
 
 .message_type_error
-  color: $errorColor
-  background: $altErrorColor
-  border: 1px solid $errorColor
+  color: $error-color
+  background: $alt-error-color
+  border: 1px solid $error-color
