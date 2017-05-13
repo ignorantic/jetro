@@ -1,6 +1,6 @@
 /**
  *     gulpfile.js for Jetro project
- *     October 2016, April, May 2017 by Andrii Sorokin
+ *     Created by Andrii Sorokin on 10/9/16
  *     https://github.com/ignorantic/jetro.git
  */
 

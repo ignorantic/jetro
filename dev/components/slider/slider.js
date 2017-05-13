@@ -25,7 +25,7 @@ export default class Slider {
     }
 
     document.querySelector(Slider.LEFT_BTN).addEventListener('click',
-      (e) => {
+      e => {
         this.clearTimer();
         e.stopPropagation();
         this.showPrevSlide();
@@ -34,7 +34,7 @@ export default class Slider {
     );
 
     document.querySelector(Slider.RIGHT_BTN).addEventListener('click',
-      (e) => {
+      e => {
         this.clearTimer();
         e.stopPropagation();
         this.showNextSlide();
@@ -54,8 +54,8 @@ export default class Slider {
       thumbs[i].addEventListener('click', () => {
 
         let parent = document.querySelector(Slider.THUMBS);
-        parent.addEventListener('click', event => {
-          let target = event.target || event.srcElement;
+        parent.addEventListener('click', e => {
+          let target = e.target || e.srcElement;
           for (let j = 0; j < parent.children.length; j++) {
             if (parent.children[j] === target.parentNode) {
               this.toggleActiveClassToIndex(j);

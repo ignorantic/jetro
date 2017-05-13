@@ -3,37 +3,7 @@
   flex-direction: column
   position: relative
 
-.form__textarea, .form__text
-  outline: none
-  border: 1px solid $baseColor
-  border-radius: 1px
-  padding: 0 10px
-  @include defaultText
-  font-size: 14px
-  background: #ffffff
-
-.form__textarea::placeholder, .form__text::placeholder
-  @include defaultHeader
-  font-size: 12px
-  font-weight: 100
-  line-height: 36px
-  vertical-align: middle
-  background: inherit
-
-.form__textarea::placeholder
-  line-height: 22px
-
-.form__text
-  @include inputBlock
-  height: 34px
-
-.form__textarea
-  overflow: auto
-  resize: none
-  margin-bottom: 10px
-  padding: 10px
-
-.form__text:focus + .form__label
+.form__input:focus + .form__label
   opacity: 1
 
 .form__label

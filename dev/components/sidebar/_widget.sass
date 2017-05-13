@@ -1,0 +1,26 @@
+.widget
+  margin-bottom: 40px
+  overflow: hidden
+
+.widget__title
+  @include defaultHeader
+  margin-top: 0
+  white-space: nowrap
+  font-size: 14px
+
+.widget__title a
+  @include defaultHeader
+  font-size: 14px
+  text-decoration: none
+
+.widget__title::after
+  content: ""
+  display: inline-block
+  margin-left: 15px
+  height: 14px
+  width: 100%
+  background: url("../img/s_line.png") repeat-x left
+
+.widget__text p
+  @include defaultText
+  margin: 0

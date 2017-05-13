@@ -24,14 +24,14 @@ export default class Sidebar {
   }
 
   static createBoxDiv() {
-    let links = html.ul(null, {
+    let links = html.tag('ul', null, {
       id: 'popup-links',
       class: 'popup-box__links'
     });
-    let triangle = html.div(null, {
+    let triangle = html.tag('div', null, {
       class: 'popup-box__triangle'
     });
-    let div = html.div([triangle, links],
+    let div = html.tag('div', [triangle, links],
       {
         id: 'popup-box',
         class: 'popup-box'
@@ -131,9 +131,9 @@ export default class Sidebar {
 
     if (linkList) {
       linkList.innerHTML = null;
-      linkList.appendChild(html.span(data.name));
+      linkList.appendChild(html.tag('span', data.name));
       data.links.forEach(link => {
-        linkList.appendChild(html.li(link));
+        linkList.appendChild(html.tag('li', link));
       });
     }
   }

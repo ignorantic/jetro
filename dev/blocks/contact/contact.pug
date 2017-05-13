@@ -18,8 +18,10 @@
                 p.feedback__text <span>t:</span> (888) 842 - 8356
                 p.feedback__text <span>f:</span> (888) 452 - 9257
                 p.feedback__text <span>e:</span> info@freebies.com
-            .feedback__form 
-                div.feedback__message
+            .feedback__form
+                div.feedback__message.message.message_type_success
                     span Your message was sent
+                div.feedback__message.message.message_type_error
+                    span Your message wasn't sent
                 include ../../components/form/form
     include ../../components/sidebar/sidebar
