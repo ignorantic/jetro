@@ -23,7 +23,7 @@ rules:
   no-debug: 1
   no-duplicate-properties: 1
   no-empty-rulesets: 1
-  no-extends: 0
+  no-extends: 1
   no-ids: 1
   no-important: 1
   no-invalid-hex: 1
@@ -42,14 +42,22 @@ rules:
   force-pseudo-nesting: 1
 
   # Name Formats
-  class-name-format: 0
+  class-name-format: 
+    - 1
+    -
+      allow-leading-underscore: false
+      convention: strictbem
   function-name-format: 1
-  mixin-name-format: 1
+  mixin-name-format:
+    - 1
+    -
+      convention: camelcase
   placeholder-name-format: 1
   variable-name-format:
     - 1
     -
       allow-leading-underscore: false
+      convention: camelcase
 
   # Style Guide
   border-zero: 1
@@ -58,12 +66,9 @@ rules:
   empty-args: 1
   hex-length: 1
   hex-notation: 1
-  # indentation: 1
-  indentation: 0
+  indentation: 1
   leading-zero: 0
-  # nesting-depth: 1
   nesting-depth: 0
-  # property-sort-order: 1
   property-sort-order: 0
   quotes: 1
   shorthand-values: 1

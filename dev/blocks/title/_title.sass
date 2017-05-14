@@ -1,14 +1,14 @@
 .title
   height: 60px
   width: 100%
-  background: $head-color
+  background: $headColor
   margin-bottom: 25px
 
 .title__header
-  @include default-header
+  @include heading
   font-size: 24px
   font-weight: 500
-  color: #ffffff
+  color: $altTextColor
   margin-left: 20px
   margin-top: 16px
 
@@ -22,12 +22,12 @@
     margin-left: 16px
     margin-top: 14px
 
-@media screen and (max-width: 480px)
-  .title
-    height: 42px
-    margin-bottom: 18px
+  @media screen and (max-width: 480px)
+    .title
+      height: 42px
+      margin-bottom: 18px
 
-  .title__header
-    font-size: 16px
-    margin-left: 14px
-    margin-top: 12px
+    .title__header
+      font-size: 16px
+      margin-left: 14px
+      margin-top: 12px

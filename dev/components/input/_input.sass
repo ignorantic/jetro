@@ -1,20 +1,17 @@
 .input
-  @include default-text
+  @include paragraph
   outline: none
-  border: 1px solid $base-color
+  border: 1px solid $baseColor
   border-radius: 1px
   padding: 0 10px
   font-size: 14px
-  background: $back-color
-  width: 215px
-  height: 34px
-  margin-bottom: 10px
+  background: $backColor
 
   &:focus + .form__label
     opacity: 1
 
   &::placeholder
-    @include default-header
+    @include heading
     font-size: 12px
     font-weight: 100
     line-height: 36px
@@ -37,9 +34,9 @@
     line-height: 22px
 
 .input_state_error
-  background: $back-error-color
-  border-color: $error-color
-  color: $error-color
+  border-color: $errorColor
+  color: $errorColor
+  font-weight: 700
 
   &::placeholder
-    color: $error-color
+    color: $errorColor

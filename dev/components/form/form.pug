@@ -1,12 +1,12 @@
 form.form
     div
-        input.form__input.input(type="text", placeholder="first name" id="first_name")
+        input.input.form__input(type="text", placeholder="first name" id="first_name")
         label.form__label(for="first_name") Your first name
     div
-        input.form__input.input.input_state_error(type="text", placeholder="last name" id="last_name")
+        input.input.form__input.input_state_error(type="text", placeholder="last name" id="last_name")
         label.form__label(for="last_name") Your last name
     div
-        input.form__input.input(type="email", placeholder="email address" id="email")
+        input.input.form__input(type="email", placeholder="email address" id="email")
         label.form__label(for="email") Your e-mail
     textarea.form__input.input.input_type_textarea(rows=10, placeholder="message")
-    button.button.button_type_submit(type="submit") Submit
+    button.button.form__button(type="submit") Submit

@@ -2,13 +2,15 @@
   @media screen and (max-width: 640px)
     flex-direction: column
 
+
 .about__content
-  @include page-content
+  @include pageContent
   @media screen and (max-width: 640px)
     flex-direction: column
 
+
 .about__text
-  @include default-text
+  @include paragraph
   margin-bottom: 20px
   line-height: 1.5
 
@@ -20,11 +22,12 @@
   margin-right: 25px
   margin-bottom: 20px
   text-align: center
+
+  img
+    vertical-align: middle
+    border: 1px solid $disabledColor
+    padding: 2px
+
   @media screen and (max-width: 420px)
     float: none
     margin-right: 0
-
-.about__img img
-  vertical-align: middle
-  border: 1px solid $disabled-color
-  padding: 2px

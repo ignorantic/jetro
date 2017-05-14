@@ -10,25 +10,27 @@
   flex-wrap: wrap
 
 .portfolio__cat
-  @include default-header
+  @include heading
   font-size: 13px
-  color: $disabled-color
+  color: $disabledColor
   text-decoration: none
   padding: 12px 5px 6px
   margin-right: 8px
   text-align: center
   vertical-align: middle
+
   &:hover
-    color: $alt-color
+    color: $altColor
 
 .portfolio__cat_active
   cursor: default
-  color: #ffffff
-  background: $head-color
+  color: $altTextColor
+  background: $headColor
   padding-left: 10px
   padding-right: 12px
+
   &:hover
-    color: #ffffff
+    color: $altTextColor
 
 
 .work-list
@@ -43,28 +45,29 @@
 
 .work-card__link
   display: block
-  background: #000000
+  background: $altBackColor
 
 .work-card__img
   display: block
   transition: opacity 200ms
+
   &:hover
     opacity: 0.25
 
 .work-card__info
-  border: 1px solid #dbdbdb
-  border-top: none
+  border: 1px solid $menuBackColor
+  border-top: 0
   padding: 15px 10px 10px
 
 .work-card__title
-  @include default-header
+  @include heading
   font-size: 16px
-  background: #ffffff
-  color: #bababa
+  background: $backColor
+  color: $disabledColor
   margin-bottom: 5px
 
 .work-card__date
-  @include default-header
+  @include heading
   font-size: 10px
 
 @media screen and (max-width: 950px)
@@ -72,16 +75,4 @@
     justify-content: space-around
 
   .work-card
-    margin: 10px 10px
-
-//@media screen and (max-width: 680px)
-//
-//@media screen and (max-width: 640px)
-//
-//@media screen and (max-width: 560px)
-//
-//@media screen and (max-width: 480px)
-//
-//@media screen and (max-width: 420px)
-//
-//@media screen annd (max-width: 380px)
+    margin: 10px

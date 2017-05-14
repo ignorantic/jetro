@@ -4,7 +4,7 @@
   justify-content: space-around
   flex-wrap: wrap
   width: 100%
-  background: $head-color
+  background: $headColor
   z-index: 10
   padding-bottom: 10px
 
@@ -14,22 +14,22 @@
   padding: 20px 30px
 
 .footer__header
-  @include default-header
-  color: #ffffff
+  @include heading
+  color: $altTextColor
   margin-bottom: 25px
 
-.footer__header a
-  @include default-header
-  color: #ffffff
-  text-decoration: none
+  a
+    @include heading
+    color: $altTextColor
+    text-decoration: none
 
 
 .footer__text
-  @include default-text
-  color: #ffffff
+  @include paragraph
+  color: $altTextColor
 
 .footer__span
-  color: $alt-color
+  color: $altColor
 
 .footer__social
   margin-top: 20px

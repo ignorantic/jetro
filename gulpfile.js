@@ -5,6 +5,7 @@
  */
 
 const gulp = require('gulp');
+const path = require('path');
 const sourcemap = require('gulp-sourcemaps');
 const gutil = require('gulp-util');
 const connect = require('gulp-connect');
@@ -43,30 +44,33 @@ const paths = {
         fonts:  'build/fonts/'
     },
     src:    {
-        img:    [
-                  'dev/img/**/*.{png,jpg,gif,svg}',
-                  '!dev/img/sprite/**/*.*'
-                ],
-        pug:    'dev/pages/*.pug',
-        sass:   'dev/index/site.sass',
-        js:     'dev/index/app.js',
-        fonts:  'dev/fonts/**/*.*'
+      img:    [
+                'dev/img/**/*.{png,jpg,gif,svg}',
+                '!dev/img/sprite/**/*.*'
+              ],
+      pug:      'dev/pages/*.pug',
+      sass:     'dev/index/site.sass',
+      js:       'dev/index/app.js',
+      fonts:    'dev/fonts/**/*.*',
+    },
+    sprite: {
+      src:      'dev/img/sprite/*.png',
+      imgName:  '../img/sprite.png',
+      cssName:  '_sprite.sass',
+      img:      'dev/img/',
+      css:      'dev/mixins/'
     },
     clean:      './build',
-    lint: { 
-        js:     [
-                  'dev/{index,blocks,components,node_modules}/**/*.js',
-                  '!dev/node_modules/*/node_modules/**/*.js'
-                ],
-        sass:   [
-                  // 'dev/{index,blocks,components,mixins}/**/*.{sass,css}',
-                  'dev/index/**/*.{sass,css}',
-                  // 'dev/blocks/**/*.{sass,css}',
-                  'dev/components/**/*.{sass,css}',
-                  'dev/mixins/**/*.{sass,css}',
-                  '!dev/mixins/_sprite.sass',
-                  '!dev/mixins/_reset.sass',
-                ]
+    lint:   { 
+      js:     [
+                'dev/{index,blocks,components,node_modules}/**/*.js',
+                '!dev/node_modules/*/node_modules/**/*.js'
+              ],
+      sass:   [
+                'dev/{index,blocks,components,mixins}/**/*.{sass,css}',
+                '!dev/mixins/_sprite.sass',
+                '!dev/mixins/_reset.sass',
+              ]
     },
     watch:  {
         pug:    'dev/{blocks,components,pages}/**/*.pug',
@@ -120,15 +124,16 @@ gulp.task('build:sass', function(done) {
  *      SASS LINT
  */
 
-gulp.task('lint:sass', function () {
-  return gulp.src(paths.lint.sass)
+gulp.task('lint:sass', function (done) {
+  gulp.src(paths.lint.sass)
     .pipe(sassLint({
             options: {
                 configFile: '.sass-lint.yml'
             }
         }))
     .pipe(sassLint.format())
-    .pipe(sassLint.failOnError())
+    .pipe(sassLint.failOnError());
+  done();
 });
 
 /**
@@ -151,7 +156,7 @@ gulp.task('build:js', function (done) {
       gutil.log(gutil.colors.yellow(err.message));
       this.emit('end');
     })
-    .pipe(source(paths.src.js))
+    .pipe(source(path.basename(paths.src.js)))
     .pipe(gulpif(!isDev, streamify(uglify())))
     .pipe(gulp.dest(paths.build.js))
     .pipe(connect.reload());
@@ -162,10 +167,11 @@ gulp.task('build:js', function (done) {
  *      JS LINT
  */
 
-gulp.task('lint:js', function () {
-  return gulp.src(paths.lint.js)
+gulp.task('lint:js', function (done) {
+  gulp.src(paths.lint.js)
     .pipe(eslint())
     .pipe(eslint.format());
+  done();
 });
 
 /**
@@ -235,13 +241,13 @@ gulp.task('build:img', function (done) {
  */
 
 gulp.task('build:sprite', function (done) {
-  const spriteData = gulp.src('dev/img/sprite/*.png').pipe(spritesmith({
-    imgName: '../img/sprite.png',
-    cssName: '_sprite.sass',
+  const spriteData = gulp.src(paths.sprite.src).pipe(spritesmith({
+    imgName: paths.sprite.imgName,
+    cssName: paths.sprite.cssName,
     algorithm: 'left-right'
   }));
-  spriteData.img.pipe(gulp.dest('dev/img/'));
-  spriteData.css.pipe(gulp.dest('dev/mixins/'));
+  spriteData.img.pipe(gulp.dest(paths.sprite.img));
+  spriteData.css.pipe(gulp.dest(paths.sprite.css));
   done();
 });
 
@@ -275,7 +281,7 @@ gulp.task('server', function (done) {
 gulp.task('watch', function (done) {
   gulp.watch(paths.watch.pug, gulp.series('build:pages'));
   gulp.watch(paths.watch.img, gulp.series('build:img'));
-  gulp.watch(paths.watch.sass, gulp.series('build:sass'));
+  gulp.watch(paths.watch.sass, gulp.series('lint:sass', 'build:sass'));
   gulp.watch(paths.watch.fonts, gulp.series('build:fonts'));
   gulp.watch(paths.watch.js, gulp.series('lint:js', 'build:js'));
   done();

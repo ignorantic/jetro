@@ -2,25 +2,25 @@
   margin-left: 4px
   display: flex
 
-.pagination li
-  display: block
-  @include default-header
-  background: $alt-color
-  height: 26px
-  width: 26px
-  text-align: center
-  line-height: 30px
-  margin-right: 4px
-  transition: background 200ms
+  a
+    display: block
+    font-size: 14px
+    color: $altTextColor
+    text-decoration: none
 
-.pagination li:hover
-  background: $base-color
+  li
+    @include heading
+    display: block
+    background: $altColor
+    height: 26px
+    width: 26px
+    text-align: center
+    line-height: 30px
+    margin-right: 4px
+    transition: background 200ms
 
-.pagination .active
-  background: $base-color
+    &:hover
+      background: $baseColor
 
-.pagination a
-  display: block
-  font-size: 14px
-  color: #ffffff
-  text-decoration: none
+  .active
+    background: $baseColor

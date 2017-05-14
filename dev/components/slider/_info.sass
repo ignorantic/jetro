@@ -4,18 +4,18 @@
   left: 3%
   height: 24%
   width: 32%
-  background: $trans-back-color
+  background: $transBackColor
   padding: 20px
   overflow: hidden
 
 .slider__header
-  @include default-header
-  color: $alt-text-color
+  @include heading
+  color: $altTextColor
   word-spacing: 2px
 
 .slider__text
-  @include default-text
-  color: $alt-text-color
+  @include paragraph
+  color: $altTextColor
   font-weight: 600
   margin-bottom: 0
   text-overflow: ellipsis
@@ -30,65 +30,65 @@
   .slider__text
     font-size: 10px
 
-@media screen and (max-width: 800px)
-  .slider__header
-    font-size: 12px
+  @media screen and (max-width: 800px)
+    .slider__header
+      font-size: 12px
 
-  .slider__text
-    font-size: 9px
-    margin-top: 0
+    .slider__text
+      font-size: 9px
+      margin-top: 0
 
-@media screen and (max-width: 640px)
-  .slider__info
-    width: 42%
+    @media screen and (max-width: 640px)
+      .slider__info
+        width: 42%
 
-@media screen and (max-width: 620px)
-  .slider__info
-    padding-top: 0
-    width: 48%
+      @media screen and (max-width: 620px)
+        .slider__info
+          padding-top: 0
+          width: 48%
 
-  .slider__header
-    font-size: 10px
+        .slider__header
+          font-size: 10px
 
-@media screen and (max-width: 540px)
-  .slider__header
-    font-size: 9px
+        @media screen and (max-width: 540px)
+          .slider__header
+            font-size: 9px
 
-  .slider__text
-    font-size: 8px
+          .slider__text
+            font-size: 8px
 
-@media screen and (max-width: 480px)
-  .slider__info
-    width: 56%
+          @media screen and (max-width: 480px)
+            .slider__info
+              width: 56%
 
-  .slider__header
-    font-size: 8px
+            .slider__header
+              font-size: 8px
 
-@media screen and (max-width: 420px)
-  .slider__info
-    width: 64%
+            @media screen and (max-width: 420px)
+              .slider__info
+                width: 64%
 
-  .slider__text
-    font-size: 7px
+              .slider__text
+                font-size: 7px
 
-@media screen and (max-width: 380px)
-  .slider__info
-    padding-top: 4px
+              @media screen and (max-width: 380px)
+                .slider__info
+                  padding-top: 4px
 
-  .slider__text
-    padding-top: 4px
-    font-size: 10px
-    white-space: nowrap
-    overflow: hidden
-    text-overflow: ellipsis
+                .slider__text
+                  padding-top: 4px
+                  font-size: 10px
+                  white-space: nowrap
+                  overflow: hidden
+                  text-overflow: ellipsis
 
-  .slider__header
-    font-size: 12px
+                .slider__header
+                  font-size: 12px
 
 
-@media screen and (max-width: 300px)
-  .slider__info
-    width: 32%
+                @media screen and (max-width: 300px)
+                  .slider__info
+                    width: 32%
 
-  .slider__text
-    display: none
+                  .slider__text
+                    display: none

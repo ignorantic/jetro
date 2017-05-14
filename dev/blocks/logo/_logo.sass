@@ -6,22 +6,23 @@
   display: flex
   align-items: center
 
-.logo__first, .logo__last
+.logo__first,
+.logo__last
   position: relative
   top: .1em
 
 .logo__first
-  color: $base-color
+  color: $baseColor
 
 .logo__last
-  color: $alt-color
+  color: $altColor
 
 @media screen and (max-width: 560px)
   .logo
     height: 64px
     font-size: 28px
 
-@media screen and (max-width: 480px)
-  .logo
-    height: 60px
-    font-size: 24px
+  @media screen and (max-width: 480px)
+    .logo
+      height: 60px
+      font-size: 24px
