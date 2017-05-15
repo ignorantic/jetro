@@ -4,34 +4,35 @@
  *     https://github.com/ignorantic/jetro.git
  */
 
-const gulp = require('gulp');
-const path = require('path');
-const sourcemap = require('gulp-sourcemaps');
-const gutil = require('gulp-util');
-const connect = require('gulp-connect');
-const debug = require('gulp-debug');
-const pug = require('gulp-pug');
-const sass = require('gulp-sass');
-const sassLint = require('gulp-sass-lint');
-const prefixer = require('gulp-autoprefixer');
-const cssmin = require('gulp-cssmin');
-const rename = require('gulp-rename');
-const concat = require('gulp-concat');
-const imagemin = require('gulp-imagemin');
-const babel = require('gulp-babel');
-const streamify = require('gulp-streamify');
-const uglify = require('gulp-uglify');
-const eslint = require('gulp-eslint');
-const cached = require('gulp-cached');
-const gulpif = require('gulp-if');
+const gulp        = require('gulp');
+const path        = require('path');
+const sourcemap   = require('gulp-sourcemaps');
+const gutil       = require('gulp-util');
+const connect     = require('gulp-connect');
+const debug       = require('gulp-debug');
+const pug         = require('gulp-pug');
+const sass        = require('gulp-sass');
+const sassLint    = require('gulp-sass-lint');
+const pugLint     = require('gulp-pug-lint');
+const prefixer    = require('gulp-autoprefixer');
+const cssmin      = require('gulp-cssmin');
+const rename      = require('gulp-rename');
+const concat      = require('gulp-concat');
+const imagemin    = require('gulp-imagemin');
+const babel       = require('gulp-babel');
+const streamify   = require('gulp-streamify');
+const uglify      = require('gulp-uglify');
+const eslint      = require('gulp-eslint');
+const cached      = require('gulp-cached');
+const gulpif      = require('gulp-if');
 const spritesmith = require('gulp.spritesmith');
-const mocha = require('gulp-mocha');
-const Karma = require('karma').Server;
-const babelify = require('babelify');
-const browserify = require('browserify');
-const del = require('del');
-const pngquant = require('imagemin-pngquant');
-const source = require('vinyl-source-stream');
+const mocha       = require('gulp-mocha');
+const Karma       = require('karma').Server;
+const babelify    = require('babelify');
+const browserify  = require('browserify');
+const del         = require('del');
+const pngquant    = require('imagemin-pngquant');
+const source      = require('vinyl-source-stream');
 
 const isDev = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
 
@@ -61,7 +62,8 @@ const paths = {
       css:      'dev/mixins/'
     },
     clean:      './build',
-    lint:   { 
+    lint:   {
+      pug:      'dev/{blocks,components,pages}/**/*.pug',
       js:     [
                 'dev/{index,blocks,components,node_modules}/**/*.js',
                 '!dev/node_modules/*/node_modules/**/*.js'
@@ -97,6 +99,17 @@ gulp.task('build:pages', function (done) {
     })
     .pipe(gulp.dest(paths.build.pug))
     .pipe(connect.reload());
+  done();
+});
+
+/**
+ *      PUG LINT
+ */
+
+gulp.task('lint:pug', function (done) {
+  gulp
+    .src(paths.lint.pug)
+    .pipe(pugLint());
   done();
 });
 

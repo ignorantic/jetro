@@ -7,7 +7,7 @@
   font-size: 14px
   background: $backColor
 
-  &:focus + .form__label
+  &:focus + .label
     opacity: 1
 
   &::placeholder
@@ -40,3 +40,7 @@
 
   &::placeholder
     color: $errorColor
+
+  & + .label
+    opacity: 1
+    background: $errorColor

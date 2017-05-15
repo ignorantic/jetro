@@ -2,16 +2,16 @@
 - var activeIndex = 0
 doctype html
 html(lang="en")
-    include tmpl/head
-    body
-        .page-wrapper
-            .content
-                include ../components/navbar/navbar
-                .sidepane-wrapper
-                    .sidepane.sidepane_top
-                    .container.sidepane-border
-                        include ../components/slider/slider
-                include ../blocks/article-preview/article-preview
-                include ../blocks/recent/recent
-            include ../blocks/footer/footer
-        include tmpl/sources
+  include tmpl/head
+  body
+    .page-wrapper
+      .content-wrapper
+        include ../components/navbar/navbar
+        .sidepane-wrapper
+          .sidepane.sidepane_top
+          .container.sidepane-border
+            include ../components/slider/slider
+        include ../blocks/article-preview/article-preview
+        include ../blocks/recent/recent
+      include ../blocks/footer/footer
+    include tmpl/sources

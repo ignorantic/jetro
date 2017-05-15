@@ -30,6 +30,9 @@
   position: absolute
   bottom: 0
   width: 35px
+  @media screen and (max-width: 580px)
+    position: static
+    margin-bottom: 20px
 
 @media screen and (max-width: 950px)
   .article-preview__icon
@@ -84,10 +87,6 @@
             margin-bottom: 8px
 
           .article-preview__text
-            margin-bottom: 20px
-
-          .article-preview__more
-            position: static
             margin-bottom: 20px
 
           @media screen and (max-width: 300px)

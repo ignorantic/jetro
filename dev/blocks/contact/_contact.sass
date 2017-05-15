@@ -1,16 +1,34 @@
-@import 'feedback'
-
-.contact
-  @media screen and (max-width: 640px)
-    flex-direction: column
-
-
-.contact__content
-  @include pageContent
-  @media screen and (max-width: 640px)
-    margin-right: 0
-
-
 .map
   margin-bottom: 30px
   background: $altColor
+
+.feedback
+  display: flex
+  @media screen and (max-width: 480px)
+    flex-direction: column
+
+
+.feedback__contacts
+  flex: 1
+  @media screen and (max-width: 480px)
+    margin-bottom: 20px
+
+
+.feedback__text
+  @include paragraph
+  margin: 0
+  padding-right: 30px
+
+  span
+    font-weight: 600
+
+.feedback__title
+  @include paragraph
+  font-weight: 600
+  color: $headColor
+  margin-bottom: 0
+
+.feedback__form
+  flex: 2
+  display: flex
+  flex-direction: column
