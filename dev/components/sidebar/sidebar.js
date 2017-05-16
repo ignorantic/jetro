@@ -84,6 +84,9 @@ export default class Sidebar {
             id: item.dataset.id
           })
             .then(data => {
+              if (data.error) {
+                return;
+              }
               Sidebar.left = e.pageX + 15;
               Sidebar.top = item.offsetTop;
               Sidebar.setPopupData(data);
@@ -103,6 +106,9 @@ export default class Sidebar {
             id: item.dataset.id
           })
             .then(data => {
+              if (data.error) {
+                return;
+              }
               Sidebar.left = e.pageX + 15;
               Sidebar.top = item.offsetTop;
               Sidebar.setPopupData(data);
@@ -128,7 +134,6 @@ export default class Sidebar {
 
   static setPopupData(data) {
     let linkList = document.querySelector('#popup-links');
-
     if (linkList) {
       linkList.innerHTML = null;
       linkList.appendChild(html.tag('span', data.name));

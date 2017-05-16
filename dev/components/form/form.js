@@ -20,14 +20,14 @@ export default class FeedbackForm {
   }
 
   static addEventListenerToInputs() {
-    let firstInput = document.querySelector('#input-first-name');
+    // let firstInput = document.querySelector('#input-first-name');
     // let lastInput = document.querySelector('#input-last-name');
     // let emailInput = document.querySelector('#input-email');
     // let bodyInput = document.querySelector('#input-body');
-    firstInput.addEventListener('blur', e => {
-      console.log(e.target);
-      e.target.classList.add('blur');
-    },
-    false);
+    // firstInput.addEventListener('blur', e => {
+    //   console.log(e.target);
+    //   e.target.classList.add('blur');
+    // },
+    // false);
   }
 }
