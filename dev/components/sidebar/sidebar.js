@@ -85,6 +85,7 @@ export default class Sidebar {
           })
             .then(data => {
               if (data.error) {
+                console.log(data.error);
                 return;
               }
               Sidebar.left = e.pageX + 15;
@@ -107,6 +108,7 @@ export default class Sidebar {
           })
             .then(data => {
               if (data.error) {
+                console.log(data.error);
                 return;
               }
               Sidebar.left = e.pageX + 15;
