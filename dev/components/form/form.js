@@ -4,6 +4,9 @@
  *     https://github.com/ignorantic/jetro.git
  */
 
+import isEmpty from 'validator/lib/isEmpty';
+// import isEmail from 'validator/lib/isEmail';
+
 export default class FeedbackForm {
 
   static first;
@@ -14,20 +17,20 @@ export default class FeedbackForm {
   static init() {
     FeedbackForm.first = false;
     FeedbackForm.last = false;
-    FeedbackForm.email = false;
+    // FeedbackForm.email = false;
     FeedbackForm.body = false;
-    FeedbackForm.addEventListenerToInputs();
+    (0, FeedbackForm.addEventListenerToInputs)();
   }
 
   static addEventListenerToInputs() {
-    // let firstInput = document.querySelector('#input-first-name');
-    // let lastInput = document.querySelector('#input-last-name');
-    // let emailInput = document.querySelector('#input-email');
-    // let bodyInput = document.querySelector('#input-body');
-    // firstInput.addEventListener('blur', e => {
-    //   console.log(e.target);
-    //   e.target.classList.add('blur');
-    // },
-    // false);
+    let firstInput = document.querySelector('#input-first-name');
+    firstInput.addEventListener('blur', e => {
+      if (isEmpty(firstInput.value)) {
+        e.target.classList.add('input_state_error');
+      } else {
+        e.target.classList.remove('input_state_error');
+      }
+    },
+    false);
   }
 }

@@ -177,6 +177,20 @@ gulp.task('build:js', function (done) {
 });
 
 /**
+ *      UGLIFY
+ */
+
+gulp.task('uglify', function (cb) {
+  pump([
+        gulp.src('lib/*.js'),
+        uglify(),
+        gulp.dest('dist')
+    ],
+    cb
+  );
+});
+
+/**
  *      JS LINT
  */
 
