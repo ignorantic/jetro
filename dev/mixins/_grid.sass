@@ -1,0 +1,62 @@
+/**
+ *     Flex Layout Grid
+ *     Created by Andrii Sorokin on 5/19/17
+ *     https://github.com/ignorantic/flex-layout.git
+ */
+
+$colCount: 12
+$containerWidth: 940px
+$screens: (us: 480px, xs: 768px, sm: 992px, md: 1200px, lg: 99999px)
+$divider: '-'
+
+$colPadding: 0.5rem
+$rowPadding: 0.5rem
+$halfColPadding: $colPadding / 2
+$halfRowPadding: $rowPadding / 2
+$colWidth: 100% / $colCount
+
+
+.container,
+.container#{$divider}fluid
+  width: 100%
+  margin: auto
+
+.row
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+
+.row#{$divider}nowrap
+  flex-wrap: nowrap
+
+.col
+  flex: 0 0 100%
+  box-sizing: border-box
+  padding: $halfRowPadding $halfColPadding
+
+.row#{$divider}reverse
+  flex-direction: row-reverse
+
+.col#{$divider}reverse
+  flex-direction: column-reverse
+
+$prevWidth: 0
+
+@each $abbr, $width in $screens
+
+  @media only screen and (min-width: $prevWidth) and (max-width: $width - 1)
+
+    @for $i from 1 through $colCount
+      .col#{$divider}#{$abbr}-#{$i}
+        flex-basis: $i * $colWidth
+        max-width: $i * $colWidth
+
+    @for $i from 1 through $colCount
+      .col#{$divider}#{$abbr}-offset-#{$i}
+        margin-left: $i * $colWidth
+
+    @for $i from 1 through $colCount
+      .col#{$divider}#{$abbr}-order-#{$i}
+        order: $i
+
+  $prevWidth: $width
