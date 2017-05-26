@@ -6,19 +6,13 @@
 
 $colCount: 12
 $containerWidth: 940px
-$screens: (us: 480px, xs: 768px, sm: 992px, md: 1200px, lg: 99999px)
+$screens: (xxs: 320, xs: 480, sm: 768, md: 992, lg: 1200)
 $divider: '-'
-
-$colPadding: 0.5rem
-$rowPadding: 0.5rem
-$halfColPadding: $colPadding / 2
-$halfRowPadding: $rowPadding / 2
 $colWidth: 100% / $colCount
-
 
 .container,
 .container#{$divider}fluid
-  width: 100%
+  width: 95%
   margin: auto
 
 .row
@@ -29,22 +23,44 @@ $colWidth: 100% / $colCount
 .row#{$divider}nowrap
   flex-wrap: nowrap
 
-.col
-  flex: 0 0 100%
-  box-sizing: border-box
-  padding: $halfRowPadding $halfColPadding
-
 .row#{$divider}reverse
   flex-direction: row-reverse
+
+.row#{$divider}space-between
+  justify-content: space-between
+
+.row#{$divider}space-around
+  justify-content: space-around
 
 .col#{$divider}reverse
   flex-direction: column-reverse
 
-$prevWidth: 0
+@for $i from 1 through $colCount
+  .col#{$divider}#{$i}
+    flex-basis: $i * $colWidth
+    max-width: $i * $colWidth
+
+@for $i from 1 through $colCount
+  .col#{$divider}offset-#{$i}
+    margin-left: $i * $colWidth
+
+@for $i from 1 through $colCount
+  .col#{$divider}-order-#{$i}
+    order: $i
 
 @each $abbr, $width in $screens
 
-  @media only screen and (min-width: $prevWidth) and (max-width: $width - 1)
+  @media only screen and (min-width: #{$width}px)
+
+    .row#{$divider}space-between-#{$abbr}
+      justify-content: space-between
+
+    .row#{$divider}space-around-#{$abbr}
+      justify-content: space-around
+
+    @if $width > 768
+      .container
+        width: $containerWidth
 
     @for $i from 1 through $colCount
       .col#{$divider}#{$abbr}-#{$i}
@@ -58,5 +74,3 @@ $prevWidth: 0
     @for $i from 1 through $colCount
       .col#{$divider}#{$abbr}-order-#{$i}
         order: $i
-
-  $prevWidth: $width

@@ -1,27 +1,32 @@
-.container.container_flex
-  .main-content
-    .map.media
-      iframe(src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13852.846015172889!2d-106" +
-        ".65278570318729!3d52.13686194923122!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13" +
-        ".1!5e0!3m2!1sen!2sua!4v1479205291875"
-      width="670" height="400" allowfullscreen)
-    .feedback
-      .feedback__contacts
-        p.feedback__text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
-          | consequatur dolorem ea, eius eveniet facere laborum molestiae nesciunt non.
-        br
-        p.feedback__title Best PSD Freebies
-        p.feedback__text 328 Ave C
-        p.feedback__text Saskatoon, SK
-        p.feedback__text S7R 2V9
-        br
-        p.feedback__text <span>t:</span> (888) 842 - 8356
-        p.feedback__text <span>f:</span> (888) 452 - 9257
-        p.feedback__text <span>e:</span> info@freebies.com
-      .feedback__form
-        .feedback__message.message.message_type_success
-          span Your message was sent
-        .feedback__message.message.message_type_error
-          span Your message wasn't sent
-        include ../../components/form/form
-  include ../../components/sidebar/sidebar
+.container
+  .row
+    .col-sm-9
+      .main-content
+        .map.media
+          iframe(src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13852.846015172889!2d-106" +
+            ".65278570318729!3d52.13686194923122!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13" +
+            ".1!5e0!3m2!1sen!2sua!4v1479205291875"
+          width="670" height="400" allowfullscreen)
+        .row
+          .col-xs-4
+            .feedback__contacts
+              p.feedback__text Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid
+                | consequatur dolorem ea, eius eveniet facere laborum molestiae nesciunt non.
+              br
+              p.feedback__title Best PSD Freebies
+              p.feedback__text 328 Ave C
+              p.feedback__text Saskatoon, SK
+              p.feedback__text S7R 2V9
+              br
+              p.feedback__text <span>t:</span> (888) 842 - 8356
+              p.feedback__text <span>f:</span> (888) 452 - 9257
+              p.feedback__text <span>e:</span> info@freebies.com
+          .col-xs-8
+            .feedback__form
+              .feedback__message.message.message_type_success
+                span Your message was sent
+              .feedback__message.message.message_type_error
+                span Your message wasn't sent
+              include ../../components/form/form
+    .col-sm-3
+      include ../../components/sidebar/sidebar

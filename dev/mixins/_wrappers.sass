@@ -1,0 +1,28 @@
+html
+  margin: 0
+  height: 100%
+
+body
+  margin: 0
+  background: url('../img/bg.png') repeat
+  height: 100%
+  box-sizing: border-box
+
+.page-wrapper
+  display: flex
+  flex-direction: column
+  min-height: 100%
+  position: relative
+
+.content-wrapper
+  flex: 1 0 auto
+  position: relative
+
+.main-content
+  padding: 0 50px 45px 0
+  @media screen and (max-width: 768px)
+    padding-right: 0
+
+
+.footer-wrapper
+  flex: 0 0 auto

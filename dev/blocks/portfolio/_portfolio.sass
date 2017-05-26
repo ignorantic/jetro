@@ -1,3 +1,8 @@
+@import '../../mixins/theme'
+@import '../../mixins/text'
+@import 'work'
+
+
 .portfolio
   margin-bottom: 5px
   display: flex
@@ -31,48 +36,3 @@
 
   &:hover
     color: $altTextColor
-
-
-.work-list
-  display: flex
-  justify-content: space-between
-  flex-wrap: wrap
-  margin-bottom: 20px
-
-.work-card
-  box-sizing: border-box
-  margin-bottom: 40px
-
-.work-card__link
-  display: block
-  background: $altBackColor
-
-.work-card__img
-  display: block
-  transition: opacity 200ms
-
-  &:hover
-    opacity: 0.25
-
-.work-card__info
-  border: 1px solid $menuBackColor
-  border-top: 0
-  padding: 15px 10px 10px
-
-.work-card__title
-  @include heading
-  font-size: 16px
-  background: $backColor
-  color: $disabledColor
-  margin-bottom: 5px
-
-.work-card__date
-  @include heading
-  font-size: 10px
-
-@media screen and (max-width: 950px)
-  .work-list
-    justify-content: space-around
-
-  .work-card
-    margin: 10px

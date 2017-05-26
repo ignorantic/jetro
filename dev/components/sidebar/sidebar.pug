@@ -1,23 +1,29 @@
 -
-    catNames = ['Video (3)', 'Sport (5)', 'Media (2)', 'Entartaiment (7)', 'Life (4)', 'Super Coll Stuff (8)']
-    tagNames = ['CSS', 'Sport', 'Media', 'HTML', 'Life', 'Java Script', 'Video', 'Photo', 'Audio', 'Facebook', 'Science', 'Git', 'Web']
+  catNames = [
+              'Video (3)', 'Sport (5)', 'Media (2)', 'Entartaiment (7)',
+              'Life (4)', 'Super Coll Stuff (8)'
+             ]
+  tagNames = [
+              'CSS', 'Sport', 'Media', 'HTML', 'Life', 'Java Script',
+              'Video', 'Photo', 'Audio', 'Facebook', 'Science', 'Git', 'Web'
+             ]
 
 aside.sidebar
-    .widget
-        h3.widget__title
-            a(href='about.html') about jetro
-        .widget__text
-            p Lorem ipsum dolor sit amet, consetur adipisicing elit. Asperiores aut dignissimos error,
-                |libero maiores molestiae reiciendis! Adipisci aliquid consequatur doloribus.
-    .widget
-        h3.widget__title categories
-        ul.link-list#cat-list
-            each item in catNames
-                li.link-list__item
-                    a(href='blog.html')=item
-    .widget
-        h3.widget__title tags
-        .link-list.link-list_tag#tag-cloud
-            each item in tagNames
-                span.link-list__item.link-list__item_tag
-                    a(href='blog.html')=item
+  .widget
+    h3.widget__title
+      a(href='about.html') about jetro
+    .widget__text
+      p Lorem ipsum dolor sit amet, consetur adipisicing elit. Asperiores aut dignissimos error,
+        |libero maiores molestiae reiciendis! Adipisci aliquid consequatur doloribus.
+  .widget
+    h3.widget__title categories
+    ul.link-list#cat-list
+      each item in catNames
+        li.link-list__item
+          a(href='blog.html')=item
+  .widget
+    h3.widget__title tags
+    .link-list.link-list_tag#tag-cloud
+      each item in tagNames
+        span.link-list__item.link-list__item_tag
+          a(href='blog.html')=item

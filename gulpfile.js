@@ -34,7 +34,7 @@ const del         = require('del');
 const pngquant    = require('imagemin-pngquant');
 const source      = require('vinyl-source-stream');
 
-const isDev = !process.env.NODE_ENV || process.env.NODE_ENV == 'development';
+const isDev = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
 const paths = {
     build: {

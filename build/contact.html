@@ -23,114 +23,134 @@
         </div>
         <div class="sidepane-wrapper">
           <div class="sidepane sidepane_top"></div>
-          <div class="container container_flex sidepane-border">
+          <div class="container sidepane-border">
             <div class="title">
               <h1 class="title__header">Contact Us</h1>
             </div>
           </div>
         </div>
-        <div class="container container_flex">
-          <div class="main-content">
-            <div class="map media">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13852.846015172889!2d-106.65278570318729!3d52.13686194923122!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sua!4v1479205291875" width="670" height="400" allowfullscreen></iframe>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-9">
+              <div class="main-content">
+                <div class="map media">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d13852.846015172889!2d-106.65278570318729!3d52.13686194923122!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sua!4v1479205291875" width="670" height="400" allowfullscreen></iframe>
+                </div>
+                <div class="row">
+                  <div class="col-xs-4">
+                    <div class="feedback__contacts">
+                      <p class="feedback__text">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquidconsequatur dolorem ea, eius eveniet facere laborum molestiae nesciunt non.</p><br>
+                      <p class="feedback__title">Best PSD Freebies</p>
+                      <p class="feedback__text">328 Ave C</p>
+                      <p class="feedback__text">Saskatoon, SK</p>
+                      <p class="feedback__text">S7R 2V9</p><br>
+                      <p class="feedback__text"><span>t:</span> (888) 842 - 8356</p>
+                      <p class="feedback__text"><span>f:</span> (888) 452 - 9257</p>
+                      <p class="feedback__text"><span>e:</span> info@freebies.com</p>
+                    </div>
+                  </div>
+                  <div class="col-xs-8">
+                    <div class="feedback__form">
+                      <div class="feedback__message message message_type_success"><span>Your message was sent</span></div>
+                      <div class="feedback__message message message_type_error"><span>Your message wasn't sent</span></div>
+                      <form class="form">
+                        <div>
+                          <input class="input form__input" id="input-first-name" type="text" placeholder="first name">
+                          <label class="label" for="first_name">Your first name</label>
+                        </div>
+                        <div>
+                          <input class="input form__input" id="input-last-name" type="text" placeholder="last name">
+                          <label class="label" for="last_name">Your last name</label>
+                        </div>
+                        <div>
+                          <input class="input form__input" id="input-email" type="email" placeholder="email address">
+                          <label class="label" for="email">Your e-mail</label>
+                        </div>
+                        <textarea class="form__input input input_type_textarea" id="input-body" rows="10" placeholder="message"></textarea>
+                        <button class="button form__button" type="submit">Submit</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="feedback">
-              <div class="feedback__contacts">
-                <p class="feedback__text">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquidconsequatur dolorem ea, eius eveniet facere laborum molestiae nesciunt non.</p><br>
-                <p class="feedback__title">Best PSD Freebies</p>
-                <p class="feedback__text">328 Ave C</p>
-                <p class="feedback__text">Saskatoon, SK</p>
-                <p class="feedback__text">S7R 2V9</p><br>
-                <p class="feedback__text"><span>t:</span> (888) 842 - 8356</p>
-                <p class="feedback__text"><span>f:</span> (888) 452 - 9257</p>
-                <p class="feedback__text"><span>e:</span> info@freebies.com</p>
-              </div>
-              <div class="feedback__form">
-                <div class="feedback__message message message_type_success"><span>Your message was sent</span></div>
-                <div class="feedback__message message message_type_error"><span>Your message wasn't sent</span></div>
-                <form class="form">
-                  <div>
-                    <input class="input form__input" id="input-first-name" type="text" placeholder="first name">
-                    <label class="label" for="first_name">Your first name</label>
+            <div class="col-sm-3">
+              <aside class="sidebar">
+                <div class="widget">
+                  <h3 class="widget__title"><a href="about.html">about jetro</a></h3>
+                  <div class="widget__text">
+                    <p>
+                      Lorem ipsum dolor sit amet, consetur adipisicing elit. Asperiores aut dignissimos error,libero maiores molestiae reiciendis! Adipisci aliquid consequatur doloribus.</p>
                   </div>
-                  <div>
-                    <input class="input form__input" id="input-last-name" type="text" placeholder="last name">
-                    <label class="label" for="last_name">Your last name</label>
+                </div>
+                <div class="widget">
+                  <h3 class="widget__title">categories</h3>
+                  <ul class="link-list" id="cat-list">
+                    <li class="link-list__item"><a href="blog.html">Video (3)</a></li>
+                    <li class="link-list__item"><a href="blog.html">Sport (5)</a></li>
+                    <li class="link-list__item"><a href="blog.html">Media (2)</a></li>
+                    <li class="link-list__item"><a href="blog.html">Entartaiment (7)</a></li>
+                    <li class="link-list__item"><a href="blog.html">Life (4)</a></li>
+                    <li class="link-list__item"><a href="blog.html">Super Coll Stuff (8)</a></li>
+                  </ul>
+                </div>
+                <div class="widget">
+                  <h3 class="widget__title">tags</h3>
+                  <div class="link-list link-list_tag" id="tag-cloud"><span class="link-list__item link-list__item_tag"><a href="blog.html">CSS</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Sport</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Media</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">HTML</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Life</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Java Script</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Video</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Photo</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Audio</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Facebook</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Science</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Git</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Web</a></span>
                   </div>
-                  <div>
-                    <input class="input form__input" id="input-email" type="email" placeholder="email address">
-                    <label class="label" for="email">Your e-mail</label>
-                  </div>
-                  <textarea class="form__input input input_type_textarea" id="input-body" rows="10" placeholder="message"></textarea>
-                  <button class="button form__button" type="submit">Submit</button>
-                </form>
-              </div>
+                </div>
+              </aside>
             </div>
           </div>
-          <aside class="sidebar">
-            <div class="widget">
-              <h3 class="widget__title"><a href="about.html">about jetro</a></h3>
-              <div class="widget__text">
-                <p>
-                  Lorem ipsum dolor sit amet, consetur adipisicing elit. Asperiores aut dignissimos error,libero maiores molestiae reiciendis! Adipisci aliquid consequatur doloribus.</p>
-              </div>
-            </div>
-            <div class="widget">
-              <h3 class="widget__title">categories</h3>
-              <ul class="link-list" id="cat-list">
-                <li class="link-list__item"><a href="blog.html">Video (3)</a></li>
-                <li class="link-list__item"><a href="blog.html">Sport (5)</a></li>
-                <li class="link-list__item"><a href="blog.html">Media (2)</a></li>
-                <li class="link-list__item"><a href="blog.html">Entartaiment (7)</a></li>
-                <li class="link-list__item"><a href="blog.html">Life (4)</a></li>
-                <li class="link-list__item"><a href="blog.html">Super Coll Stuff (8)</a></li>
-              </ul>
-            </div>
-            <div class="widget">
-              <h3 class="widget__title">tags</h3>
-              <div class="link-list link-list_tag" id="tag-cloud"><span class="link-list__item link-list__item_tag"><a href="blog.html">CSS</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Sport</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Media</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">HTML</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Life</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Java Script</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Video</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Photo</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Audio</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Facebook</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Science</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Git</a></span><span class="link-list__item link-list__item_tag"><a href="blog.html">Web</a></span>
-              </div>
-            </div>
-          </aside>
         </div>
       </div>
-      <div class="sidepane-wrapper">
-        <div class="sidepane sidepane_bottom"></div>
-        <div class="container sidepane-border">
-          <footer class="footer">
-            <div class="footer__column"><span class="footer__header"><a href="about.html">about jetro</a></span>
-              <p class="footer__text">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda
-                doloribus incidunt iusto laudantium nihil obcaecati quos? A aliquid consectetur eos, et illum
-                laboriosam laudantium quaerat quidem sapiente totam, veritatis?
-              </p>
-              <p class="footer__text">
-                A aliquid consectetur eos, et illum laboriosam laudantium quaerat quidem
-                sapiente totam, veritatis?
-              </p>
-            </div>
-            <div class="footer__column"><span class="footer__header">twitter widget</span>
-              <p class="footer__text"><span class="footer__span">@pixelmater</span>
-                What an awesome design with
-                great functionality :)
-              </p>
-              <p class="footer__text"><span class="footer__span">about 1 hour ago</span></p>
-              <p class="footer__text"><span class="footer__span">@designdude</span>
-                What an awesome design with
-                great functionality :)
-              </p>
-              <p class="footer__text"><span class="footer__span">about 2 hour ago</span></p>
-              <p class="footer__text">Follow<span class="footer__span">@bestpsdfreebies</span></p>
-            </div>
-            <div class="footer__column"><span class="footer__header"><a href="contact.html">contact us</a></span>
-              <p class="footer__text">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
-                dolores earum itaque laboriosam, nemo numquam.
-              </p><br>
-              <p class="footer__text">information@jetro.com<br>1.222.333.4444</p><br><i class="icon icon-facebook"></i> <i class="icon icon-twitter"></i> <i class="icon icon-mail"></i> <i class="icon icon-rss"></i> <i class="icon icon-vimeo"></i> 
-            </div>
-          </footer>
+      <div class="footer-wrapper">
+        <div class="sidepane-wrapper">
+          <div class="sidepane sidepane_bottom"></div>
+          <div class="container sidepane-border">
+            <footer class="footer">
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="footer__column"><span class="footer__header"><a href="about.html">about jetro</a></span>
+                    <p class="footer__text">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias assumenda
+                      doloribus incidunt iusto laudantium nihil obcaecati quos? A aliquid consectetur eos, et illum
+                      laboriosam laudantium quaerat quidem sapiente totam, veritatis?
+                    </p>
+                    <p class="footer__text">
+                      A aliquid consectetur eos, et illum laboriosam laudantium quaerat quidem
+                      sapiente totam, veritatis?
+                    </p>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="footer__column"><span class="footer__header">twitter widget</span>
+                    <p class="footer__text"><span class="footer__span">@pixelmater</span>
+                      What an awesome design with
+                      great functionality :)
+                    </p>
+                    <p class="footer__text"><span class="footer__span">about 1 hour ago</span></p>
+                    <p class="footer__text"><span class="footer__span">@designdude</span>
+                      What an awesome design with
+                      great functionality :)
+                    </p>
+                    <p class="footer__text"><span class="footer__span">about 2 hour ago</span></p>
+                    <p class="footer__text">Follow<span class="footer__span">@bestpsdfreebies</span></p>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="footer__column"><span class="footer__header"><a href="contact.html">contact us</a></span>
+                    <p class="footer__text">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
+                      dolores earum itaque laboriosam, nemo numquam.
+                    </p><br>
+                    <p class="footer__text">information@jetro.com<br>1.222.333.4444</p><br><i class="icon icon-facebook"></i> <i class="icon icon-twitter"></i> <i class="icon icon-mail"></i> <i class="icon icon-rss"></i> <i class="icon icon-vimeo"></i> 
+                  </div>
+                </div>
+              </div>
+            </footer>
+          </div>
         </div>
       </div>
     </div>
