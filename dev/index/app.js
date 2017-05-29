@@ -32,7 +32,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (document.querySelector('.feedback__form')) {
 
-    FeedbackForm.init();
+    let feedbackForm = new FeedbackForm({
+      fields: [
+        {
+          ID: 'input-first-name',
+          type: 'text'
+        },
+        {
+          ID: 'input-last-name',
+          type: 'text'
+        },
+        {
+          ID: 'input-email',
+          type: 'text'
+        },
+        {
+          ID: 'input-body',
+          type: 'text'
+        }
+      ],
+      submit: {
+        ID: 'submit'
+      },
+      classes: {
+        error: 'input_state_error'
+      }
+    });
+    feedbackForm.init();
 
   }
 

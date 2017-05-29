@@ -65,7 +65,7 @@ const paths = {
     lint:   {
       pug:      'dev/{blocks,components,pages}/**/*.pug',
       js:     [
-                'dev/{index,blocks,components,node_modules}/**/*.js',
+                'dev/{index,blocks,components,test,node_modules}/**/*.js',
                 '!dev/node_modules/*/node_modules/**/*.js'
               ],
       sass:   [
@@ -76,7 +76,7 @@ const paths = {
     },
     watch:  {
         pug:    'dev/{blocks,components,pages}/**/*.pug',
-        js:     'dev/{index,blocks,components,node_modules}/**/*.js',
+        js:     'dev/{index,blocks,components,test,node_modules}/**/*.js',
         sass:   'dev/{index,blocks,components,fonts,mixins}/**/*.{sass,css}',
         img:    'dev/img/**/*.{png,jpg,gif,svg}',
         fonts:  'dev/fonts/**/*.{ttf,eot,svg,woff,woff2}'
@@ -202,21 +202,7 @@ gulp.task('lint:js', function (done) {
 });
 
 /**
- *      TEST
- */
-
-gulp.task('test', function (done) {
-  new Karma({
-    configFile: __dirname + '/karma.conf.js',
-    autoWatch: false,
-    singleRun: true
-  }, function () {
-    done();
-  }).start();
-});
-
-/**
- *      TDD
+ *      TEST-DRIVE DEVELOPMENT
  */
 
 gulp.task('tdd', function (done) {
@@ -329,6 +315,11 @@ gulp.task('build', gulp.series(
 ));
 
 gulp.task('default', gulp.series('build'));
+
+gulp.task('linting', function (done) {
+  gulp.watch(paths.watch.js, gulp.series('lint:js'));
+  done();
+});
 
 gulp.task('run', gulp.series(
   gulp.parallel(
