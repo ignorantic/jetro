@@ -4,17 +4,28 @@
  *     https://github.com/ignorantic/jetro.git
  */
 
+import includes from 'lodash/includes';
+import defaults from 'lodash/defaults';
 import isEmpty from 'validator/lib/isEmpty';
-// import isEmail from 'validator/lib/isEmail';
 
 export default class FeedbackForm {
 
   constructor (structure) {
     this.structure = structure;
     this.types = ['text', 'mail'];
+    this.defaultClasses = {
+      inputError: 'input-error',
+      messageError: 'message-error',
+      messageSuccess: 'message-success'
+    };
+    this.defaultID = {
+      submit: 'submit-btn',
+      input: 'input-undefined',
+      form: 'form'
+    };
   }
 
-  init() {
+  init () {
     this.initForm();
     this.initFields();
     this.initSubmit();
@@ -24,12 +35,12 @@ export default class FeedbackForm {
     delete this.structure;
   }
 
-  initForm() {
+  initForm () {
     this.form = {};
     if (typeof this.structure.form.ID === 'string') {
       this.form.ID = this.structure.form.ID;
     } else {
-      this.form.ID = 'form';
+      this.form.ID = this.defaultID.form;
     }
   }
 
@@ -39,9 +50,9 @@ export default class FeedbackForm {
       if (typeof item.ID === 'string') {
         field.ID = item.ID;
       } else {
-        field.ID = 'undefined';
+        field.ID = '';
       }
-      if (this.types.includes(field.type)) {
+      if (includes(this.types, field.type)) {
         field.type = item.type;
       } else {
         field.type = this.types[0];
@@ -51,22 +62,18 @@ export default class FeedbackForm {
     });
   }
 
-  initSubmit() {
+  initSubmit () {
     this.submit = {};
     if (typeof this.structure.submit.ID === 'string') {
       this.submit.ID = this.structure.submit.ID;
     } else {
-      this.submit.ID = 'submit';
+      this.submit.ID = this.defaultID.submit;
     }
   }
 
-  initClasses() {
+  initClasses () {
     this.classes = {};
-    if (typeof this.structure.classes.error === 'string') {
-      this.classes.error = this.structure.classes.error;
-    } else {
-      this.classes.error = 'error';
-    }
+    this.classes = defaults(this.structure.classes, this.defaultClasses);
   }
 
   addEventListenerToInputs () {
@@ -83,10 +90,10 @@ export default class FeedbackForm {
   handleBlur (index) {
     return e => {
       if (isEmpty(e.target.value)) {
-        e.target.classList.add(this.classes.error);
+        e.target.classList.add(this.classes.inputError);
         this.fields[index].validated = false;
       } else {
-        e.target.classList.remove(this.classes.error);
+        e.target.classList.remove(this.classes.inputError);
         this.fields[index].validated = true;
       }
     };
@@ -96,11 +103,16 @@ export default class FeedbackForm {
     return e => {
       e.preventDefault();
       if (this.checkFields()) {
-        document.getElementById(this.form.ID).submit();
+        this.submitForm();
       } else {
-        alert('invalid');
+        this.showErrors();
       }
     };
+  }
+
+  submitForm () {
+    let form = document.getElementById(this.form.ID);
+    form.submit();
   }
 
   checkFields () {
@@ -111,5 +123,9 @@ export default class FeedbackForm {
       }
     });
     return result;
+  }
+
+  showErrors () {
+
   }
 }

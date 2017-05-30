@@ -93,7 +93,7 @@ gulp.task('build:pages', function (done) {
       pretty: true
     }))
     .on('error', function (err) {
-      gutil.log(gutil.colors.red('💀'), gutil.colors.red.bold('⇵ pug error'));
+      gutil.log(gutil.colors.red('💀'), gutil.colors.red.bold('⇵ pug inputError'));
       gutil.log(gutil.colors.yellow(err.message));
       this.emit('end');
     })
@@ -122,7 +122,7 @@ gulp.task('build:sass', function(done) {
         .pipe(gulpif(isDev,  sourcemap.init()))
         .pipe(sass())
         .on('error', function(err){
-          gutil.log(gutil.colors.red('💀'), gutil.colors.red.bold('⇵ sass error'));
+          gutil.log(gutil.colors.red('💀'), gutil.colors.red.bold('⇵ sass inputError'));
           gutil.log(gutil.colors.yellow(err.message));
           this.emit('end');
         })
@@ -165,7 +165,7 @@ gulp.task('build:js', function (done) {
     })
     .bundle()
     .on('error', function (err) {
-      gutil.log(gutil.colors.red('💀'), gutil.colors.red.bold('⇵ browserify error'));
+      gutil.log(gutil.colors.red('💀'), gutil.colors.red.bold('⇵ browserify inputError'));
       gutil.log(gutil.colors.yellow(err.message));
       this.emit('end');
     })

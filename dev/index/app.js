@@ -7,7 +7,7 @@
 import Navbar from '../components/navbar/navbar';
 import Slider from '../components/slider/slider';
 import Sidebar from '../components/sidebar/sidebar';
-import FeedbackForm from 'feedback-form';
+import FeedbackForm from '../components/form/form';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -65,7 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
           ID: 'submit-btn'
         },
         classes: {
-          error: 'input_state_error'
+          inputError: 'input_state_error',
+          messageError: 'input_state_error',
+          messageSuccess: 'input_state_error'
         }
       });
       feedbackForm.init();
