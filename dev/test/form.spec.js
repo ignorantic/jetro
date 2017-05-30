@@ -35,7 +35,7 @@ describe('FeedbackForm', () => {
           }
         ],
         submit: {
-          ID: 'submit'
+          ID: 'submit-btn'
         },
         classes: {
           error: 'input_state_error'

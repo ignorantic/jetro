@@ -4,7 +4,6 @@
  *     https://github.com/ignorantic/jetro.git
  */
 
-import includes from 'lodash/includes';
 import isEmpty from 'validator/lib/isEmpty';
 // import isEmail from 'validator/lib/isEmail';
 
@@ -16,11 +15,22 @@ export default class FeedbackForm {
   }
 
   init() {
+    this.initForm();
     this.initFields();
     this.initSubmit();
     this.initClasses();
     this.addEventListenerToInputs();
+    this.addEventListenerToSubmit();
     delete this.structure;
+  }
+
+  initForm() {
+    this.form = {};
+    if (typeof this.structure.form.ID === 'string') {
+      this.form.ID = this.structure.form.ID;
+    } else {
+      this.form.ID = 'form';
+    }
   }
 
   initFields () {
@@ -31,7 +41,7 @@ export default class FeedbackForm {
       } else {
         field.ID = 'undefined';
       }
-      if (includes(this.types, field.type)) {
+      if (this.types.includes(field.type)) {
         field.type = item.type;
       } else {
         field.type = this.types[0];
@@ -66,8 +76,12 @@ export default class FeedbackForm {
     });
   }
 
+  addEventListenerToSubmit () {
+    document.getElementById(this.submit.ID).addEventListener('click', this.handleSubmit(), false);
+  }
+
   handleBlur (index) {
-    return (e) => {
+    return e => {
       if (isEmpty(e.target.value)) {
         e.target.classList.add(this.classes.error);
         this.fields[index].validated = false;
@@ -75,10 +89,16 @@ export default class FeedbackForm {
         e.target.classList.remove(this.classes.error);
         this.fields[index].validated = true;
       }
+    };
+  }
+
+  handleSubmit () {
+    return e => {
+      e.preventDefault();
       if (this.checkFields()) {
-        this.enableSubmit();
+        document.getElementById(this.form.ID).submit();
       } else {
-        this.disableSubmit();
+        alert('invalid');
       }
     };
   }
@@ -91,15 +111,5 @@ export default class FeedbackForm {
       }
     });
     return result;
-  }
-
-  enableSubmit() {
-    let submit = document.getElementById(this.submit.ID);
-    submit.disabled = false;
-  }
-
-  disableSubmit() {
-    let submit = document.getElementById(this.submit.ID);
-    submit.disabled = true;
   }
 }

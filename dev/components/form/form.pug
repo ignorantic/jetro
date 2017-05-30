@@ -1,12 +1,12 @@
-form.form
-    div
-        input#input-first-name.input.form__input(type="text", placeholder="first name")
-        label.label(for="first_name") Your first name
-    div
-        input#input-last-name.input.form__input(type="text", placeholder="last name")
-        label.label(for="last_name") Your last name
-    div
-        input#input-email.input.form__input(type="email", placeholder="email address")
-        label.label(for="email") Your e-mail
-    textarea#input-body.form__input.input.input_type_textarea(rows=10, placeholder="message")
-    button#submit.button.form__button(type="submit") Submit
+form#feedback-form.form()
+  div
+    input#input-first-name.input.form__input(type="text", placeholder="first name")
+    label.label(for="first_name") Your first name
+  div
+    input#input-last-name.input.form__input(type="text", placeholder="last name")
+    label.label(for="last_name") Your last name
+  div
+    input#input-email.input.form__input(type="text", placeholder="email address")
+    label.label(for="email") Your e-mail
+  textarea#input-body.form__input.input.input_type_textarea(rows=10, placeholder="message")
+  button#submit-btn.button.form__button Submit

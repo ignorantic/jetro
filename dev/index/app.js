@@ -7,58 +7,69 @@
 import Navbar from '../components/navbar/navbar';
 import Slider from '../components/slider/slider';
 import Sidebar from '../components/sidebar/sidebar';
-import FeedbackForm from '../components/form/form';
+import FeedbackForm from 'feedback-form';
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
 
   if (document.querySelector('.navbar')) {
 
-    Navbar.init();
+    (() => {
+      Navbar.init();
+    })();
 
   }
 
   if (document.querySelector('.slider')) {
 
-    let slider = new Slider();
-    slider.init();
+    (() => {
+      let slider = new Slider();
+      slider.init();
+    })();
 
   }
 
   if (document.querySelector('.sidebar')) {
 
-    Sidebar.init();
+    (() => {
+      Sidebar.init();
+    })();
 
   }
 
   if (document.querySelector('.feedback__form')) {
 
-    let feedbackForm = new FeedbackForm({
-      fields: [
-        {
-          ID: 'input-first-name',
-          type: 'text'
+    (() => {
+      let feedbackForm = new FeedbackForm({
+        form: {
+          ID: 'feedback-form'
         },
-        {
-          ID: 'input-last-name',
-          type: 'text'
+        fields: [
+          {
+            ID: 'input-first-name',
+            type: 'text'
+          },
+          {
+            ID: 'input-last-name',
+            type: 'text'
+          },
+          {
+            ID: 'input-email',
+            type: 'text'
+          },
+          {
+            ID: 'input-body',
+            type: 'text'
+          }
+        ],
+        submit: {
+          ID: 'submit-btn'
         },
-        {
-          ID: 'input-email',
-          type: 'text'
-        },
-        {
-          ID: 'input-body',
-          type: 'text'
+        classes: {
+          error: 'input_state_error'
         }
-      ],
-      submit: {
-        ID: 'submit'
-      },
-      classes: {
-        error: 'input_state_error'
-      }
-    });
-    feedbackForm.init();
+      });
+      feedbackForm.init();
+    })();
 
   }
 

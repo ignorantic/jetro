@@ -306,13 +306,14 @@ gulp.task('watch', function (done) {
 
 gulp.task('build', gulp.series(
   'clean',
-  'build:pages',
-  'build:sprite',
-  'build:sass',
-  'build:js',
-  'build:img',
-  'build:fonts'
-));
+  gulp.parallel(
+    'build:img',
+    'build:sprite',
+    'build:fonts',
+    'build:pages',
+    'build:sass',
+    'build:js'))
+);
 
 gulp.task('default', gulp.series('build'));
 
