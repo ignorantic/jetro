@@ -7,7 +7,7 @@
 import Navbar from '../components/navbar/navbar';
 import Slider from '../components/slider/slider';
 import Sidebar from '../components/sidebar/sidebar';
-import FeedbackForm from '../components/form/form';
+import FeedbackForm from 'feedback-form';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -41,33 +41,41 @@ document.addEventListener('DOMContentLoaded', () => {
     (() => {
       let feedbackForm = new FeedbackForm({
         form: {
-          ID: 'feedback-form'
+          id: 'feedback-form'
         },
         fields: [
           {
-            ID: 'input-first-name',
-            type: 'text'
+            id: 'input-first-name',
+            type: 'text',
+            error: 'Invalid first name'
           },
           {
-            ID: 'input-last-name',
-            type: 'text'
+            id: 'input-last-name',
+            type: 'text',
+            error: 'Invalid last name'
           },
           {
-            ID: 'input-email',
-            type: 'text'
+            id: 'input-email',
+            type: 'email',
+            error: 'Invalid email'
           },
           {
-            ID: 'input-body',
-            type: 'text'
+            id: 'input-body',
+            type: 'text',
+            error: 'Invalid message body'
           }
         ],
         submit: {
-          ID: 'submit-btn'
+          id: 'submit-btn'
+        },
+        message: {
+          id: 'message'
         },
         classes: {
           inputError: 'input_state_error',
-          messageError: 'input_state_error',
-          messageSuccess: 'input_state_error'
+          messageNone: 'message_none',
+          messageError: 'message_type_error',
+          messageSuccess: 'message_type_success'
         }
       });
       feedbackForm.init();

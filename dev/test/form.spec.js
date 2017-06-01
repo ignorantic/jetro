@@ -68,7 +68,7 @@ describe('FeedbackForm', () => {
       form.initSubmit();
 
       assert(typeof form.submit === 'object', 'form.submit is object');
-      assert(form.submit.ID === 'submit', 'form.submit.ID is string');
+      assert(form.submit.ID === 'submit-btn', 'form.submit.ID is string');
 
     });
 

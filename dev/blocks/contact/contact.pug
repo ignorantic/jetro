@@ -23,10 +23,7 @@
               p.feedback__text <span>e:</span> info@freebies.com
           .col-xs-8
             .feedback__form
-              .feedback__message.message.message_type_success
-                span Your message was sent
-              .feedback__message.message.message_type_error
-                span Your message wasn't sent
+              #message.feedback__message.message.message_none.message_type_success
               include ../../components/form/form
     .col-sm-3
       include ../../components/sidebar/sidebar
